@@ -36,7 +36,7 @@ class _HomeState extends State<Home> {
               child: Text('About'),
             ),
             ListTile(
-                leading: const Icon(MdiIcons.imageFilterDrama),
+                leading: const Icon(MdiIcons.bookInformationVariant),
                 title: const Text('App Information 1'),
                 onTap: () => {
                       Navigator.of(context).push(MaterialPageRoute(
@@ -44,7 +44,7 @@ class _HomeState extends State<Home> {
                       ))
                     }),
             ListTile(
-                leading: const Icon(MdiIcons.dotsHexagon),
+                leading: const Icon(MdiIcons.bookHeart),
                 title: const Text('Information about using data'),
                 onTap: () => {
                       Navigator.of(context).push(MaterialPageRoute(
