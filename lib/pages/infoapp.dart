@@ -10,7 +10,7 @@ class InfoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromARGB(34, 45, 32, 23),
-      appBar: AppBar(title: const Text('About')),
+      appBar: AppBar(title: const Text('infoapp')),
     );
   }
 }
