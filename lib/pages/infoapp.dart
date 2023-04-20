@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 
 class InfoApp extends StatelessWidget {
@@ -9,12 +7,10 @@ class InfoApp extends StatelessWidget {
   static const routename = 'InfoApp';
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.green,
-        appBar: AppBar(
-          title: const Text('About')
-    ),
+      backgroundColor: Color.fromARGB(34, 45, 32, 23),
+      appBar: AppBar(title: const Text('About')),
+    );
   }
-
 }
