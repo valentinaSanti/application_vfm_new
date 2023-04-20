@@ -36,24 +36,25 @@ class _HomeState extends State<Home> {
                   title: const Text('App Information 1'),
                   onTap: () => {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => Inf(),
+                          builder: (context) => infoapp(),
                         ))
                       }),
               ListTile(
                   leading: const Icon(MdiIcons.dotsHexagon),
-                  title: const Text('App Information 2'),
+                  title: const Text('Information about using data'),
                   onTap: () => {
                         Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => InfoExposure(),
+                          builder: (context) => info_dati_usati(),
                         ))
                       }),
             ],
           ),
         ),
         appBar: AppBar(
-          iconTheme: const IconThemeData(color: Color(0xFF89453C)),
+          iconTheme:
+              const IconThemeData(color: Color.fromARGB(255, 218, 162, 21)),
           elevation: 0,
-          backgroundColor: const Color(0xFFE4DFD4),
+          backgroundColor: Color.fromARGB(255, 199, 237, 163),
           actions: [
             Padding(
               padding: const EdgeInsets.all(8.0),
