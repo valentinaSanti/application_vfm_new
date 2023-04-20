@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
-   Login({Key? key}) : super(key: key);
+  Login({Key? key}) : super(key: key);
 
   static const route = '/login/';
   static const routename = 'Login';
@@ -13,13 +13,13 @@ class Login extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: const Color(0xFFE4DFD4),
+        backgroundColor: Color.fromARGB(255, 197, 233, 152),
         appBar: AppBar(
           elevation: 0,
-          backgroundColor: const Color(0xFFE4DFD4),
-          iconTheme: const IconThemeData(color: Color(0xFF89453C)),
-          title:
-              const Text('Profile', style: TextStyle(color: Colors.black)),
+          backgroundColor: Color.fromARGB(255, 197, 233, 152),
+          iconTheme:
+              const IconThemeData(color: Color.fromARGB(255, 218, 162, 21)),
+          title: const Text('Profile', style: TextStyle(color: Colors.black)),
         ),
         body: SingleChildScrollView(
             child: Column(
@@ -40,7 +40,8 @@ class Login extends StatelessWidget {
                         const SizedBox(width: 10),
                         const Text('Gender',
                             style: TextStyle(
-                                color: Color(0xFF89453C), fontSize: 17)),
+                                color: Color.fromARGB(255, 218, 162, 21),
+                                fontSize: 17)),
                         Radio(
                           fillColor: MaterialStateColor.resolveWith(
                               (states) => const Color(0xFF89453C)),
