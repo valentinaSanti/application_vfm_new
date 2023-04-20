@@ -24,7 +24,9 @@ class Login extends StatelessWidget {
         body: SingleChildScrollView(
             child: Column(
           children: [
-            
+            Center(
+                child: CircleAvatar(
+                    radius: 70, child: Image.asset('assets/profile.png'))),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Form(
