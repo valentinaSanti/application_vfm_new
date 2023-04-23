@@ -1,5 +1,6 @@
 import 'package:application_vfm_new/pages/home.dart';
 import 'package:flutter/material.dart';
+import 'package:application_vfm_new/app_general_theme.dart';
 
 void main() {
   runApp(const MyApp());
