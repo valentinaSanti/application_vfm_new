@@ -14,9 +14,9 @@ class Login extends StatefulWidget{
 
 class LoginState extends State<Login> {
 
-  //static const route = '/login/';
-  //static const routename = 'Login';
-  String currentOption = option[0];
+  static const route = '/login/';
+  static const routename = 'Login';
+  String currentOption = option[1];
 
   final _formKey = GlobalKey<FormState>();
 
@@ -47,11 +47,11 @@ class LoginState extends State<Login> {
                 child: Column(
                   children: [
                     const SizedBox(height: 10),
-                    Row(
+                    Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         const SizedBox(width: 10),
-                        const Text('Gender',
+                        const Text('Gender:',
                           style: TextStyle(
                             color: Color.fromARGB(255, 218, 162, 21),
                             fontSize: 17
@@ -65,13 +65,18 @@ class LoginState extends State<Login> {
                         //  onChanged: (val) {},
                         //),
                         ListTile(
-                          title: const Text('MALE'),
+                          title: const Text('MALE',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 218, 162, 21),
+                              fontSize: 17
+                            )
+                          ),
                           leading: Radio(
                             value: option[0],
                             groupValue: currentOption,
                             onChanged:(value) {
                               setState((){
-                                currentOption : value.toString();
+                                currentOption = value.toString();
                               });
                             },
                           )
@@ -88,13 +93,18 @@ class LoginState extends State<Login> {
                         //    onChanged: (val) {}
                         //),
                         ListTile(
-                          title: const Text('FEMALE'),
+                          title: const Text('FEMALE',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 218, 162, 21),
+                              fontSize: 17
+                            )
+                          ),
                           leading: Radio(
                             value: option[1],
                             groupValue: currentOption,
                             onChanged:(value) {
                               setState(() {
-                                currentOption : value.toString();
+                                currentOption = value.toString();
                               });
                             },
                           )
@@ -107,41 +117,41 @@ class LoginState extends State<Login> {
                         //),
                       ],
                     ),
-//                    const SizedBox(height: 20),
-//                    SizedBox(
-//                      width: 400,
-//                      child: TextFormField(
-//                          validator: (value) {
-//                            if (value == null || value.isEmpty) {
-//                              return 'Please enter your age';
-//                            } else if (int.tryParse(value) == null) {
-//                              return 'Please enter an integer valid number';
-//                            }
-//                            return null;
-//                          },
-//                          controller: ageController,
-//                          enabled: true,
-//                          decoration: const InputDecoration(
-//                              border: OutlineInputBorder(),
-//                              focusedBorder: OutlineInputBorder(
-//                                  borderSide: BorderSide(
-//                                      width: 1, color: Color(0xFF89453C))),
-//                              labelText: 'Age',
-//                              labelStyle: TextStyle(color: Color(0xFF89453C)))),
-//                    ),
-//                    Row(
-//                      mainAxisAlignment: MainAxisAlignment.end,
-//                      children: [
-//                        ElevatedButton(
-//                            onPressed: () async {
-//                              if (_formKey.currentState!.validate()) {}
-//                            },
-//                            style: ElevatedButton.styleFrom(
-//                                backgroundColor: const Color(0xFF83AA99),
-//                                shape: const CircleBorder()),
-//                            child: const Icon(Icons.check)),
-//                      ],
-//                    ),
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      width: 400,
+                      child: TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your age';
+                            } else if (int.tryParse(value) == null) {
+                              return 'Please enter an integer valid number';
+                            }
+                            return null;
+                          },
+                          controller: ageController,
+                          enabled: true,
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      width: 1, color: Color(0xFF89453C))),
+                              labelText: 'Age',
+                              labelStyle: TextStyle(color: Color(0xFF89453C)))),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ElevatedButton(
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {}
+                            },
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF83AA99),
+                                shape: const CircleBorder()),
+                            child: const Icon(Icons.check)),
+                      ],
+                    ),
                   ],
                 ),
               ),
