@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-List<String> option = ['MALE','FEMALE'];
+List<String> option = ['MALE','FEMALE','NON SPECIFICATO'];
 
 
 
@@ -104,6 +104,23 @@ class LoginState extends State<Login> {
                             groupValue: currentOption,
                             onChanged:(value) {
                               setState(() {
+                                currentOption = value.toString();
+                              });
+                            },
+                          )
+                        ),
+                        ListTile(
+                          title: const Text('NON SPECIFICATO',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 218, 162, 21),
+                              fontSize: 17
+                            )
+                          ),
+                          leading: Radio(
+                            value: option[2],
+                            groupValue: currentOption,
+                            onChanged:(value) {
+                              setState((){
                                 currentOption = value.toString();
                               });
                             },
