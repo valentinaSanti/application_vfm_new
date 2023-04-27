@@ -5,6 +5,9 @@ import 'package:application_vfm_new/pages/infoapp.dart';
 import 'package:application_vfm_new/pages/info_dati_usati.dart';
 import 'package:application_vfm_new/pages/login.dart';
 
+import 'package:application_vfm_new/providers/home_provider.dart';
+import 'package:provider/provider.dart';
+
 class Home extends StatefulWidget {
   static const route = '/home/';
   static const routeDisplayName = 'HomePage';

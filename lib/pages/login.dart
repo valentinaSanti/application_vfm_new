@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-List<String> option = ['MALE','FEMALE','NON SPECIFICATO'];
+List<String> option = ['MALE', 'FEMALE', 'NON SPECIFICATO'];
 
-
-
-class Login extends StatefulWidget{
+class Login extends StatefulWidget {
   Login({Key? key}) : super(key: key);
 
   @override
@@ -13,7 +11,6 @@ class Login extends StatefulWidget{
 }
 
 class LoginState extends State<Login> {
-
   static const route = '/login/';
   static const routename = 'Login';
   String currentOption = option[1];
@@ -21,7 +18,6 @@ class LoginState extends State<Login> {
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController ageController = TextEditingController();
-
 
   @override
   Widget build(BuildContext context) {
@@ -52,11 +48,9 @@ class LoginState extends State<Login> {
                       children: <Widget>[
                         const SizedBox(width: 10),
                         const Text('Gender:',
-                          style: TextStyle(
-                            color: Color.fromARGB(255, 218, 162, 21),
-                            fontSize: 17
-                          )
-                        ),
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 218, 162, 21),
+                                fontSize: 17)),
                         //Radio(
                         //  fillColor: MaterialStateColor.resolveWith(
                         //      (states) => const Color(0xFF89453C)),
@@ -65,22 +59,19 @@ class LoginState extends State<Login> {
                         //  onChanged: (val) {},
                         //),
                         ListTile(
-                          title: const Text('MALE',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 218, 162, 21),
-                              fontSize: 17
-                            )
-                          ),
-                          leading: Radio(
-                            value: option[0],
-                            groupValue: currentOption,
-                            onChanged:(value) {
-                              setState((){
-                                currentOption = value.toString();
-                              });
-                            },
-                          )
-                        ),
+                            title: const Text('MALE',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 218, 162, 21),
+                                    fontSize: 17)),
+                            leading: Radio(
+                              value: option[0],
+                              groupValue: currentOption,
+                              onChanged: (value) {
+                                setState(() {
+                                  currentOption = value.toString();
+                                });
+                              },
+                            )),
                         //const Text(
                         //  'MALE',
                         //  style: TextStyle(fontSize: 17.0),
@@ -93,39 +84,33 @@ class LoginState extends State<Login> {
                         //    onChanged: (val) {}
                         //),
                         ListTile(
-                          title: const Text('FEMALE',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 218, 162, 21),
-                              fontSize: 17
-                            )
-                          ),
-                          leading: Radio(
-                            value: option[1],
-                            groupValue: currentOption,
-                            onChanged:(value) {
-                              setState(() {
-                                currentOption = value.toString();
-                              });
-                            },
-                          )
-                        ),
+                            title: const Text('FEMALE',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 218, 162, 21),
+                                    fontSize: 17)),
+                            leading: Radio(
+                              value: option[1],
+                              groupValue: currentOption,
+                              onChanged: (value) {
+                                setState(() {
+                                  currentOption = value.toString();
+                                });
+                              },
+                            )),
                         ListTile(
-                          title: const Text('NON SPECIFICATO',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 218, 162, 21),
-                              fontSize: 17
-                            )
-                          ),
-                          leading: Radio(
-                            value: option[2],
-                            groupValue: currentOption,
-                            onChanged:(value) {
-                              setState((){
-                                currentOption = value.toString();
-                              });
-                            },
-                          )
-                        ),
+                            title: const Text('NON SPECIFICATO',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 218, 162, 21),
+                                    fontSize: 17)),
+                            leading: Radio(
+                              value: option[2],
+                              groupValue: currentOption,
+                              onChanged: (value) {
+                                setState(() {
+                                  currentOption = value.toString();
+                                });
+                              },
+                            )),
                         //const Text(
                         //  'FEMALE',
                         //  style: TextStyle(
