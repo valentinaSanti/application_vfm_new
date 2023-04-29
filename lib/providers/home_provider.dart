@@ -29,14 +29,7 @@ class HomeProvider extends ChangeNotifier {
   // method to select only the data of the chosen day
   void getDataOfDay(DateTime showDate) {
     this.showDate = showDate;
-    heartRates = _heartRatesDB //uguale alla variabile privata
-        .where((element) =>
-            element.timestamp.day ==
-            showDate
-                .day) //looping in ogni elemento della lista HR, ordina e fa un filtro. looping in ogni elemento di HR della lista e fa chek che il dato si uguale a quello mostrato.
-        .toList() //trasforma in una lista
-        .reversed //ordine cronologico
-        .toList(); //lista
+    //lista
     // after selecting all data we notify all consumers to rebuild
     notifyListeners(); //devo farlo se voglio che il mio stato cambi
   }
