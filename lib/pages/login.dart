@@ -1,164 +1,70 @@
+import 'package:application_vfm_new/pages/home.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
+import 'package:application_vfm_new/pages/home.dart';
+import 'package:flutter_login/flutter_login.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-List<String> option = ['MALE', 'FEMALE', 'NON SPECIFICATO'];
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
-class Login extends StatefulWidget {
-  Login({Key? key}) : super(key: key);
+  static const routename = 'LoginPage';
 
   @override
-  State<Login> createState() => LoginState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class LoginState extends State<Login> {
-  static const route = '/login/';
-  static const routename = 'Login';
-  String currentOption = option[1];
+class _LoginPageState extends State<LoginPage> {
+  @override
+  void initState() {
+    super.initState();
+    //Check if the user is already logged in before rendering the login page
+    _checkLogin();
+  }//initState
 
-  final _formKey = GlobalKey<FormState>();
+  void _checkLogin() async {
+    //Get the SharedPreference instance and check if the value of the 'username' filed is set or not
+    final sp = await SharedPreferences.getInstance();
+    if(sp.getString('username') != null){
+      //If 'username is set, push the HomePage
+      _toHomePage(context);
+    }//if
+  }//_checkLogin
 
-  final TextEditingController ageController = TextEditingController();
+  Future<String> _loginUser(LoginData data) async {
+    if(data.name == 'bug@expert.com' && data.password == '5TrNgP5Wd'){
 
+      final sp = await SharedPreferences.getInstance();
+      sp.setString('username', data.name);
+
+      return '';
+    } else {
+      return 'Wrong credentials';
+    }
+  } 
+ // _loginUser
+  Future<String> _signUpUser(SignupData data) async {
+    return 'To be implemented';
+  } 
+ // _signUpUser
+  Future<String> _recoverPassword(String email) async {
+    return 'Recover password functionality needs to be implemented';
+  } 
+ // _recoverPassword
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Color.fromARGB(255, 197, 233, 152),
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Color.fromARGB(255, 197, 233, 152),
-          iconTheme:
-              const IconThemeData(color: Color.fromARGB(255, 218, 162, 21)),
-          title: const Text('Profile', style: TextStyle(color: Colors.black)),
-        ),
-        body: SingleChildScrollView(
-            child: Column(
-          children: [
-            Center(
-                child: CircleAvatar(
-                    radius: 70, child: Image.asset('assets/profile.png'))),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  children: [
-                    const SizedBox(height: 10),
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: <Widget>[
-                        const SizedBox(width: 10),
-                        const Text('Gender:',
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 218, 162, 21),
-                                fontSize: 17)),
-                        //Radio(
-                        //  fillColor: MaterialStateColor.resolveWith(
-                        //      (states) => const Color(0xFF89453C)),
-                        //  value: 0,
-                        //  groupValue: 1,
-                        //  onChanged: (val) {},
-                        //),
-                        ListTile(
-                            title: const Text('MALE',
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 218, 162, 21),
-                                    fontSize: 17)),
-                            leading: Radio(
-                              value: option[0],
-                              groupValue: currentOption,
-                              onChanged: (value) {
-                                setState(() {
-                                  currentOption = value.toString();
-                                });
-                              },
-                            )),
-                        //const Text(
-                        //  'MALE',
-                        //  style: TextStyle(fontSize: 17.0),
-                        //),
-                        //Radio(
-                        //    fillColor: MaterialStateColor.resolveWith(
-                        //        (states) => const Color(0xFF89453C)),
-                        //    value: 2,
-                        //    groupValue: 1,
-                        //    onChanged: (val) {}
-                        //),
-                        ListTile(
-                            title: const Text('FEMALE',
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 218, 162, 21),
-                                    fontSize: 17)),
-                            leading: Radio(
-                              value: option[1],
-                              groupValue: currentOption,
-                              onChanged: (value) {
-                                setState(() {
-                                  currentOption = value.toString();
-                                });
-                              },
-                            )),
-                        ListTile(
-                            title: const Text('NON SPECIFICATO',
-                                style: TextStyle(
-                                    color: Color.fromARGB(255, 218, 162, 21),
-                                    fontSize: 17)),
-                            leading: Radio(
-                              value: option[2],
-                              groupValue: currentOption,
-                              onChanged: (value) {
-                                setState(() {
-                                  currentOption = value.toString();
-                                });
-                              },
-                            )),
-                        //const Text(
-                        //  'FEMALE',
-                        //  style: TextStyle(
-                        //    fontSize: 17.0,
-                        //  ),
-                        //),
-                      ],
-                    ),
-                    const SizedBox(height: 20),
-                    SizedBox(
-                      width: 400,
-                      child: TextFormField(
-                          validator: (value) {
-                            if (value == null || value.isEmpty) {
-                              return 'Please enter your age';
-                            } else if (int.tryParse(value) == null) {
-                              return 'Please enter an integer valid number';
-                            }
-                            return null;
-                          },
-                          controller: ageController,
-                          enabled: true,
-                          decoration: const InputDecoration(
-                              border: OutlineInputBorder(),
-                              focusedBorder: OutlineInputBorder(
-                                  borderSide: BorderSide(
-                                      width: 1, color: Color(0xFF89453C))),
-                              labelText: 'Age',
-                              labelStyle: TextStyle(color: Color(0xFF89453C)))),
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        ElevatedButton(
-                            onPressed: () async {
-                              if (_formKey.currentState!.validate()) {}
-                            },
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: const Color(0xFF83AA99),
-                                shape: const CircleBorder()),
-                            child: const Icon(Icons.check)),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
-            ),
-          ],
-        )));
-  } //build
-}
+    
+    return FlutterLogin(
+      title: 'login_flow',
+      onLogin: _loginUser,
+      onSignup: _signUpUser,
+      onRecoverPassword: _recoverPassword,
+      onSubmitAnimationCompleted: () async{
+        _toHomePage(context);
+      },
+    );
+  } // build
+  void _toHomePage(BuildContext context){
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Home()));
+  }//_toHomePage
+  
+  } // LoginScreen

@@ -1,7 +1,8 @@
 import 'package:application_vfm_new/pages/home.dart';
+import 'package:application_vfm_new/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:application_vfm_new/app_general_theme.dart';
-import 'package:application_vfm_new/pages/login.dart';
+import 'package:application_vfm_new/pages/profile.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +19,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.orange,
       ),
-      home: Home(),
+      home: LoginPage(),
     );
   }
 }

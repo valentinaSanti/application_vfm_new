@@ -3,7 +3,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 
 import 'package:application_vfm_new/pages/infoapp.dart';
 import 'package:application_vfm_new/pages/info_dati_usati.dart';
-import 'package:application_vfm_new/pages/login.dart';
+import 'package:application_vfm_new/pages/profile.dart';
 
 import 'package:application_vfm_new/providers/home_provider.dart';
 import 'package:provider/provider.dart';
@@ -83,7 +83,7 @@ class _HomeState extends State<Home> {
                         context,
                         MaterialPageRoute(
                             fullscreenDialog: true,
-                            builder: (context) => Login()));
+                            builder: (context) => Profile()));
                   },
                   icon: const Icon(
                     MdiIcons.accountCircle,
