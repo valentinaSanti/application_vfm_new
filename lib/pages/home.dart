@@ -4,6 +4,7 @@ import 'package:material_design_icons_flutter/material_design_icons_flutter.dart
 import 'package:application_vfm_new/pages/infoapp.dart';
 import 'package:application_vfm_new/pages/info_dati_usati.dart';
 import 'package:application_vfm_new/pages/profile.dart';
+import 'package:application_vfm_new/pages/login.dart';
 
 import 'package:application_vfm_new/providers/home_provider.dart';
 import 'package:provider/provider.dart';
@@ -34,8 +35,13 @@ class _HomeState extends State<Home> {
               ListTile(
                   leading: const Icon(MdiIcons.logout),
                   title: const Text('Logout'),
-                  // delete all data from the database
-                  onTap: () => {}),
+                  onTap: () => {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                fullscreenDialog: true,
+                                builder: (context) => LoginPage()))
+                      }),
               const Padding(
                 padding: EdgeInsets.all(8.0),
                 child: Text('About'),
