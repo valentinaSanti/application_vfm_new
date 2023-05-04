@@ -1,3 +1,5 @@
+import 'dart:js';
+
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -8,6 +10,7 @@ import 'package:application_vfm_new/pages/login.dart';
 
 import 'package:application_vfm_new/providers/home_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Home extends StatefulWidget {
   static const route = '/home/';
@@ -19,6 +22,18 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
+ //Future<Null> logout() async {
+    //final SharedPreferences prefs = await SharedPreferences.getInstance();
+    //prefs.setString('username', null);
+
+    //iState(() {
+    //   = '';
+      //isLoggedIn = false;
+    //});
+  //}
+    
+  
+//}
 class _HomeState extends State<Home> {
   List<BottomNavigationBarItem> navBarItems = [
     const BottomNavigationBarItem(icon: Icon(MdiIcons.imageFilterDrama)),
@@ -68,12 +83,8 @@ class _HomeState extends State<Home> {
                   style: TextStyle(fontSize: 30),
                   ),
                   onTap: () => {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                fullscreenDialog: true,
-                                builder: (context) => LoginPage()))
-                      }),
+                    super.initState(),
+                  }),
               
             ],
           ),

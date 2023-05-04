@@ -25,6 +25,7 @@ class _LoginPageState extends State<LoginPage> {
     //Get the SharedPreference instance and check if the value of the 'username' filed is set or not
     final sp = await SharedPreferences.getInstance();
     if(sp.getString('username') != null){
+      bool isLog=true;
       //If 'username is set, push the HomePage
       _toHomePage(context);
     }//if
