@@ -32,9 +32,41 @@ class _HomeState extends State<Home> {
         drawer: Drawer(
           child: ListView(
             children: [
+              const Padding(
+                padding: EdgeInsets.all(8.0),
+                
+              ),
               ListTile(
-                  leading: const Icon(MdiIcons.logout),
-                  title: const Text('Logout'),
+                  leading: const Icon(MdiIcons.bookInformationVariant,
+                  size: 30,
+                  color: Color.fromARGB(255, 215, 137, 27),),
+                  title: const Text('App Information 1',
+                  style: TextStyle(fontSize: 20,fontStyle: FontStyle.normal,color: Color.fromARGB(255, 25, 25, 25)),),
+                  onTap: () => {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => InfoApp(),
+                        ))
+                      }),
+              ListTile(
+                  leading: const Icon(MdiIcons.bookHeart,size: 30,
+                  color: Color.fromARGB(255, 215, 137, 27),),
+                  title: const Text('Information about using data',
+                  style: TextStyle(fontSize: 20,)),
+                  onTap: () => {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => info_dati_usati(),
+                        ))
+                      }),
+              const Padding(padding: 
+              EdgeInsets.all(280.0)
+              ),
+
+              ListTile(
+                  leading: const Icon(MdiIcons.logout,
+                  size: 40,),
+                  title: const Text('Logout', 
+                  style: TextStyle(fontSize: 30),
+                  ),
                   onTap: () => {
                         Navigator.push(
                             context,
@@ -42,26 +74,7 @@ class _HomeState extends State<Home> {
                                 fullscreenDialog: true,
                                 builder: (context) => LoginPage()))
                       }),
-              const Padding(
-                padding: EdgeInsets.all(8.0),
-                child: Text('About'),
-              ),
-              ListTile(
-                  leading: const Icon(MdiIcons.bookInformationVariant),
-                  title: const Text('App Information 1'),
-                  onTap: () => {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => InfoApp(),
-                        ))
-                      }),
-              ListTile(
-                  leading: const Icon(MdiIcons.bookHeart),
-                  title: const Text('Information about using data'),
-                  onTap: () => {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => info_dati_usati(),
-                        ))
-                      }),
+              
             ],
           ),
         ),

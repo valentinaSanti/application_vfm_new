@@ -54,7 +54,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     
     return FlutterLogin(
-      title: 'login_flow',
+      title: 'Application VFM',
       onLogin: _loginUser,
       onSignup: _signUpUser,
       onRecoverPassword: _recoverPassword,
