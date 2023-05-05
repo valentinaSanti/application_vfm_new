@@ -25,7 +25,6 @@ class _LoginPageState extends State<LoginPage> {
     //Get the SharedPreference instance and check if the value of the 'username' filed is set or not
     final sp = await SharedPreferences.getInstance();
     if(sp.getString('username') != null){
-      bool isLog=true;
       //If 'username is set, push the HomePage
       _toHomePage(context);
     }//if
@@ -55,7 +54,17 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     
     return FlutterLogin(
+      //logo: AssetImage('assets/images/ecorp-lightblue.png'), riga di codice per il logo
       title: 'Application VFM',
+      theme: LoginTheme(
+        primaryColor: Color.fromARGB(255, 199, 237, 163),
+        accentColor: Color.fromARGB(255, 120, 158, 85),
+        buttonStyle: TextStyle(
+          fontWeight: FontWeight.w800,
+          color: Colors.black,
+        )
+      ),
+      
       onLogin: _loginUser,
       onSignup: _signUpUser,
       onRecoverPassword: _recoverPassword,

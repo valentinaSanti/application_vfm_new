@@ -1,4 +1,4 @@
-import 'dart:js';
+
 
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -22,18 +22,6 @@ class Home extends StatefulWidget {
   State<Home> createState() => _HomeState();
 }
 
- //Future<Null> logout() async {
-    //final SharedPreferences prefs = await SharedPreferences.getInstance();
-    //prefs.setString('username', null);
-
-    //iState(() {
-    //   = '';
-      //isLoggedIn = false;
-    //});
-  //}
-    
-  
-//}
 class _HomeState extends State<Home> {
   List<BottomNavigationBarItem> navBarItems = [
     const BottomNavigationBarItem(icon: Icon(MdiIcons.imageFilterDrama)),
@@ -83,7 +71,7 @@ class _HomeState extends State<Home> {
                   style: TextStyle(fontSize: 30),
                   ),
                   onTap: () => {
-                    super.initState(),
+                    _toLoginPage(context),
                   }),
               
             ],
@@ -126,4 +114,16 @@ class _HomeState extends State<Home> {
       ),
     );
   }
-}
+   void _toLoginPage(BuildContext context) async{
+    //Unset the 'username' filed in SharedPreference 
+    final sp = await SharedPreferences.getInstance();
+    sp.remove('username');
+
+    //Pop the drawer first 
+    Navigator.pop(context);
+    //Then pop the HomePage
+    Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
+  }//_toCalendarPage
+
+} //HomePage
+
