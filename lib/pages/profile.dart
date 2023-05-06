@@ -28,7 +28,13 @@ class ProfileState extends State<Profile> {
           backgroundColor: Color.fromARGB(255, 197, 233, 152),
           iconTheme:
               const IconThemeData(color: Color.fromARGB(255, 218, 162, 21)),
-          title: const Text('Profile', style: TextStyle(color: Colors.black)),
+          title: const Text(
+            'Profile',
+            style: TextStyle(
+                fontSize: 20,
+                fontStyle: FontStyle.normal,
+                color: Color.fromARGB(255, 25, 25, 25)),
+          ),
         ),
         body: SingleChildScrollView(
             child: Column(
