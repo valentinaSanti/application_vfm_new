@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:application_vfm_new/providers/profile_data.dart';
+import 'package:provider/provider.dart';
 
 List<String> option = ['MALE', 'FEMALE', 'NON SPECIFICATO'];
 
@@ -53,6 +55,12 @@ class ProfileState extends State<Profile> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         const SizedBox(width: 10),
+                        ListTile(
+                          title: Text('Name:${context.watch<UserData>().name}',
+                            style: TextStyle(
+                              color: Color.fromARGB(255, 218, 162, 21),
+                              fontSize: 17)),
+                        ),
                         const Text('Gender:',
                             style: TextStyle(
                                 color: Color.fromARGB(255, 218, 162, 21),
@@ -75,6 +83,7 @@ class ProfileState extends State<Profile> {
                               onChanged: (value) {
                                 setState(() {
                                   currentOption = value.toString();
+                                  context.read<UserData>().addData(currentOption);
                                 });
                               },
                             )),

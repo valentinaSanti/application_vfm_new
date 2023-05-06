@@ -1,11 +1,19 @@
 import 'package:application_vfm_new/pages/home.dart';
 import 'package:application_vfm_new/pages/login.dart';
+import 'package:application_vfm_new/providers/profile_data.dart';
 import 'package:flutter/material.dart';
 import 'package:application_vfm_new/app_general_theme.dart';
 import 'package:application_vfm_new/pages/profile.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create : (_)=> UserData())
+      ],
+    child : MyApp())
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -23,3 +31,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+ 
