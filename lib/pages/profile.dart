@@ -41,9 +41,17 @@ class ProfileState extends State<Profile> {
         body: SingleChildScrollView(
             child: Column(
           children: [
-            Center(
-                child: CircleAvatar(
-                    radius: 70, child: Image.asset('assets/profile.png'))),
+            ListTile(
+              leading:ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(60.0)),
+                child: Image.asset('assets/profile.png'),
+              ),
+                title: Text('${context.watch<UserData>().name} ${context.watch<UserData>().surname}',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 218, 162, 21),
+                    fontSize: 17,
+                  )),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Form(
@@ -55,12 +63,6 @@ class ProfileState extends State<Profile> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         const SizedBox(width: 10),
-                        ListTile(
-                          title: Text('Name:${context.watch<UserData>().name}',
-                            style: TextStyle(
-                              color: Color.fromARGB(255, 218, 162, 21),
-                              fontSize: 17)),
-                        ),
                         const Text('Gender:',
                             style: TextStyle(
                                 color: Color.fromARGB(255, 218, 162, 21),
