@@ -7,7 +7,7 @@ class UserData extends ChangeNotifier {
   String get surname => _userData[1];
   String get gender => _userData[2];
 
-  void addData(String data){
+  void addData( data){
     _userData.add(data);
     notifyListeners();
   }

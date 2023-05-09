@@ -53,7 +53,8 @@ class create_profile extends StatelessWidget {
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    context.read<UserData>().addData(2, _age as String);
+                    //context.read<UserData>().addData(2, _age as String);
+                    context.read<UserData>().addData(_age);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF83AA99),
