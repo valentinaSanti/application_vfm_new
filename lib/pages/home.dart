@@ -126,12 +126,13 @@ class _HomeState extends State<Home> {
                             fullscreenDialog: true,
                             builder: (context) => Profile()));
                   },
-                  icon: const Icon(
-                    MdiIcons.accountCircle,
-                    size: 40,
-                    color: Color.fromARGB(255, 235, 147, 24),
-                  )),
-            )
+                  icon: ClipRRect(
+                    borderRadius: const BorderRadius.all(Radius.circular(40.0)),
+                    child : Image.asset('assets/profile.png'),
+                      //iconSize: 40,
+                      //color: Color.fromARGB(255, 235, 147, 24),
+                  ))
+            ),
           ],
         ),
       ),
