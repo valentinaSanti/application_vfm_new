@@ -48,6 +48,7 @@ class ProfileState extends State<Profile> {
                 key: _formKey,
                 child: Column(
                   children: [
+                    // INSERIRE BOX CON NOME COGNOME EMAIL CITTà.
                     const SizedBox(height: 10),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
@@ -65,10 +66,10 @@ class ProfileState extends State<Profile> {
                         //  onChanged: (val) {},
                         //),
                         ListTile(
-                            title: const Text('MALE',
+                            title: const Text('Male',
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 218, 162, 21),
-                                    fontSize: 17)),
+                                    fontSize: 15)),
                             leading: Radio(
                               value: option[0],
                               groupValue: currentOption,
@@ -90,10 +91,10 @@ class ProfileState extends State<Profile> {
                         //    onChanged: (val) {}
                         //),
                         ListTile(
-                            title: const Text('FEMALE',
+                            title: const Text('Female',
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 218, 162, 21),
-                                    fontSize: 17)),
+                                    fontSize: 15)),
                             leading: Radio(
                               value: option[1],
                               groupValue: currentOption,
@@ -104,10 +105,10 @@ class ProfileState extends State<Profile> {
                               },
                             )),
                         ListTile(
-                            title: const Text('NON SPECIFICATO',
+                            title: const Text('Prefer not to say',
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 218, 162, 21),
-                                    fontSize: 17)),
+                                    fontSize: 15)),
                             leading: Radio(
                               value: option[2],
                               groupValue: currentOption,
