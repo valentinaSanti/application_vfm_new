@@ -42,11 +42,12 @@ class ProfileState extends State<Profile> {
             child: Column(
           children: [
             ListTile(
-              leading:ClipRRect(
+              leading: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(60.0)),
                 child: Image.asset('assets/profile.png'),
               ),
-                title: Text('${context.watch<UserData>().name} ${context.watch<UserData>().surname}',
+              title: Text(
+                  '${context.watch<UserData>().name} ${context.watch<UserData>().surname}',
                   style: TextStyle(
                     color: Color.fromARGB(255, 218, 162, 21),
                     fontSize: 17,
@@ -65,12 +66,13 @@ class ProfileState extends State<Profile> {
                       children: <Widget>[
                         const SizedBox(width: 10),
                         const Text('Gender:',
+                            textAlign: TextAlign.left,
                             style: TextStyle(
-                                color: Color.fromARGB(255, 218, 162, 21),
+                                color: Color.fromARGB(255, 0, 0, 0),
                                 fontSize: 17)),
                         //Radio(
                         //  fillColor: MaterialStateColor.resolveWith(
-                        //      (states) => const Color(0xFF89453C)),
+                        //  (states) => const Color(0xFF89453C)),
                         //  value: 0,
                         //  groupValue: 1,
                         //  onChanged: (val) {},
@@ -78,7 +80,7 @@ class ProfileState extends State<Profile> {
                         ListTile(
                             title: const Text('Male',
                                 style: TextStyle(
-                                    color: Color.fromARGB(255, 218, 162, 21),
+                                    color: Color.fromARGB(255, 0, 0, 0),
                                     fontSize: 15)),
                             leading: Radio(
                               value: option[0],
@@ -86,7 +88,9 @@ class ProfileState extends State<Profile> {
                               onChanged: (value) {
                                 setState(() {
                                   currentOption = value.toString();
-                                  context.read<UserData>().addData(currentOption);
+                                  context
+                                      .read<UserData>()
+                                      .addData(currentOption);
                                 });
                               },
                             )),
@@ -104,7 +108,7 @@ class ProfileState extends State<Profile> {
                         ListTile(
                             title: const Text('Female',
                                 style: TextStyle(
-                                    color: Color.fromARGB(255, 218, 162, 21),
+                                    color: Color.fromARGB(255, 2, 1, 1),
                                     fontSize: 15)),
                             leading: Radio(
                               value: option[1],
@@ -118,7 +122,7 @@ class ProfileState extends State<Profile> {
                         ListTile(
                             title: const Text('Prefer not to say',
                                 style: TextStyle(
-                                    color: Color.fromARGB(255, 218, 162, 21),
+                                    color: Color.fromARGB(255, 14, 11, 4),
                                     fontSize: 15)),
                             leading: Radio(
                               value: option[2],
