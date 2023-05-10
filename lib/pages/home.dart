@@ -10,6 +10,8 @@ import 'package:application_vfm_new/providers/home_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:http/http.dart' as http;
+
 class Home extends StatefulWidget {
   static const route = '/home/';
   static const routeDisplayName = 'HomePage';
