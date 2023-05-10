@@ -1,3 +1,4 @@
+import 'package:application_vfm_new/pages/create_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
@@ -67,6 +68,21 @@ class _HomeState extends State<Home> {
                   onTap: () => {
                         Navigator.of(context).push(MaterialPageRoute(
                           builder: (context) => info_dati_usati(),
+                        ))
+                      }),
+              ListTile(
+                  leading: const Icon(
+                    MdiIcons.plusLockOpen,
+                    size: 30,
+                    color: Color.fromARGB(255, 215, 137, 27),
+                  ),
+                  title: const Text('Are you new here?',
+                      style: TextStyle(
+                        fontSize: 20,
+                      )),
+                  onTap: () => {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) => create_profile(),
                         ))
                       }),
               const Padding(padding: EdgeInsets.all(280.0)),

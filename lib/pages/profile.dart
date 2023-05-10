@@ -16,7 +16,7 @@ class ProfileState extends State<Profile> {
   static const route = '/login/';
   static const routename = 'Login';
   String currentOption = option[1];
-
+  
   final _formKey = GlobalKey<FormState>();
 
   final TextEditingController ageController = TextEditingController();
@@ -46,8 +46,8 @@ class ProfileState extends State<Profile> {
                 borderRadius: const BorderRadius.all(Radius.circular(60.0)),
                 child: Image.asset('assets/profile.png'),
               ),
-                title: Text('${context.watch<UserData>().name} ${context.watch<UserData>().surname}',
-                  style: TextStyle(
+                title: Text('${context.watch<UserData>().name} ${context.watch<UserData>().surname} , ${context.watch<UserData>().age}',
+                  style: const TextStyle(
                     color: Color.fromARGB(255, 218, 162, 21),
                     fontSize: 17,
                   )),
@@ -85,7 +85,7 @@ class ProfileState extends State<Profile> {
                               onChanged: (value) {
                                 setState(() {
                                   currentOption = value.toString();
-                                  context.read<UserData>().addData(currentOption);
+                                  context.read<UserData>().addData_(currentOption);
                                 });
                               },
                             )),
