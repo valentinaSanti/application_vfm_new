@@ -37,8 +37,7 @@ class create_profile extends StatelessWidget {
                   } else if (int.tryParse(value) == null) {
                     return 'Please enter an integer valid number';
                   }
-                  return null; 
-                },
+                  return null;
                 },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -62,7 +61,7 @@ class create_profile extends StatelessWidget {
                       print('added age: ${value}');
                       };
                     //context.read<UserData>().addData(2, _age as String);
-                    context.read<UserData>().addData(_age);
+                    //context.read<UserData>().addData(_age);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF83AA99),
