@@ -87,7 +87,7 @@ class ProfileState extends State<Profile> {
                               onChanged: (value) {
                                 setState(() {
                                   currentOption = value.toString();
-                                  context.read<UserData>().addData(currentOption);
+                                  //context.read<UserData>().addData(currentOption);
                                 });
                               },
                             )),
