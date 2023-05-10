@@ -11,6 +11,8 @@ import 'package:application_vfm_new/providers/home_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'package:http/http.dart' as http;
+
 class Home extends StatefulWidget {
   static const route = '/home/';
   static const routeDisplayName = 'HomePage';
@@ -105,7 +107,7 @@ class _HomeState extends State<Home> {
           title: Text(
             'Application VFM',
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 20,
               fontWeight: FontWeight.bold,
               foreground: Paint()
                 ..shader = LinearGradient(
@@ -129,26 +131,26 @@ class _HomeState extends State<Home> {
                 },
                 icon: const Icon(
                   MdiIcons.download,
-                  size: 40,
+                  size: 30,
                   color: Color.fromARGB(255, 218, 148, 18),
                 )),
             Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: IconButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            fullscreenDialog: true,
-                            builder: (context) => Profile()));
-                  },
-                  icon: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(40.0)),
-                    child : Image.asset('assets/profile.png'),
+                padding: const EdgeInsets.all(8.0),
+                child: IconButton(
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              fullscreenDialog: true,
+                              builder: (context) => Profile()));
+                    },
+                    icon: ClipRRect(
+                      borderRadius:
+                          const BorderRadius.all(Radius.circular(40.0)),
+                      child: Image.asset('assets/profile.png'),
                       //iconSize: 40,
                       //color: Color.fromARGB(255, 235, 147, 24),
-                  ))
-            ),
+                    ))),
           ],
         ),
       ),

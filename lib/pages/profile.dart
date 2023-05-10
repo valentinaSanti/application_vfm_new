@@ -42,12 +42,12 @@ class ProfileState extends State<Profile> {
             child: Column(
           children: [
             ListTile(
-              leading:ClipRRect(
+              leading: ClipRRect(
                 borderRadius: const BorderRadius.all(Radius.circular(60.0)),
                 child: Image.asset('assets/profile.png'),
               ),
-                title: Text('${context.watch<UserData>().name} ${context.watch<UserData>().surname} , ${context.watch<UserData>().age}',
-                  style: const TextStyle(
+                title: Text('${context.watch<UserData>().name} ${context.watch<UserData>().surname}',
+                  style: TextStyle(
                     color: Color.fromARGB(255, 218, 162, 21),
                     fontSize: 17,
                   )),
@@ -58,34 +58,36 @@ class ProfileState extends State<Profile> {
                 key: _formKey,
                 child: Column(
                   children: [
+                    // INSERIRE BOX CON NOME COGNOME EMAIL CITTà.
                     const SizedBox(height: 10),
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
                         const SizedBox(width: 10),
                         const Text('Gender:',
+                            textAlign: TextAlign.left,
                             style: TextStyle(
-                                color: Color.fromARGB(255, 218, 162, 21),
+                                color: Color.fromARGB(255, 0, 0, 0),
                                 fontSize: 17)),
                         //Radio(
                         //  fillColor: MaterialStateColor.resolveWith(
-                        //      (states) => const Color(0xFF89453C)),
+                        //  (states) => const Color(0xFF89453C)),
                         //  value: 0,
                         //  groupValue: 1,
                         //  onChanged: (val) {},
                         //),
                         ListTile(
-                            title: const Text('MALE',
+                            title: const Text('Male',
                                 style: TextStyle(
-                                    color: Color.fromARGB(255, 218, 162, 21),
-                                    fontSize: 17)),
+                                    color: Color.fromARGB(255, 0, 0, 0),
+                                    fontSize: 15)),
                             leading: Radio(
                               value: option[0],
                               groupValue: currentOption,
                               onChanged: (value) {
                                 setState(() {
                                   currentOption = value.toString();
-                                  context.read<UserData>().addData_(currentOption);
+                                  context.read<UserData>().addData(currentOption);
                                 });
                               },
                             )),
@@ -101,10 +103,10 @@ class ProfileState extends State<Profile> {
                         //    onChanged: (val) {}
                         //),
                         ListTile(
-                            title: const Text('FEMALE',
+                            title: const Text('Female',
                                 style: TextStyle(
-                                    color: Color.fromARGB(255, 218, 162, 21),
-                                    fontSize: 17)),
+                                    color: Color.fromARGB(255, 2, 1, 1),
+                                    fontSize: 15)),
                             leading: Radio(
                               value: option[1],
                               groupValue: currentOption,
@@ -115,10 +117,10 @@ class ProfileState extends State<Profile> {
                               },
                             )),
                         ListTile(
-                            title: const Text('NON SPECIFICATO',
+                            title: const Text('Prefer not to say',
                                 style: TextStyle(
-                                    color: Color.fromARGB(255, 218, 162, 21),
-                                    fontSize: 17)),
+                                    color: Color.fromARGB(255, 14, 11, 4),
+                                    fontSize: 15)),
                             leading: Radio(
                               value: option[2],
                               groupValue: currentOption,

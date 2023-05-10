@@ -39,9 +39,6 @@ class create_profile extends StatelessWidget {
                   }
                   return null; 
                 },
-                _age.setString('username',context.read<UserData>().addData(2, value as String););
-                  
-                  print('added age: ${value}');
                 },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -64,6 +61,8 @@ class create_profile extends StatelessWidget {
                       context.read<UserData>().addData(2, value);
                       print('added age: ${value}');
                       };
+                    //context.read<UserData>().addData(2, _age as String);
+                    context.read<UserData>().addData(_age);
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF83AA99),
