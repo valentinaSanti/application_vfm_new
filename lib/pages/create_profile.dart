@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:application_vfm_new/providers/profile_data.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/services.dart';
 
 class create_profile extends StatelessWidget {
   create_profile({Key? key}) : super(key: key);
 
   static const route = '/create_profile/';
   static const routename = 'create_profile';
-  int _age = 0;
+  String _age = '';
 
   @override
   Widget build(BuildContext context) {
@@ -30,13 +31,17 @@ class create_profile extends StatelessWidget {
               width: 400,
               child: TextFormField(
                 validator: (value) {
+                  int _age = value as int;
                   if (value == null || value.isEmpty) {
                     return 'Please enter your age';
                   } else if (int.tryParse(value) == null) {
                     return 'Please enter an integer valid number';
                   }
-                  int _age = value as int;
-                  return null;
+                  return null; 
+                },
+                _age.setString('username',context.read<UserData>().addData(2, value as String););
+                  
+                  print('added age: ${value}');
                 },
                 decoration: const InputDecoration(
                   border: OutlineInputBorder(),
@@ -46,14 +51,19 @@ class create_profile extends StatelessWidget {
                     )
                   ),
                   labelText: 'Age',
-                  labelStyle: TextStyle(color: Color(0xFF89453C)))),
+                  labelStyle: TextStyle(color: Color(0xFF89453C))
+                )
+              ),
             ),
            Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 ElevatedButton(
                   onPressed: () {
-                    context.read<UserData>().addData(2, _age as String);
+                    onSaved: (String value) {
+                      context.read<UserData>().addData(2, value);
+                      print('added age: ${value}');
+                      };
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF83AA99),
