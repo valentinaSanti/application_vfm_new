@@ -87,15 +87,15 @@ class _HomeState extends State<Home> {
                           builder: (context) => create_profile(),
                         ))
                       }),
-              const Padding(padding: EdgeInsets.all(280.0)),
+              const Padding(padding: EdgeInsets.all(250.0)),
               ListTile(
                   leading: const Icon(
                     MdiIcons.logout,
-                    size: 40,
+                    size: 35,
                   ),
                   title: const Text(
                     'Logout',
-                    style: TextStyle(fontSize: 30),
+                    style: TextStyle(fontSize: 25),
                   ),
                   onTap: () => {
                         _toLoginPage(context),
