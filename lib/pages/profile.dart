@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:application_vfm_new/providers/profile_data.dart';
 import 'package:provider/provider.dart';
+import 'package:application_vfm_new/utils/shared_preferences.dart';
 
 List<String> option = ['MALE', 'FEMALE', 'NON SPECIFICATO'];
 
@@ -165,7 +166,10 @@ class ProfileState extends State<Profile> {
                       children: [
                         ElevatedButton(
                             onPressed: () async {
-                              if (_formKey.currentState!.validate()) {}
+                              if (_formKey.currentState!.validate()) {
+                                //prefs.age = ageController.text;
+                                //da sistemare age nelle preferences
+                              }
                             },
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: const Color(0xFF83AA99),
