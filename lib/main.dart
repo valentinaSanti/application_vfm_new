@@ -6,7 +6,8 @@ import 'package:application_vfm_new/app_general_theme.dart';
 import 'package:application_vfm_new/pages/profile.dart';
 import 'package:provider/provider.dart';
 import 'package:application_vfm_new/utils/shared_preferences.dart';
-import 'package:application_vfm_new/services/impact_sbagliato.dart';
+import 'package:application_vfm_new/services/impact.dart';//poi da modificare
+import 'package:application_vfm_new/pages/splash.dart';
 
 void main() {
   runApp(const MyApp());

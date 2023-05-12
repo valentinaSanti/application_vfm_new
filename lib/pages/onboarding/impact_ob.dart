@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:application_vfm_new/pages/home.dart';
 import 'package:application_vfm_new/utils/shared_preferences.dart';
 import 'package:provider/provider.dart';
-import 'package:application_vfm_new/services/impact_sbagliato.dart';
+import 'package:application_vfm_new/services/impact.dart';//poi da modificare
 
 
 class ImpactOnboarding extends StatefulWidget {
@@ -30,7 +30,7 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
   Future<bool> _loginImpact(
       String name, String password, BuildContext context) async {
     ImpactService service = Provider.of<ImpactService>(context, listen: false);
-    bool logged = await service.getAndStoreTokens(name, password);
+    bool logged = await service.getTokens(name, password);//da modificare
     return logged;
   }
 

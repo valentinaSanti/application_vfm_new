@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:application_vfm_new/pages/home.dart';
 import 'package:application_vfm_new/pages/login.dart';
 import 'package:application_vfm_new/pages/onboarding/impact_ob.dart';
-import 'package:application_vfm_new/services/impact_sbagliato.dart';
+import 'package:application_vfm_new/services/impact.dart';//rimettere poi quello giusto
 import 'package:application_vfm_new/utils/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
@@ -76,7 +76,7 @@ class Splash extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: const <Widget>[
             Text(
-              'PolluTrack',
+              'Applicatio VFM',
               style: TextStyle(
                   color: Color(0xFFE4DFD4),
                   fontSize: 40,
