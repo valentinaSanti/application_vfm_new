@@ -33,8 +33,9 @@ class MyApp extends StatelessWidget {
                 )),
                 //in questo modo faccio unico servizio, uso metodo create solo quando l'oggetto viene chiamato prima volta voglio preferences inizializzate la prima
                 //volta con lazy chiedo nche vengano inizializzate subito
-        
+        ChangeNotifierProvider(create: (_)=>UserData())
       ],
+      
       //c'è chiave nell'header specifico per questo
       child: MaterialApp(
         title: 'Flutter Demo',
