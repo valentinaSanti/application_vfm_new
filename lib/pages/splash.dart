@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:application_vfm_new/pages/home.dart';
 import 'package:application_vfm_new/pages/login.dart';
 import 'package:application_vfm_new/pages/onboarding/impact_ob.dart';
-import 'package:application_vfm_new/services/impact.dart';//rimettere poi quello giusto
+import 'package:application_vfm_new/services/impact.dart'; //rimettere poi quello giusto
 import 'package:application_vfm_new/utils/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
@@ -14,8 +14,8 @@ class Splash extends StatelessWidget {
 
   // Method for navigation SplashPage -> LoginPage
   void _toLoginPage(BuildContext context) {
-    Navigator.of(context)
-        .pushReplacement(MaterialPageRoute(builder: ((context) => LoginPage())));
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: ((context) => LoginPage())));
   } //_toLoginPage
 
   // Method for navigation SplashPage -> HomePage
@@ -29,9 +29,6 @@ class Splash extends StatelessWidget {
     Navigator.of(context).pushReplacement(
         MaterialPageRoute(builder: ((context) => ImpactOnboarding())));
   }
-
-  // Method for navigation SplashPage -> PurpleAirPage
-  
 
   void _checkAuth(BuildContext context) async {
     var prefs = Provider.of<Preferences>(context, listen: false);
@@ -49,14 +46,13 @@ class Splash extends StatelessWidget {
 
       // if we have a valid token for impact, proceed
       if (responseAccessToken || refreshAccessToken) {
-      
         //if (prefs. != null) {
-      //     Future.delayed(
-      //         const Duration(seconds: 1), () => _toHomePage(context));
-      //   } else {
-      //     Future.delayed(const Duration(seconds: 1), () => _toPurpleAirPage(context));
-      //   }
-      // } else {
+        //     Future.delayed(
+        //         const Duration(seconds: 1), () => _toHomePage(context));
+        //   } else {
+        //     Future.delayed(const Duration(seconds: 1), () => _toPurpleAirPage(context));
+        //   }
+        // } else {
         Future.delayed(
             const Duration(seconds: 1), () => _toImpactPage(context));
       }
