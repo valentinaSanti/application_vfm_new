@@ -46,7 +46,7 @@ class _HomeState extends State<Home> {
                     color: Color.fromARGB(255, 215, 137, 27),
                   ),
                   title: const Text(
-                    'App Information 1',
+                    'Discover',
                     style: TextStyle(
                         fontSize: 20,
                         fontStyle: FontStyle.normal,
