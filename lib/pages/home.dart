@@ -6,6 +6,7 @@ import 'package:application_vfm_new/pages/infoapp.dart';
 import 'package:application_vfm_new/pages/info_dati_usati.dart';
 import 'package:application_vfm_new/pages/profile.dart';
 import 'package:application_vfm_new/pages/login.dart';
+import 'package:application_vfm_new/app_general_theme.dart';
 
 import 'package:application_vfm_new/providers/home_provider.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +33,8 @@ class _HomeState extends State<Home> {
     return ChangeNotifierProvider<HomeProvider>(
       create: (context) => HomeProvider(),
       builder: (context, child) => Scaffold(
-        backgroundColor: Color.fromARGB(255, 197, 233, 152),
+        //backgroundColor: Color.fromARGB(255, 197, 233, 152),
+        backgroundColor: AppTheme.darkText,
         drawer: Drawer(
           child: ListView(
             children: [
