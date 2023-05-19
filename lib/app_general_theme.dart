@@ -16,7 +16,7 @@ class AppTheme {
   static const Color deactivatedText = Color(0xFF767676);
   static const Color dismissibleBackground = Color(0xFF364A54);
   static const Color chipBackground = Color(0xFFEEF1F3);
-  static const Color spacer = Color(0xFFF2F2F2);
+  static const Color spacer = Colors.transparent;
   static const String fontName = 'WorkSans';
 
   static const TextTheme textTheme = TextTheme(
