@@ -1,10 +1,13 @@
 import 'dart:convert';
+import 'package:intl/intl.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:flutter/material.dart';
 import 'package:application_vfm_new/services/server_strings.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:application_vfm_new/utils/shared_preferences.dart';
+
+import '../models/db.dart';
 
 class ImpactService {
   ImpactService(this.prefs);
@@ -81,10 +84,16 @@ class ImpactService {
     }
   }
   Future<void> getPatient() async {
-     var r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'study/v1/patients/active'));
+     dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'study/v1/patients/active'));
     prefs.impactUsername = r.data['data'][0]['username'];
     return r.data['data'][0]['username'];
     //vado a vedere se un paziente, aggiorno prima paziente per fare chiamata da utorizzati poi faccio una get e poi dalla risposta prendo il primo utente, lo salvo in preferences
     //restituisco username
   }   
+  Future<List<Distance>> getDistanceOfDay(DateTime startTime) async{
+    dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/distance/patients/${prefs.impactUsername}/day/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'));
+    List<dynamic> data = r.data['data'];
+    List<Distance> distance = [];
+    return distance;
+  }
 }

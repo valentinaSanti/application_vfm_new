@@ -24,3 +24,9 @@ class HR {
 
   HR({required this.timestamp, required this.value}); //constructure
 }
+
+class Distance{
+  final DateTime timestamp;
+  final double value;
+  Distance({required this.timestamp, required this.value});
+}

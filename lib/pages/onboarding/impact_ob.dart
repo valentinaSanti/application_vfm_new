@@ -75,17 +75,17 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: const BorderSide(
-                      color: Color(0xFF89453C),
+                      color: AppTheme.iconcolor,
                     ),
                   ),
                   border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10.0))),
                   prefixIcon: const Icon(
                     Icons.person,
-                    color: Color(0xFF89453C),
+                    color: AppTheme.iconcolor,
                   ),
                   hintText: 'Username',
-                  hintStyle: const TextStyle(color: Color(0xFF89453C)),
+                  hintStyle: AppTheme.impacthidentext,
                 ),
               ),
               const SizedBox(
@@ -114,14 +114,14 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: const BorderSide(
-                      color: Color(0xFF89453C),
+                      color: AppTheme.iconcolor,
                     ),
                   ),
                   border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10.0))),
                   prefixIcon: const Icon(
                     Icons.lock,
-                    color: Color(0xFF89453C),
+                    color: AppTheme.iconcolor,
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(
@@ -136,7 +136,7 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                     },
                   ),
                   hintText: 'Password',
-                  hintStyle: const TextStyle(color: Color(0xFF89453C)),
+                  hintStyle: AppTheme.impacthidentext,
                 ),
               ),
               const Spacer(),
@@ -181,7 +181,7 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
                         backgroundColor: MaterialStateProperty.all<Color>(
-                            const Color(0xFF89453C))),
+                           AppTheme.iconcolor)),
                     child: const Text('Authorize'),
                   ),
                 ),

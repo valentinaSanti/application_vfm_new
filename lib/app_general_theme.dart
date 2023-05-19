@@ -16,9 +16,10 @@ class AppTheme {
   static const Color deactivatedText = Color(0xFF767676);
   static const Color dismissibleBackground = Color(0xFF364A54);
   static const Color chipBackground = Color(0xFFEEF1F3);
-  static const Color backcolor=Color.fromARGB(255, 199, 237, 163);
+  static const Color backcolor=Color.fromARGB(245, 197, 236, 250);
   static const Color spacer = Colors.transparent;
   static const String fontName = 'WorkSans';
+  static const Color iconcolor=Color.fromARGB(255, 2, 102, 252);
 
   static const TextTheme textTheme = TextTheme(
     headline4: display1,
@@ -89,6 +90,15 @@ class AppTheme {
   static const TextStyle impacttext=TextStyle(
     fontSize: 18,
      fontWeight: FontWeight.bold
+
+  );
+
+  static const TextStyle impacthidentext=TextStyle(
+    fontSize: 15,
+    fontWeight: FontWeight.w600,
+    color: Colors.black
+
+
 
   );
 
