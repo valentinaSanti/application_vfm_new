@@ -16,6 +16,7 @@ class AppTheme {
   static const Color deactivatedText = Color(0xFF767676);
   static const Color dismissibleBackground = Color(0xFF364A54);
   static const Color chipBackground = Color(0xFFEEF1F3);
+  static const Color backcolor=Color.fromARGB(255, 199, 237, 163);
   static const Color spacer = Colors.transparent;
   static const String fontName = 'WorkSans';
 
@@ -85,5 +86,12 @@ class AppTheme {
     letterSpacing: 0.2,
     color: lightText, // was lightText
   );
+  static const TextStyle impacttext=TextStyle(
+    fontSize: 18,
+     fontWeight: FontWeight.bold
+
+  );
+
+
 
 }

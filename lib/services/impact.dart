@@ -80,5 +80,11 @@ class ImpactService {
     return false;
     }
   }
-      
+  Future<void> getPatient() async {
+     var r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'study/v1/patients/active'));
+    prefs.impactUsername = r.data['data'][0]['username'];
+    return r.data['data'][0]['username'];
+    //vado a vedere se un paziente, aggiorno prima paziente per fare chiamata da utorizzati poi faccio una get e poi dalla risposta prendo il primo utente, lo salvo in preferences
+    //restituisco username
+  }   
 }

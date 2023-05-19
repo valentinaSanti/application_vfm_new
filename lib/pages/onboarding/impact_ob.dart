@@ -3,6 +3,7 @@ import 'package:application_vfm_new/pages/home.dart';
 import 'package:application_vfm_new/utils/shared_preferences.dart';
 import 'package:provider/provider.dart';
 import 'package:application_vfm_new/services/impact.dart';//poi da modificare
+import 'package:application_vfm_new/app_general_theme.dart';
 
 
 class ImpactOnboarding extends StatefulWidget {
@@ -37,7 +38,7 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFE4DFD4),
+      backgroundColor: AppTheme.backcolor,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Form(
@@ -56,7 +57,7 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                 alignment: Alignment.topLeft,
                 child: Text('Username',
                     style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                      AppTheme.impacttext),
               ),
               const SizedBox(
                 height: 7,
@@ -94,7 +95,7 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                 alignment: Alignment.topLeft,
                 child: Text('Password',
                     style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                        AppTheme.impacttext),
               ),
               const SizedBox(
                 height: 7,
@@ -159,7 +160,15 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                           content: Text('Wrong Credentials'),
                           duration: Duration(seconds: 2),
                         ));
-                      } 
+                      } else{
+                        await Provider.of<ImpactService>(context, listen: false)
+                            .getPatient();
+                        Future.delayed(
+                              const Duration(milliseconds: 300),
+                              () => Navigator.of(context).pushReplacement(
+                                  MaterialPageRoute(
+                                      builder: (context) => const Home())));
+                      }
                     },
                     style: ButtonStyle(
                         //maximumSize: const MaterialStatePropertyAll(Size(50, 20)),
