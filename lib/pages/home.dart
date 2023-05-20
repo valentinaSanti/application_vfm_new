@@ -28,6 +28,13 @@ class _HomeState extends State<Home> {
   List<BottomNavigationBarItem> navBarItems = [
     const BottomNavigationBarItem(icon: Icon(MdiIcons.imageFilterDrama)),
   ];
+  int _selectedIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
 
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<HomeProvider>(
@@ -78,7 +85,7 @@ class _HomeState extends State<Home> {
                   leading: const Icon(
                     MdiIcons.plusLockOpen,
                     size: 30,
-                    color: Color.fromARGB(255, 215, 137, 27),
+                    color: Color.fromARGB(255, 215, 137,  27),
                   ),
                   title: const Text('Are you new here?',
                       style: TextStyle(
@@ -107,7 +114,7 @@ class _HomeState extends State<Home> {
         ),
         appBar: AppBar(
           title: Text(
-            'Application VFM',
+            'Application V.F.M.',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -154,6 +161,22 @@ class _HomeState extends State<Home> {
                       //color: Color.fromARGB(255, 235, 147, 24),
                     ))),
           ],
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          backgroundColor: Colors.transparent,
+          items: const [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home Page', 
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.supervisor_account),
+              label: 'Account',
+            ),
+          ],
+          currentIndex: _selectedIndex,
+          selectedItemColor: Colors.amber[800],
+          onTap: _onItemTapped,
         ),
       ),
     );
