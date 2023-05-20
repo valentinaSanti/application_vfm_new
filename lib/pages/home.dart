@@ -30,12 +30,6 @@ class _HomeState extends State<Home> {
   ];
   int _selectedIndex = 0;
 
-  void _onItemTapped(int index) {
-    setState(() {
-      _selectedIndex = index;
-    });
-  }
-
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<HomeProvider>(
       create: (context) => HomeProvider(),
@@ -132,35 +126,35 @@ class _HomeState extends State<Home> {
               const IconThemeData(color: Color.fromARGB(255, 218, 162, 21)),
           elevation: 0,
           backgroundColor: Color.fromARGB(255, 199, 237, 163),
-          actions: [
-            IconButton(
-                padding: const EdgeInsets.only(left: 8.0, top: 8, bottom: 8),
-                onPressed: () async {
-                  Provider.of<HomeProvider>(context, listen: false);
-                },
-                icon: const Icon(
-                  MdiIcons.download,
-                  size: 30,
-                  color: Color.fromARGB(255, 218, 148, 18),
-                )),
-            Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: IconButton(
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              fullscreenDialog: true,
-                              builder: (context) => Profile()));
-                    },
-                    icon: ClipRRect(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(40.0)),
-                      child: Image.asset('assets/profile.png'),
-                      //iconSize: 40,
-                      //color: Color.fromARGB(255, 235, 147, 24),
-                    ))),
-          ],
+//          actions: [
+//            IconButton(
+//                padding: const EdgeInsets.only(left: 8.0, top: 8, bottom: 8),
+//                onPressed: () async {
+//                  Provider.of<HomeProvider>(context, listen: false);
+//                },
+//                icon: const Icon(
+//                  MdiIcons.download,
+//                  size: 30,
+//                  color: Color.fromARGB(255, 218, 148, 18),
+//                )),
+//            Padding(
+//                padding: const EdgeInsets.all(8.0),
+//                child: IconButton(
+//                    onPressed: () {
+//                      Navigator.push(
+//                          context,
+//                          MaterialPageRoute(
+//                              fullscreenDialog: true,
+//                              builder: (context) => Profile()));
+//                    },
+//                    icon: ClipRRect(
+//                      borderRadius:
+//                          const BorderRadius.all(Radius.circular(40.0)),
+//                      child: Image.asset('assets/profile.png'),
+//                      //iconSize: 40,
+//                      //color: Color.fromARGB(255, 235, 147, 24),
+//                    ))),
+//          ],
         ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: Colors.transparent,
@@ -174,9 +168,30 @@ class _HomeState extends State<Home> {
               label: 'Account',
             ),
           ],
-          currentIndex: _selectedIndex,
+//          currentIndex: _selectedIndex,
           selectedItemColor: Colors.amber[800],
-          onTap: _onItemTapped,
+          onTap: (int index) {
+            switch (index) {
+              case 0:
+              // only scroll to top when current index is selected.
+                if (_selectedIndex == index) {
+                  () async {
+                  Provider.of<HomeProvider>(context, listen: false);
+                  };
+                }break;
+              case 1:
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    fullscreenDialog: true,
+                    builder: (context) => Profile()
+                  )
+                );
+            }
+            setState(() {
+              _selectedIndex = index;
+            });
+          }
         ),
       ),
     );
@@ -193,4 +208,5 @@ class _HomeState extends State<Home> {
     Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
   } //_toCalendarPage
+  
 } //HomePage
