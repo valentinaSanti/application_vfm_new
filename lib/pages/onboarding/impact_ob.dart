@@ -168,6 +168,9 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                               () => Navigator.of(context).pushReplacement(
                                   MaterialPageRoute(
                                       builder: (context) => const Home())));
+                        await Provider.of<ImpactService>(context, listen: false)
+                            .getDistanceOfDay(DateTime.now());
+
                       }
                     },
                     style: ButtonStyle(

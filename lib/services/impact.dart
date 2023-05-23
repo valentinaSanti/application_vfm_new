@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:io';
 import 'package:intl/intl.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:flutter/material.dart';
@@ -84,16 +85,24 @@ class ImpactService {
     }
   }
   Future<void> getPatient() async {
-     dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'study/v1/patients/active/'));
-    prefs.impactUsername =r.body['data'][0]['username'];
-    return r.body['data'][0]['username'];
+         final sp = await SharedPreferences.getInstance();
+    String access =  sp.getString('access')!;
+    final headers = {HttpHeaders.authorizationHeader: 'Bearer $access'};
+     dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'study/v1/patients/active/'), headers: headers);
+     Map<String, dynamic> body = json.decode(r.body); 
+    prefs.impactUsername =body['data'][0]['username'];
+    return body['data'][0]['username'];
     //vado a vedere se un paziente, aggiorno prima paziente per fare chiamata da utorizzati poi faccio una get e poi dalla risposta prendo il primo utente, lo salvo in preferences
     //restituisco username
   }   
   Future<List<Distance>> getDistanceOfDay(DateTime startTime) async{
-    dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/distance/patients/${prefs.impactUsername}/day/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'));
-    List<dynamic> data = r.body['data'];
-    List<Distance> distance = [];
+    final sp = await SharedPreferences.getInstance();
+    String access =  sp.getString('access')!;
+    final headers = {HttpHeaders.authorizationHeader: 'Bearer $access'};
+    dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/distance/patients/${prefs.impactUsername}/day/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'),headers: headers);
+    Map<String, dynamic> body = json.decode(r.body); 
+    List<dynamic> data = body['data']['date'];
+    List<Distance> distance = body['data'][1]['data'];
     return distance;
   }
 }
