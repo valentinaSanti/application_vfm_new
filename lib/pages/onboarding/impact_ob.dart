@@ -183,6 +183,8 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                         backgroundColor: MaterialStateProperty.all<Color>(
                            AppTheme.iconcolor)),
                     child: const Text('Authorize'),
+                    
+                    
                   ),
                 ),
               ),

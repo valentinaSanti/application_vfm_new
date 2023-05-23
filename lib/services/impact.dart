@@ -66,7 +66,7 @@ class ImpactService {
     return true;
   } //checkToken
   Future<bool> getTokens(String username, String password) async {
-    final url = ServerStrings.backendBaseUrl+ServerStrings.authServerUrl+'/token';
+    final url = ServerStrings.backendBaseUrl+ServerStrings.authServerUrl+'/token/';
     //Get the response
     print('Calling: $url');
     final response = await http.post(Uri.parse(url),
@@ -84,15 +84,15 @@ class ImpactService {
     }
   }
   Future<void> getPatient() async {
-     dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'study/v1/patients/active'));
-    prefs.impactUsername = r.data['data'][0]['username'];
-    return r.data['data'][0]['username'];
+     dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'study/v1/patients/active/'));
+    prefs.impactUsername =r.body['data'][0]['username'];
+    return r.body['data'][0]['username'];
     //vado a vedere se un paziente, aggiorno prima paziente per fare chiamata da utorizzati poi faccio una get e poi dalla risposta prendo il primo utente, lo salvo in preferences
     //restituisco username
   }   
   Future<List<Distance>> getDistanceOfDay(DateTime startTime) async{
     dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/distance/patients/${prefs.impactUsername}/day/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'));
-    List<dynamic> data = r.data['data'];
+    List<dynamic> data = r.body['data'];
     List<Distance> distance = [];
     return distance;
   }
