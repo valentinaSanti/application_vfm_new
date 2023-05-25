@@ -8,9 +8,13 @@ import 'package:provider/provider.dart';
 import 'package:application_vfm_new/utils/shared_preferences.dart';
 import 'package:application_vfm_new/services/impact.dart'; //poi da modificare
 import 'package:application_vfm_new/pages/splash.dart';
+import 'package:application_vfm_new/models/db.dart';
+import 'package:application_vfm_new/repository/databaseRepository.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final db = await $FloorAppDatabase.databaseBuilder('app_database.db').build();
+  runApp(Provider<AppDatabase>.value(value: db, child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
