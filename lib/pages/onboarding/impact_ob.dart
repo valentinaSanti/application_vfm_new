@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:application_vfm_new/pages/home.dart';
 import 'package:application_vfm_new/utils/shared_preferences.dart';
 import 'package:provider/provider.dart';
-import 'package:application_vfm_new/services/impact.dart';//poi da modificare
+import 'package:application_vfm_new/services/impact.dart'; //poi da modificare
 import 'package:application_vfm_new/app_general_theme.dart';
-
 
 class ImpactOnboarding extends StatefulWidget {
   static const route = '/impact/';
@@ -31,7 +30,7 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
   Future<bool> _loginImpact(
       String name, String password, BuildContext context) async {
     ImpactService service = Provider.of<ImpactService>(context, listen: false);
-    bool logged = await service.getTokens(name, password);//da modificare
+    bool logged = await service.getTokens(name, password); //da modificare
     return logged;
   }
 
@@ -55,9 +54,7 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
               ),
               const Align(
                 alignment: Alignment.topLeft,
-                child: Text('Username',
-                    style:
-                      AppTheme.impacttext),
+                child: Text('Username', style: AppTheme.impacttext),
               ),
               const SizedBox(
                 height: 7,
@@ -93,9 +90,7 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
               ),
               const Align(
                 alignment: Alignment.topLeft,
-                child: Text('Password',
-                    style:
-                        AppTheme.impacttext),
+                child: Text('Password', style: AppTheme.impacttext),
               ),
               const SizedBox(
                 height: 7,
@@ -148,8 +143,8 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                     onPressed: () async {
                       bool? validation = await _loginImpact(userController.text,
                           passwordController.text, context);
-                          //prende servizio e fa getToken da truefalse se c'è stato login
-                          //se non valido mi dice che è sbagliato qualcosa altrimenti mi dice che le credenziali siano giuste
+                      //prende servizio e fa getToken da truefalse se c'è stato login
+                      //se non valido mi dice che è sbagliato qualcosa altrimenti mi dice che le credenziali siano giuste
                       if (!validation) {
                         // if not correct show message
                         ScaffoldMessenger.of(context)
@@ -160,17 +155,16 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                           content: Text('Wrong Credentials'),
                           duration: Duration(seconds: 2),
                         ));
-                      } else{
+                      } else {
                         await Provider.of<ImpactService>(context, listen: false)
                             .getPatient();
                         Future.delayed(
-                              const Duration(milliseconds: 300),
-                              () => Navigator.of(context).pushReplacement(
-                                  MaterialPageRoute(
-                                      builder: (context) => const Home())));
-                        await Provider.of<ImpactService>(context, listen: false)
-                            .getDistanceOfDay(DateTime.now());
-
+                            const Duration(milliseconds: 300),
+                            () => Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                    builder: (context) => const Home())));
+                        //await Provider.of<ImpactService>(context, listen: false)
+                        // .getDistanceOfDay(DateTime.now());
                       }
                     },
                     style: ButtonStyle(
@@ -184,10 +178,8 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
                         backgroundColor: MaterialStateProperty.all<Color>(
-                           AppTheme.iconcolor)),
+                            AppTheme.iconcolor)),
                     child: const Text('Authorize'),
-                    
-                    
                   ),
                 ),
               ),

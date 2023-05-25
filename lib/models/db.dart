@@ -1,32 +1,14 @@
-import 'dart:math';
-import 'package:intl/intl.dart';
+import 'dart:async';
+import 'package:floor/floor.dart';
+import 'package:sqflite/sqflite.dart' as sqflite;
 
-class Steps {
-  final DateTime time;
-  final int value;
+import 'daos/distances_dao.dart';
+import 'entities/distance.dart';
 
-  Steps({required this.time, required this.value});
+part 'db.g.dart';
 
-  Steps.fromJson(String date, Map<String, dynamic> json)
-      : time = DateFormat('yyyy-MM-dd HH:mm:ss').parse('$date ${json["time"]}'),
-        value = int.parse(json["value"]);
-
-  @override
-  String toString() {
-    return 'Steps(time: $time, value: $value)';
-  } //toString
-} //Steps
-
-class HR {
-  // this class models the single heart rate data point
-  final DateTime timestamp;
-  final int value;
-
-  HR({required this.timestamp, required this.value}); //constructure
-}
-
-class Distance{
-  final DateTime timestamp;
-  final double value;
-  Distance({required this.timestamp, required this.value});
-}
+@Database(version: 1, entities: [distance])
+abstract class AppDatabase extends FloorDatabase {
+  //Add all the daos as getters here
+  DistancesDao get distances_dao;
+}//AppDatabase

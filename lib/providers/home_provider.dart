@@ -7,11 +7,11 @@ import 'package:application_vfm_new/models/db.dart';
 // and on startup fetching the data from the online services
 class HomeProvider extends ChangeNotifier {
   // data to be used by the UI
-  late List<Step>steps; //quando chiamo Homeprovider.HR posso vedere i dati come output del provider
-  
+  late List<Step>
+      steps; //quando chiamo Homeprovider.HR posso vedere i dati come output del provider
+
   // data fetched from external services or db
-  late List<HR> _heartRatesDB;
-  late List<Distance> _distanceDB;
+  //late List<Distance> _distanceDB;
 
   // selected day of data to be shown
   DateTime showDate = DateTime.now();
