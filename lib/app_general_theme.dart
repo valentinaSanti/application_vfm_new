@@ -20,6 +20,8 @@ class AppTheme {
   static const Color spacer = Colors.transparent;
   static const String fontName = 'WorkSans';
   static const Color iconcolor=Color.fromARGB(255, 2, 102, 252);
+  static const Color backhome=Color.fromARGB(255, 171, 235, 167);
+
 
   static const TextTheme textTheme = TextTheme(
     headline4: display1,

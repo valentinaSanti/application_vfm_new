@@ -41,7 +41,7 @@ class _HomeState extends State<Home> {
       create: (context) => HomeProvider(),
       builder: (context, child) => Scaffold(
         //backgroundColor: Color.fromARGB(255, 197, 233, 152),
-        backgroundColor: AppTheme.darkText,
+        backgroundColor: AppTheme.backhome,
         drawer: Drawer(
           child: ListView(
             children: [
@@ -163,7 +163,7 @@ class _HomeState extends State<Home> {
           ],
         ),
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: AppTheme.backhome,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
