@@ -7,6 +7,7 @@ import 'package:application_vfm_new/services/server_strings.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:application_vfm_new/utils/shared_preferences.dart';
+import 'package:application_vfm_new/models/entities/distance.dart';
 
 import '../models/db.dart';
 
@@ -103,14 +104,14 @@ class ImpactService {
     //vado a vedere se un paziente, aggiorno prima paziente per fare chiamata da utorizzati poi faccio una get e poi dalla risposta prendo il primo utente, lo salvo in preferences
     //restituisco username
   }
-  // Future<List<Distance>> getDistanceOfDay(DateTime startTime) async{
-  //   final sp = await SharedPreferences.getInstance();
-  //   String access =  sp.getString('access')!;
-  //   final headers = {HttpHeaders.authorizationHeader: 'Bearer $access'};
-  //   dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/distance/patients/${prefs.impactUsername}/day/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'),headers: headers);
-  //   Map<String, dynamic> body = json.decode(r.body);
-  //   List<dynamic> data = body['data']['date'];
-  //   List<Distance> distance = body['data'][1]['data'];
-  //   return distance;
-  //}
+  Future<List<Distance>> getDistanceOfDay(DateTime startTime) async{
+    final sp = await SharedPreferences.getInstance();
+    String access =  sp.getString('access')!;
+    final headers = {HttpHeaders.authorizationHeader: 'Bearer $access'};
+    dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/distance/patients/${prefs.impactUsername}/day/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'),headers: headers);
+    Map<String, dynamic> body = json.decode(r.body);
+    List<dynamic> data = body['data']['date'];
+    List<Distance> distance = body['data'][1]['data'];
+    return distance;
+  }
 }

@@ -1,7 +1,7 @@
 import 'package:floor/floor.dart';
 
 @entity //per dire a floor che è una classe che definisce una entity
-class distance {
+class Distance {
   @PrimaryKey(autoGenerate: true)
   final int? id;
 
@@ -9,5 +9,5 @@ class distance {
 
   //final DateTime dateTime; //giorno in cui vengono percorsi
 
-  distance(this.id, this.value);
+  Distance(this.id, this.value);
 }

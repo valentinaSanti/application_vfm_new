@@ -7,7 +7,7 @@ import 'entities/distance.dart';
 
 part 'db.g.dart';
 
-@Database(version: 1, entities: [distance])
+@Database(version: 1, entities: [Distance])
 abstract class AppDatabase extends FloorDatabase {
   //Add all the daos as getters here
   DistancesDao get distances_dao;

@@ -85,7 +85,7 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `distance` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `value` REAL NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `Distance` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `value` REAL NOT NULL)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -106,14 +106,14 @@ class _$DistancesDao extends DistancesDao {
   )   : _queryAdapter = QueryAdapter(database),
         _distanceInsertionAdapter = InsertionAdapter(
             database,
-            'distance',
-            (distance item) =>
+            'Distance',
+            (Distance item) =>
                 <String, Object?>{'id': item.id, 'value': item.value}),
         _distanceDeletionAdapter = DeletionAdapter(
             database,
-            'distance',
+            'Distance',
             ['id'],
-            (distance item) =>
+            (Distance item) =>
                 <String, Object?>{'id': item.id, 'value': item.value});
 
   final sqflite.DatabaseExecutor database;
@@ -122,24 +122,24 @@ class _$DistancesDao extends DistancesDao {
 
   final QueryAdapter _queryAdapter;
 
-  final InsertionAdapter<distance> _distanceInsertionAdapter;
+  final InsertionAdapter<Distance> _distanceInsertionAdapter;
 
-  final DeletionAdapter<distance> _distanceDeletionAdapter;
+  final DeletionAdapter<Distance> _distanceDeletionAdapter;
 
   @override
-  Future<List<distance>> findAllDistances() async {
+  Future<List<Distance>> findAllDistances() async {
     return _queryAdapter.queryList('SELECT * FROM distance',
         mapper: (Map<String, Object?> row) =>
-            distance(row['id'] as int?, row['value'] as double));
+            Distance(row['id'] as int?, row['value'] as double));
   }
 
   @override
-  Future<void> insertDistance(distance distances) async {
+  Future<void> insertDistance(Distance distances) async {
     await _distanceInsertionAdapter.insert(distances, OnConflictStrategy.abort);
   }
 
   @override
-  Future<void> deleteDistance(distance distances) async {
+  Future<void> deleteDistance(Distance distances) async {
     await _distanceDeletionAdapter.delete(distances);
   }
 }
