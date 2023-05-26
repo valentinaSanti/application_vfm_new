@@ -11,21 +11,21 @@ class DatabaseRepository extends ChangeNotifier {
 
   //This method wraps the findAllDistances() method of the DAO
   Future<List<Distance>> findAllDistances() async {
-    final results = await database.distances_dao.findAllDistances();
+    final results = await database.distancesDao.findAllDistances();
     return results;
   }
 
   //This method wraps the insertDistance() method of the DAO.
   //Then, it notifies the listeners that something changed.
   Future<void> insertDistance(Distance distances) async {
-    await database.distances_dao.insertDistance(distances);
+    await database.distancesDao.insertDistance(distances);
     notifyListeners();
   } //insertDistance
 
   //This method wraps the deleteDistance() method of the DAO.
   //Then, it notifies the listeners that something changed.
   Future<void> removeDistance(Distance distances) async {
-    await database.distances_dao.deleteDistance(distances);
+    await database.distancesDao.deleteDistance(distances);
     notifyListeners();
   } //removeDistance
 } //DatabaseRepository
