@@ -4,7 +4,7 @@ import 'package:application_vfm_new/models/entities/distance.dart';
 @dao //the following class defines a dao.
 abstract class DistancesDao {
   //Query #1: SELECT -> this allows to obtain all the entries of the distance table
-  @Query('SELECT * FROM distance')
+  @Query('SELECT * FROM Distance')
   Future<List<Distance>> findAllDistances();
 
   //Query #2: INSERT -> this allows to add a distance in the table

@@ -1,10 +1,11 @@
 import 'package:application_vfm_new/models/entities/step.dart';
 import 'package:floor/floor.dart';
+import 'package:flutter/material.dart' as prefix;
 
 @dao //the following class defines a dao.
 abstract class StepsDao {
   //Query #1: SELECT -> this allows to obtain all the entries of the distance table
-  @Query('SELECT * FROM step')
+  @Query('SELECT * FROM Step')
   Future<List<Step>> findAllStep();
 
 //trovo inizio
