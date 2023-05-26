@@ -5,7 +5,10 @@ import 'package:application_vfm_new/models/entities/distance.dart';
 abstract class DistancesDao {
   //Query #1: SELECT -> this allows to obtain all the entries of the distance table
   @Query('SELECT * FROM Distance')
-  Future<List<Distance>> findAllDistances();
+  Future<List<Distance>> findAllDistances([DateTime dateOnly]);
+
+  @Query('SELECT * FROM Distance WHERE dateTime between :startTime and :endTime ORDER BY dateTime ASC')
+  Future<List<Distance>> findDistancebyDate(DateTime startTime, DateTime endTime);
 
   //Query #2: INSERT -> this allows to add a distance in the table
   @insert

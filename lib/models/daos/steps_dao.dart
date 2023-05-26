@@ -8,6 +8,9 @@ abstract class StepsDao {
   @Query('SELECT * FROM Step')
   Future<List<Step>> findAllStep();
 
+  @Query('SELECT * FROM Step WHERE dateTime between :startTime and :endTime ORDER BY dateTime ASC')
+  Future<List<Step>> findStepbyDate(DateTime startTime, DateTime endTime);
+
 //trovo inizio
   @Query('SELECT * FROM Step ORDER BY dateTime ASC LIMIT 1')
   Future<Step?> findFirstDayInDb();
