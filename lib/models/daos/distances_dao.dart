@@ -14,4 +14,12 @@ abstract class DistancesDao {
   //Query #3: DELETE -> this allows to delete a distance from the table
   @delete
   Future<void> deleteDistance(Distance distances);
+
+  //trovo inizio
+  @Query('SELECT * FROM Distance ORDER BY dateTime ASC LIMIT 1')
+  Future<Distance?> findFirstDayInDb();
+
+//trovo fine
+  @Query('SELECT * FROM Distance ORDER BY dateTime DESC LIMIT 1')
+  Future<Distance?> findLastDayInDb();
 }

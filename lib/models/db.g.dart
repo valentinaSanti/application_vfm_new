@@ -134,6 +134,22 @@ class _$DistancesDao extends DistancesDao {
   }
 
   @override
+  Future<Distance?> findFirstDayInDb() async {
+    return _queryAdapter.query(
+        'SELECT * FROM Distance ORDER BY dateTime ASC LIMIT 1',
+        mapper: (Map<String, Object?> row) =>
+            Distance(row['id'] as int?, row['value'] as double));
+  }
+
+  @override
+  Future<Distance?> findLastDayInDb() async {
+    return _queryAdapter.query(
+        'SELECT * FROM Distance ORDER BY dateTime DESC LIMIT 1',
+        mapper: (Map<String, Object?> row) =>
+            Distance(row['id'] as int?, row['value'] as double));
+  }
+
+  @override
   Future<void> insertDistance(Distance distances) async {
     await _distanceInsertionAdapter.insert(distances, OnConflictStrategy.abort);
   }
