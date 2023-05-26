@@ -27,8 +27,7 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
     });
   }
 
-  Future<bool> _loginImpact(
-      String name, String password, BuildContext context) async {
+  Future<bool> _loginImpact(String name, String password, BuildContext context) async {
     ImpactService service = Provider.of<ImpactService>(context, listen: false);
     bool logged = await service.getTokens(name, password);//da modificare
     return logged;

@@ -31,7 +31,7 @@ class ImpactService {
       print('errore durante la richiesta:$e');
       return false;
     }
- }
+  }
  String? retrieveSavedToken(bool refresh) {
     //mi rcorda preferences necessarie
     if (refresh) {
