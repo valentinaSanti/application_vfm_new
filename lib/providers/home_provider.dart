@@ -2,6 +2,8 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:application_vfm_new/models/db.dart';
+import 'package:application_vfm_new/models/entities/distance.dart';
+import 'package:application_vfm_new/models/entities/step.dart';
 
 // this is the change notifier. it will manage all the logic of the home page: fetching the correct data from the database
 // and on startup fetching the data from the online services
