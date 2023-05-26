@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:application_vfm_new/models/daos/steps_dao.dart';
 import 'package:application_vfm_new/services/impact.dart';
-import 'package:flutter/material.dart' hide Step;
+import 'package:flutter/material.dart';
 import 'package:application_vfm_new/models/entities/distance.dart';
-import 'package:application_vfm_new/models/entities/step.dart';
+import 'package:application_vfm_new/models/entities/step.dart' as prefix;
 import 'package:application_vfm_new/models/db.dart';
 
 // this is the change notifier. it will manage all the logic of the home page: fetching the correct data from the database
@@ -46,6 +46,11 @@ class HomeProvider extends ChangeNotifier {
         showDate.isBefore(firstDay!.dateTime)) return;
         
     this.showDate = showDate;
+    distance = await db.distancesDao.findDistancebyDate(
+        DateUtils.dateOnly(showDate),//permette di fare operazioni sui dati
+        DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+    step = await db.stepsDao.findStepbyDate(DateUtils.dateOnly(showDate),
+        DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
     //lista
     // after selecting all data we notify all consumers to rebuild
     notifyListeners(); //devo farlo se voglio che il mio stato cambi
