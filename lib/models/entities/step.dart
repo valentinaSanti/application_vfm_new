@@ -7,7 +7,7 @@ class Step {
 
   final double value; //distanza percorsa in metri
 
-  //final DateTime dateTime; //giorno in cui vengono percorsi
+  final DateTime dateTime; //giorno in cui vengono percorsi
 
-  Step(this.id, this.value);
+  Step(this.id, this.value,this.dateTime);
 }

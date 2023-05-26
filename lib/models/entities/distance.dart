@@ -7,7 +7,7 @@ class Distance {
 
   final double value; //distanza percorsa in metri
 
-  //final DateTime dateTime; //giorno in cui vengono percorsi
+  final DateTime dateTime; //giorno in cui vengono percorsi
 
-  Distance(this.id, this.value);
+  Distance({this.id, required this.value,required this.dateTime});
 }
