@@ -1,4 +1,6 @@
+import 'package:application_vfm_new/models/db.dart';
 import 'package:application_vfm_new/providers/home_provider.dart';
+import 'package:application_vfm_new/services/impact.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:application_vfm_new/providers/profile_data.dart';
@@ -27,7 +29,10 @@ class ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Provider<HomeProvider>(
-        create: (_) => HomeProvider(),
+        create: (_) => HomeProvider(
+          Provider.of<ImpactService>(context, listen: false),
+          Provider.of<AppDatabase>(context, listen: false)),
+          lazy: false,
         builder: (context, child) => Scaffold(
             backgroundColor: Color.fromARGB(255, 197, 233, 152),
             appBar: AppBar(

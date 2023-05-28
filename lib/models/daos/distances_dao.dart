@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:floor/floor.dart';
 import 'package:application_vfm_new/models/entities/distance.dart';
 
@@ -5,10 +7,14 @@ import 'package:application_vfm_new/models/entities/distance.dart';
 abstract class DistancesDao {
   //Query #1: SELECT -> this allows to obtain all the entries of the distance table
   @Query('SELECT * FROM Distance')
-  Future<List<Distance>> findAllDistances([DateTime dateOnly]);
+  Future<List<Distance>> findAllDistances();
 
-  @Query('SELECT * FROM Distance WHERE dateTime between :startTime and :endTime ORDER BY dateTime ASC')
-  Future<List<Distance>> findDistancebyDate(DateTime startTime, DateTime endTime);
+//  @Query('SELECT * FROM Distance WHERE dateTime between :startTime and :endTime ORDER BY dateTime ASC')
+//  Future<List<Distance>> findDistancebyDate(DateTime startTime, DateTime endTime);
+
+  //calcoliamo la somma dei passi del giorno selezionato 
+//  @Query('SELECT SUM(value) FROM Distance WHERE dateTime= dataTime')
+//  Future<Double> sumDistance(DateTime dataTime);
 
   //Query #2: INSERT -> this allows to add a distance in the table
   @insert

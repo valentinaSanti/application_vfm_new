@@ -1,7 +1,7 @@
 import 'package:floor/floor.dart';
 
 @entity //per dire a floor che è una classe che definisce una entity
-class Step {
+class FootStep {
   @PrimaryKey(autoGenerate: true)
   final int? id;
 
@@ -9,5 +9,5 @@ class Step {
 
   final DateTime dateTime; //giorno in cui vengono percorsi
 
-  Step(this.id, this.value,this.dateTime);
+  FootStep(this.id, this.value,this.dateTime);
 }

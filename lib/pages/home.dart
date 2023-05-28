@@ -1,5 +1,9 @@
+import 'package:application_vfm_new/models/db.dart';
 import 'package:application_vfm_new/pages/create_profile.dart';
+import 'package:application_vfm_new/services/impact.dart';
+import 'package:application_vfm_new/widget/score_circular.dart';
 import 'package:flutter/material.dart';
+import 'package:graphic/graphic.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'package:application_vfm_new/pages/infoapp.dart';
@@ -11,6 +15,7 @@ import 'package:application_vfm_new/app_general_theme.dart';
 import 'package:application_vfm_new/providers/home_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:application_vfm_new/providers/home_provider.dart';
 
 import 'package:http/http.dart' as http;
 
@@ -36,9 +41,14 @@ class _HomeState extends State<Home> {
     });
   }
 
+
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<HomeProvider>(
-      create: (context) => HomeProvider(),
+      create: (context) => HomeProvider(
+        Provider.of<ImpactService>(context, listen: false),
+        Provider.of<AppDatabase>(context, listen: false)
+      ),
+      lazy: false,
       builder: (context, child) => Scaffold(
         //backgroundColor: Color.fromARGB(255, 197, 233, 152),
         backgroundColor: AppTheme.backhome,
@@ -162,6 +172,18 @@ class _HomeState extends State<Home> {
                     ))),
           ],
         ),
+        body: Consumer<HomeProvider>( 
+          builder: (context, provider, child) => const Center(
+                  child: CustomPaint(
+                    painter: ScoreCircularProgress(
+                      backColor: Colors.red, 
+                      frontColor: Colors.black, 
+                      strokeWidth: 20,
+                      value: 50 /100
+                    ),
+                  ),
+                ),
+              ),/* _selectPage(index: _selIdx) */
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: AppTheme.backhome,
           items: const [

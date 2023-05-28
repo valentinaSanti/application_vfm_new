@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'package:application_vfm_new/models/entities/footstep.dart';
 import 'package:intl/intl.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:flutter/material.dart';
@@ -113,5 +114,16 @@ class ImpactService {
     List<dynamic> data = body['data']['date'];
     List<Distance> distance = body['data'][1]['data'];
     return distance;
+  }
+
+  Future<List<FootStep>> getFootStepsOfDay(DateTime startTime) async{
+    final sp = await SharedPreferences.getInstance();
+    String access =  sp.getString('access')!;
+    final headers = {HttpHeaders.authorizationHeader: 'Bearer $access'};
+    dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/steps/patients/${prefs.impactUsername}/day/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'),headers: headers);
+    Map<String, dynamic> body = json.decode(r.body);
+    List<dynamic> data = body['data']['date'];
+    List<FootStep> footstep = body['data'][1]['data'];
+    return footstep;
   }
 }

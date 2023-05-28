@@ -1,28 +1,27 @@
 import 'dart:math';
 
-import 'package:application_vfm_new/models/daos/steps_dao.dart';
+import 'package:application_vfm_new/models/daos/footsteps_dao.dart';
 import 'package:application_vfm_new/services/impact.dart';
 import 'package:flutter/material.dart';
 import 'package:application_vfm_new/models/entities/distance.dart';
-import 'package:application_vfm_new/models/entities/step.dart' as prefix;
+import 'package:application_vfm_new/models/entities/footstep.dart';
 import 'package:application_vfm_new/models/db.dart';
 
 // this is the change notifier. it will manage all the logic of the home page: fetching the correct data from the database
 // and on startup fetching the data from the online services
 class HomeProvider extends ChangeNotifier {
-  late List<Step> step;
+  late List<FootStep> footstep;
   late List<Distance> distance;
+  late double cfp;
   final AppDatabase db;
-
-  late List<Step> _step;
-  late List<Distance> _distance;
-
   // data to be used by the UI
-  //late List<Step>
-  //    steps; //quando chiamo Homeprovider.HR posso vedere i dati come output del provider
+
+  late List<FootStep> _footstep;
+  late List<Distance> _distance;
 
   // selected day of data to be shown
   DateTime showDate = DateTime.now(). subtract(const Duration(days: 1));
+  late DateTime lastFetch;
 
   final ImpactService impactService;
   bool doneInit = false;
@@ -42,17 +41,62 @@ class HomeProvider extends ChangeNotifier {
   Future<void> getDataOfDay(DateTime showDate) async {
     var firstDay = await db.distancesDao.findFirstDayInDb();
     var lastDay = await db.distancesDao.findLastDayInDb();
-    if (showDate.isAfter(lastDay!.dateTime) ||
-        showDate.isBefore(firstDay!.dateTime)) return;
+    if (showDate.isAfter(lastDay!.dateTime) || showDate.isBefore(firstDay!.dateTime)) 
+      return;
         
-    this.showDate = showDate;
-    distance = await db.distancesDao.findDistancebyDate(
-        DateUtils.dateOnly(showDate),//permette di fare operazioni sui dati
-        DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
-    step = await db.stepsDao.findStepbyDate(DateUtils.dateOnly(showDate),
-        DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+//    this.showDate = showDate;
+//    distance = await db.distancesDao.findDistancebyDate(
+//        DateUtils.dateOnly(showDate),//permette di fare operazioni sui dati
+//        DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+//    footstep = await db.footstepsDao.findStepbyDate(DateUtils.dateOnly(showDate),
+//        DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
     //lista
     // after selecting all data we notify all consumers to rebuild
     notifyListeners(); //devo farlo se voglio che il mio stato cambi
+  }
+
+  Future<DateTime?> _getLastFetch() async {
+    var data = await db.distancesDao.findAllDistances();
+    if (data.isEmpty) {
+      return null;
+    }
+    return data.last.dateTime;
+    //guarda se ho già caricato
+  }
+
+  Future<void> _fetchAndCalculate() async {
+    //prima inizializzo last fetch  se è nullo porto gli ultimi 2 giorni di dati
+    lastFetch = await _getLastFetch() ??
+        DateTime.now().subtract(const Duration(days: 2));
+    // do nothing if already fetched
+    if (lastFetch.day == DateTime.now().subtract(const Duration(days: 1)).day) {
+      return;//evita di rifecciare i dati
+    }
+    _distance = await impactService.getDistanceOfDay(lastFetch);
+    for (var element in _distance) {
+      db.distancesDao.insertDistance(element);
+    } // db add to the table
+    _footstep = await impactService.getFootStepsOfDay(lastFetch);
+    for (var element in _footstep) {
+      db.footstepsDao.insertFootStep(element);
+    } // db add to the table
+    cfp = _calculateCFP(_distance);
+    print ('Hai evitato un impronta di carbonio di: $cfp [kgCO2e]');
+  }
+
+  double _calculateCFP(List value){
+    double _distanceTot = 0;
+    for (var i in value){
+      _distanceTot += value[i];
+    }
+    double value_miles = _distanceTot / 160900;
+    cfp = value_miles * 0.22143;
+    return cfp;
+  }
+
+  Future<void> refresh() async {
+    await _fetchAndCalculate();
+    await getDataOfDay(showDate);
+    await _calculateCFP(_distance);
   }
 }
