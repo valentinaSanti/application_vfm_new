@@ -109,21 +109,55 @@ class ImpactService {
     final sp = await SharedPreferences.getInstance();
     String access =  sp.getString('access')!;
     final headers = {HttpHeaders.authorizationHeader: 'Bearer $access'};
-    dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/distance/patients/${prefs.impactUsername}/day/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'),headers: headers);
+   // dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/distance/patients/${prefs.impactUsername}/day/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'),headers: headers);
+    dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/distance/patients/${prefs.impactUsername}/daterange/start_date/${DateFormat('y-M-d').format(startTime)}/end_date/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'),headers: headers);
     Map<String, dynamic> body = json.decode(r.body);
     List<dynamic> data = body['data']['date'];
-    List<Distance> distance = body['data'][1]['data'];
-    return distance;
+    //List<Distance> distance = body['data'][1]['data'];
+    List<Distance> distance = [];
+    for (var daydata in data) {
+      String day = daydata['date'];//prendo stringa prento il time e ricompatto
+      for (var dataday in daydata['data']) {
+        String hour = dataday['time'];
+        String datetime = '${day}T$hour';
+        DateTime timestamp = _truncateSeconds(DateTime.parse(datetime));
+        Distance distancenew = Distance( value:dataday['value'], dateTime: timestamp );
+        if (!distance.any((e) => e.dateTime.isAtSameMomentAs(distancenew.dateTime))) {
+          distance.add(distancenew);
+        }
+      }
+    }
+    var distancelist = distance.toList()..sort((a, b) => a.dateTime.compareTo(b.dateTime));
+    return distancelist;
   }
 
   Future<List<FootStep>> getFootStepsOfDay(DateTime startTime) async{
     final sp = await SharedPreferences.getInstance();
     String access =  sp.getString('access')!;
     final headers = {HttpHeaders.authorizationHeader: 'Bearer $access'};
-    dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/steps/patients/${prefs.impactUsername}/day/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'),headers: headers);
+    //dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/steps/patients/${prefs.impactUsername}/day/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'),headers: headers);
+    dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/steps/patients/${prefs.impactUsername}/daterange/start_date/${DateFormat('y-M-d').format(startTime)}/end_date/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'),headers: headers);
     Map<String, dynamic> body = json.decode(r.body);
     List<dynamic> data = body['data']['date'];
-    List<FootStep> footstep = body['data'][1]['data'];
-    return footstep;
+    //List<FootStep> footstep = body['data'][1]['data'];
+    List<FootStep> footstep = [];
+    for (var daydata in data) {
+      String day = daydata['date'];//prendo stringa prento il time e ricompatto
+      for (var dataday in daydata['data']) {
+        String hour = dataday['time'];
+        String datetime = '${day}T$hour';
+        DateTime timestamp = _truncateSeconds(DateTime.parse(datetime));
+        FootStep footstepnew = FootStep(null, dataday['value'], timestamp );
+        if (!footstep.any((e) => e.dateTime.isAtSameMomentAs(footstepnew.dateTime))) {
+          footstep.add(footstepnew);
+        }
+      }
+    }
+    var footsteplist = footstep.toList()..sort((a, b) => a.dateTime.compareTo(b.dateTime));
+    return footsteplist;
+  }
+  DateTime _truncateSeconds(DateTime input) {
+    return DateTime(
+        input.year, input.month, input.day, input.hour, input.minute);
   }
 }
