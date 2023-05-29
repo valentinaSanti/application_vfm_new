@@ -44,12 +44,12 @@ class HomeProvider extends ChangeNotifier {
     if (showDate.isAfter(lastDay!.dateTime) || showDate.isBefore(firstDay!.dateTime)) 
       return;
         
-//    this.showDate = showDate;
-//    distance = await db.distancesDao.findDistancebyDate(
-//        DateUtils.dateOnly(showDate),//permette di fare operazioni sui dati
-//        DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
-//    footstep = await db.footstepsDao.findStepbyDate(DateUtils.dateOnly(showDate),
-//        DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+   this.showDate = showDate;
+  //  distance = await db.distancesDao.findDistancebyDate(
+  //      DateUtils.dateOnly(showDate),//permette di fare operazioni sui dati
+  //      DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+  //  footstep = await db.footstepsDao.findStepbyDate(DateUtils.dateOnly(showDate),
+  //      DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
     //lista
     // after selecting all data we notify all consumers to rebuild
     notifyListeners(); //devo farlo se voglio che il mio stato cambi
