@@ -112,7 +112,8 @@ class ImpactService {
    // dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/distance/patients/${prefs.impactUsername}/day/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'),headers: headers);
     dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/distance/patients/${prefs.impactUsername}/daterange/start_date/${DateFormat('y-M-d').format(startTime)}/end_date/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'),headers: headers);
     Map<String, dynamic> body = json.decode(r.body);
-    List<dynamic> data = body['data']['date'];
+    //List<dynamic> data = body['data']['date'];
+     List<dynamic> data = body['data'];
     //List<Distance> distance = body['data'][1]['data'];
     List<Distance> distance = [];
     for (var daydata in data) {
@@ -138,7 +139,7 @@ class ImpactService {
     //dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/steps/patients/${prefs.impactUsername}/day/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'),headers: headers);
     dynamic r = await http.get(Uri.parse(ServerStrings.backendBaseUrl+'/data/v1/steps/patients/${prefs.impactUsername}/daterange/start_date/${DateFormat('y-M-d').format(startTime)}/end_date/${DateFormat('y-M-d').format(DateTime.now().subtract(const Duration(days: 1)))}/'),headers: headers);
     Map<String, dynamic> body = json.decode(r.body);
-    List<dynamic> data = body['data']['date'];
+    List<dynamic> data = body['data'];
     //List<FootStep> footstep = body['data'][1]['data'];
     List<FootStep> footstep = [];
     for (var daydata in data) {
