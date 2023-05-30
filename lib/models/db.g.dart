@@ -87,9 +87,9 @@ class _$AppDatabase extends AppDatabase {
       },
       onCreate: (database, version) async {
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `Distance` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `value` REAL NOT NULL, `dateTime` INTEGER NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `Distance` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `value` REAL, `dateTime` INTEGER NOT NULL)');
         await database.execute(
-            'CREATE TABLE IF NOT EXISTS `FootStep` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `value` REAL NOT NULL, `dateTime` INTEGER NOT NULL)');
+            'CREATE TABLE IF NOT EXISTS `FootStep` (`id` INTEGER PRIMARY KEY AUTOINCREMENT, `value` REAL, `dateTime` INTEGER NOT NULL)');
 
         await callback?.onCreate?.call(database, version);
       },
@@ -146,7 +146,7 @@ class _$DistancesDao extends DistancesDao {
     return _queryAdapter.queryList('SELECT * FROM Distance',
         mapper: (Map<String, Object?> row) => Distance(
             id: row['id'] as int?,
-            value: row['value'] as double,
+            value: row['value'] as double?,
             dateTime: _dateTimeConverter.decode(row['dateTime'] as int)));
   }
 
@@ -157,7 +157,7 @@ class _$DistancesDao extends DistancesDao {
   ) async {
     return _queryAdapter.queryList(
         'SELECT * FROM Distance WHERE dateTime between ?1 and ?2 ORDER BY dateTime ASC',
-        mapper: (Map<String, Object?> row) => Distance(id: row['id'] as int?, value: row['value'] as double, dateTime: _dateTimeConverter.decode(row['dateTime'] as int)),
+        mapper: (Map<String, Object?> row) => Distance(id: row['id'] as int?, value: row['value'] as double?, dateTime: _dateTimeConverter.decode(row['dateTime'] as int)),
         arguments: [
           _dateTimeConverter.encode(startTime),
           _dateTimeConverter.encode(endTime)
@@ -165,11 +165,17 @@ class _$DistancesDao extends DistancesDao {
   }
 
   @override
-  Future<double?> sumDistance(DateTime dataTime) async {
-    return _queryAdapter.query(
-        'SELECT SUM(value) FROM Distance WHERE dateTime= ?1',
+  Future<List<double?>> DataDistance(
+    DateTime startTime,
+    DateTime endTime,
+  ) async {
+    return _queryAdapter.queryList(
+        'SELECT value FROM Distance WHERE dateTime between ?1 and ?2 ORDER BY dateTime ASC',
         mapper: (Map<String, Object?> row) => row.values.first as double,
-        arguments: [_dateTimeConverter.encode(dataTime)]);
+        arguments: [
+          _dateTimeConverter.encode(startTime),
+          _dateTimeConverter.encode(endTime)
+        ]);
   }
 
   @override
@@ -178,7 +184,7 @@ class _$DistancesDao extends DistancesDao {
         'SELECT * FROM Distance ORDER BY dateTime ASC LIMIT 1',
         mapper: (Map<String, Object?> row) => Distance(
             id: row['id'] as int?,
-            value: row['value'] as double,
+            value: row['value'] as double?,
             dateTime: _dateTimeConverter.decode(row['dateTime'] as int)));
   }
 
@@ -188,7 +194,7 @@ class _$DistancesDao extends DistancesDao {
         'SELECT * FROM Distance ORDER BY dateTime DESC LIMIT 1',
         mapper: (Map<String, Object?> row) => Distance(
             id: row['id'] as int?,
-            value: row['value'] as double,
+            value: row['value'] as double?,
             dateTime: _dateTimeConverter.decode(row['dateTime'] as int)));
   }
 
@@ -241,7 +247,7 @@ class _$FootStepsDao extends FootStepsDao {
     return _queryAdapter.queryList('SELECT * FROM FootStep',
         mapper: (Map<String, Object?> row) => FootStep(
             row['id'] as int?,
-            row['value'] as double,
+            row['value'] as double?,
             _dateTimeConverter.decode(row['dateTime'] as int)));
   }
 
@@ -252,7 +258,7 @@ class _$FootStepsDao extends FootStepsDao {
   ) async {
     return _queryAdapter.queryList(
         'SELECT * FROM FootStep WHERE dateTime between ?1 and ?2 ORDER BY dateTime ASC',
-        mapper: (Map<String, Object?> row) => FootStep(row['id'] as int?, row['value'] as double, _dateTimeConverter.decode(row['dateTime'] as int)),
+        mapper: (Map<String, Object?> row) => FootStep(row['id'] as int?, row['value'] as double?, _dateTimeConverter.decode(row['dateTime'] as int)),
         arguments: [
           _dateTimeConverter.encode(startTime),
           _dateTimeConverter.encode(endTime)
@@ -273,7 +279,7 @@ class _$FootStepsDao extends FootStepsDao {
         'SELECT * FROM FootStep ORDER BY dateTime ASC LIMIT 1',
         mapper: (Map<String, Object?> row) => FootStep(
             row['id'] as int?,
-            row['value'] as double,
+            row['value'] as double?,
             _dateTimeConverter.decode(row['dateTime'] as int)));
   }
 
@@ -283,7 +289,7 @@ class _$FootStepsDao extends FootStepsDao {
         'SELECT * FROM FootStep ORDER BY dateTime DESC LIMIT 1',
         mapper: (Map<String, Object?> row) => FootStep(
             row['id'] as int?,
-            row['value'] as double,
+            row['value'] as double?,
             _dateTimeConverter.decode(row['dateTime'] as int)));
   }
 

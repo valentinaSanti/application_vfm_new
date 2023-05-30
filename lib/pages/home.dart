@@ -173,17 +173,19 @@ class _HomeState extends State<Home> {
           ],
         ),
         body: Consumer<HomeProvider>( 
-          builder: (context, provider, child) => const Center(
+          builder: (context, provider, child)  {
+            provider.sommaCFP(DateTime.now().subtract(Duration (days:1)));
+            return const Center(
                   child: CustomPaint(
                     painter: ScoreCircularProgress(
                       backColor: Colors.red, 
                       frontColor: Colors.black, 
                       strokeWidth: 20,
-                      value: 50 /100
+                      value: 0 
                     ),
                   ),
-                ),
-              ),/* _selectPage(index: _selIdx) */
+                );
+              }),/* _selectPage(index: _selIdx) */
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: AppTheme.backhome,
           items: const [

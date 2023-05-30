@@ -5,7 +5,7 @@ class Distance {
   @PrimaryKey(autoGenerate: true)
   final int? id;
 
-  final double value; //distanza percorsa in metri
+  final double? value; //distanza percorsa in metri
 
   final DateTime dateTime; //giorno in cui vengono percorsi
 

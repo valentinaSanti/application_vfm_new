@@ -63,25 +63,44 @@ class HomeProvider extends ChangeNotifier {
     for (var element in _footstep) {
       db.footstepsDao.insertFootStep(element);
     } // db add to the table
-    cfp = _calculateCFP(_distance);
+    //cfp = await _sommaCFP(showDate);
     print ('Hai evitato un impronta di carbonio di: $cfp [kgCO2e]');
   }
 
   Future<void> refresh() async {
     await _fetchAndCalculate();
     await getDataOfDay(showDate);
-    await _calculateCFP(_distance);
+    //await _sommaCFP(showDate);
   }
 
-  double _calculateCFP(List value){
-    double _distanceTot = 0;
-    for (var i in value){
-      _distanceTot += value[i];
+  Future<double> sommaCFP(DateTime showDate) async {
+    List<Distance> _distancetmp = await db.distancesDao.findAllDistances();
+    List <double?> _distancevalue = await db.distancesDao.DataDistance(DateUtils.dateOnly(showDate), DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+    double _distanceTot=0;
+    if (_distancevalue.isNotEmpty){
+      for (var i in _distancevalue){
+        if(i!=null){
+          _distanceTot +=i ;
+        }
+          
+      }
+
     }
-    double value_miles = _distanceTot / 160900;
+    
+  
+    double value_miles = _distanceTot! / 160900;
     cfp = value_miles * 0.22143;
     return cfp;
   }
+  // double _calculateCFP(double value){
+  //   // for (var i in value){
+  //   //   _distanceTot += value[i];
+  //   // }
+
+  //   double value_miles = value / 160900;
+  //   cfp = value_miles * 0.22143;
+  //   return cfp;
+  // }
   // method to select only the data of the chosen day
   Future<void> getDataOfDay(DateTime showDate) async {
     var firstDay = await db.distancesDao.findFirstDayInDb();
