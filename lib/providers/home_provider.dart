@@ -33,26 +33,9 @@ class HomeProvider extends ChangeNotifier {
 
   Future<void> _init() async {
     await getDataOfDay(showDate);
+    await _fetchAndCalculate();
     doneInit = true;
     notifyListeners();
-  }
-
-  // method to select only the data of the chosen day
-  Future<void> getDataOfDay(DateTime showDate) async {
-    var firstDay = await db.distancesDao.findFirstDayInDb();
-    var lastDay = await db.distancesDao.findLastDayInDb();
-    if (showDate.isAfter(lastDay!.dateTime) || showDate.isBefore(firstDay!.dateTime)) 
-      return;
-        
-//    this.showDate = showDate;
-//    distance = await db.distancesDao.findDistancebyDate(
-//        DateUtils.dateOnly(showDate),//permette di fare operazioni sui dati
-//        DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
-//    footstep = await db.footstepsDao.findStepbyDate(DateUtils.dateOnly(showDate),
-//        DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
-    //lista
-    // after selecting all data we notify all consumers to rebuild
-    notifyListeners(); //devo farlo se voglio che il mio stato cambi
   }
 
   Future<DateTime?> _getLastFetch() async {
@@ -84,6 +67,12 @@ class HomeProvider extends ChangeNotifier {
     print ('Hai evitato un impronta di carbonio di: $cfp [kgCO2e]');
   }
 
+  Future<void> refresh() async {
+    await _fetchAndCalculate();
+    await getDataOfDay(showDate);
+    await _calculateCFP(_distance);
+  }
+
   double _calculateCFP(List value){
     double _distanceTot = 0;
     for (var i in value){
@@ -93,10 +82,25 @@ class HomeProvider extends ChangeNotifier {
     cfp = value_miles * 0.22143;
     return cfp;
   }
-
-  Future<void> refresh() async {
-    await _fetchAndCalculate();
-    await getDataOfDay(showDate);
-    await _calculateCFP(_distance);
+  // method to select only the data of the chosen day
+  Future<void> getDataOfDay(DateTime showDate) async {
+    var firstDay = await db.distancesDao.findFirstDayInDb();
+    print('$firstDay');
+    var lastDay = await db.distancesDao.findLastDayInDb();
+    print('$lastDay');
+    //if (showDate.isAfter(lastDay!.dateTime) || showDate.isBefore(firstDay!.dateTime)) 
+     // return;
+        
+   this.showDate = showDate;
+  //  distance = await db.distancesDao.findDistancebyDate(
+  //      DateUtils.dateOnly(showDate),//permette di fare operazioni sui dati
+  //      DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+  //  footstep = await db.footstepsDao.findStepbyDate(DateUtils.dateOnly(showDate),
+  //      DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+    //lista
+    // after selecting all data we notify all consumers to rebuild
+    notifyListeners(); //devo farlo se voglio che il mio stato cambi
   }
+
+  
 }
