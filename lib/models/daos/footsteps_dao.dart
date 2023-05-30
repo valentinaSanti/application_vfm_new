@@ -11,11 +11,11 @@ abstract class FootStepsDao {
 
   @Query(
       'SELECT * FROM FootStep WHERE dateTime between :startTime and :endTime ORDER BY dateTime ASC')
-  Future<List<FootStep>> findStepbyDate(DateTime startTime, DateTime endTime);
+ Future<List<FootStep>> findStepbyDate(DateTime startTime, DateTime endTime);
 
-  //calcoliamo la somma dei passi del giorno selezionato
+  //calcoliamo la somma dei passi del giorno selezionato 
   @Query('SELECT SUM(value) FROM FootStep WHERE dateTime= :dataTime')
-  Future<double?> sumFootStep(DateTime dataTime);
+ Future<double?> sumFootStep(DateTime dataTime); 
 
   //trovo inizio
   @Query('SELECT * FROM FootStep ORDER BY dateTime ASC LIMIT 1')
@@ -32,4 +32,5 @@ abstract class FootStepsDao {
   //Query #3: DELETE -> this allows to delete a distance from the table
   @delete
   Future<void> deleteFootStep(FootStep footStep);
+
 }
