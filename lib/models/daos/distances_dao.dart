@@ -14,7 +14,7 @@ abstract class DistancesDao {
   Future<List<Distance>> findDistancebyDate(
       DateTime startTime, DateTime endTime);
 
-  //calcoliamo la somma delle distanze del giorno selezionato
+  //calcoliamo la somma dei passi del giorno selezionato
   @Query('SELECT SUM(value) FROM Distance WHERE dateTime= :dataTime')
   Future<double?> sumDistance(DateTime dataTime);
 

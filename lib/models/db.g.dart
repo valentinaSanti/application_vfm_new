@@ -246,6 +246,28 @@ class _$FootStepsDao extends FootStepsDao {
   }
 
   @override
+  Future<List<FootStep>> findStepbyDate(
+    DateTime startTime,
+    DateTime endTime,
+  ) async {
+    return _queryAdapter.queryList(
+        'SELECT * FROM FootStep WHERE dateTime between ?1 and ?2 ORDER BY dateTime ASC',
+        mapper: (Map<String, Object?> row) => FootStep(row['id'] as int?, row['value'] as double, _dateTimeConverter.decode(row['dateTime'] as int)),
+        arguments: [
+          _dateTimeConverter.encode(startTime),
+          _dateTimeConverter.encode(endTime)
+        ]);
+  }
+
+  @override
+  Future<double?> sumFootStep(DateTime dataTime) async {
+    return _queryAdapter.query(
+        'SELECT SUM(value) FROM FootStep WHERE dateTime= ?1',
+        mapper: (Map<String, Object?> row) => row.values.first as double,
+        arguments: [_dateTimeConverter.encode(dataTime)]);
+  }
+
+  @override
   Future<FootStep?> findFirstDayInDb() async {
     return _queryAdapter.query(
         'SELECT * FROM FootStep ORDER BY dateTime ASC LIMIT 1',
