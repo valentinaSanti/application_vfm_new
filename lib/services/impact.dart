@@ -122,7 +122,7 @@ class ImpactService {
         String hour = dataday['time'];
         String datetime = '${day}T$hour';
         DateTime timestamp = _truncateSeconds(DateTime.parse(datetime));
-        Distance distancenew = Distance( value:dataday['value'], dateTime: timestamp );
+        Distance distancenew = Distance( value:double.parse(dataday['value']), dateTime: timestamp );
         if (!distance.any((e) => e.dateTime.isAtSameMomentAs(distancenew.dateTime))) {
           distance.add(distancenew);
         }
@@ -148,7 +148,7 @@ class ImpactService {
         String hour = dataday['time'];
         String datetime = '${day}T$hour';
         DateTime timestamp = _truncateSeconds(DateTime.parse(datetime));
-        FootStep footstepnew = FootStep(null, dataday['value'], timestamp );
+        FootStep footstepnew = FootStep(null, double.parse(dataday['value']), timestamp );
         if (!footstep.any((e) => e.dateTime.isAtSameMomentAs(footstepnew.dateTime))) {
           footstep.add(footstepnew);
         }
