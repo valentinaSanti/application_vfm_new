@@ -1,4 +1,4 @@
-import 'dart:ffi';
+//import 'dart:ffi';
 
 import 'package:application_vfm_new/models/entities/footstep.dart';
 import 'package:floor/floor.dart';
@@ -12,7 +12,7 @@ abstract class FootStepsDao {
 //  @Query('SELECT * FROM FootStep WHERE dateTime between :startTime and :endTime ORDER BY dateTime ASC')
 //  Future<List<FootStep>> findStepbyDate(DateTime startTime, DateTime endTime);
 
-  //calcoliamo la somma dei passi del giorno selezionato 
+  //calcoliamo la somma dei passi del giorno selezionato
 //  @Query('SELECT SUM(value) FROM FootStep WHERE dateTime=dataTime')
 //  Future<Double> sumFootStep(DateTime dataTime);
 
@@ -31,5 +31,4 @@ abstract class FootStepsDao {
   //Query #3: DELETE -> this allows to delete a distance from the table
   @delete
   Future<void> deleteFootStep(FootStep footStep);
-
 }
