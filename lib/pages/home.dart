@@ -41,13 +41,11 @@ class _HomeState extends State<Home> {
     });
   }
 
-
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<HomeProvider>(
       create: (context) => HomeProvider(
-        Provider.of<ImpactService>(context, listen: false),
-        Provider.of<AppDatabase>(context, listen: false)
-      ),
+          Provider.of<ImpactService>(context, listen: false),
+          Provider.of<AppDatabase>(context, listen: false)),
       lazy: false,
       builder: (context, child) => Scaffold(
         //backgroundColor: Color.fromARGB(255, 197, 233, 152),
@@ -95,7 +93,7 @@ class _HomeState extends State<Home> {
                   leading: const Icon(
                     MdiIcons.plusLockOpen,
                     size: 30,
-                    color: Color.fromARGB(255, 215, 137,  27),
+                    color: Color.fromARGB(255, 215, 137, 27),
                   ),
                   title: const Text('Are you new here?',
                       style: TextStyle(
@@ -172,26 +170,51 @@ class _HomeState extends State<Home> {
                     ))),
           ],
         ),
-        body: Consumer<HomeProvider>( 
-          builder: (context, provider, child)  {
-            provider.sommaCFP(DateTime.now().subtract(Duration (days:1)));
-            return const Center(
-                  child: CustomPaint(
-                    painter: ScoreCircularProgress(
-                      backColor: Colors.red, 
-                      frontColor: Colors.black, 
-                      strokeWidth: 20,
-                      value: 0 
-                    ),
-                  ),
-                );
-              }),/* _selectPage(index: _selIdx) */
+        body: Consumer<HomeProvider>(builder: (context, provider, child) {
+          provider.sommaCFP(DateTime.now().subtract(Duration(days: 1)));
+          final scoreValue = provider.cfp;
+          return Center(
+              child: SizedBox(
+            width: 150,
+            height: 150,
+            child: CustomPaint(
+              painter: ScoreCircularProgress(
+                backColor: Color.fromARGB(255, 190, 235, 170),
+                frontColor: Color.fromARGB(255, 186, 110, 4),
+                strokeWidth: 20,
+                value: scoreValue / 100,
+              ),
+              child: Align(
+                  alignment: Alignment.center,
+                  child: Center(
+                      child: Padding(
+                    padding: const EdgeInsets.only(top: 40.0),
+                    child: Column(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Text(
+                            '${scoreValue}',
+                            style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                fontSize: 15,
+                                color: Color(0xFF89453C)),
+                          ),
+                          const Text(
+                            ' Not good',
+                            style: TextStyle(fontSize: 16),
+                          )
+                        ]),
+                  ))),
+            ),
+          ));
+        }),
+        /* _selectPage(index: _selIdx) */
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: AppTheme.backhome,
           items: const [
             BottomNavigationBarItem(
               icon: Icon(Icons.home),
-              label: 'Home Page', 
+              label: 'Home Page',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.supervisor_account),

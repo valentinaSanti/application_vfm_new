@@ -20,14 +20,14 @@ class HomeProvider extends ChangeNotifier {
   late List<Distance> _distance;
 
   // selected day of data to be shown
-  DateTime showDate = DateTime.now(). subtract(const Duration(days: 1));
+  DateTime showDate = DateTime.now().subtract(const Duration(days: 1));
   late DateTime lastFetch;
 
   final ImpactService impactService;
   bool doneInit = false;
 
   // constructor of provider which manages the fetching of all data from the servers and then notifies the ui to build
-  HomeProvider(this. impactService, this.db) {
+  HomeProvider(this.impactService, this.db) {
     _init();
   }
 
@@ -53,7 +53,7 @@ class HomeProvider extends ChangeNotifier {
         DateTime.now().subtract(const Duration(days: 2));
     // do nothing if already fetched
     if (lastFetch.day == DateTime.now().subtract(const Duration(days: 1)).day) {
-      return;//evita di rifecciare i dati
+      return; //evita di rifecciare i dati
     }
     _distance = await impactService.getDistanceOfDay(lastFetch);
     for (var element in _distance) {
@@ -64,7 +64,7 @@ class HomeProvider extends ChangeNotifier {
       db.footstepsDao.insertFootStep(element);
     } // db add to the table
     //cfp = await _sommaCFP(showDate);
-    print ('Hai evitato un impronta di carbonio di: $cfp [kgCO2e]');
+    print('Hai evitato un impronta di carbonio di: $cfp [kgCO2e]');
   }
 
   Future<void> refresh() async {
@@ -75,51 +75,40 @@ class HomeProvider extends ChangeNotifier {
 
   Future<double> sommaCFP(DateTime showDate) async {
     List<Distance> _distancetmp = await db.distancesDao.findAllDistances();
-    List <double?> _distancevalue = await db.distancesDao.DataDistance(DateUtils.dateOnly(showDate), DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
-    double _distanceTot=0;
-    if (_distancevalue.isNotEmpty){
-      for (var i in _distancevalue){
-        if(i!=null){
-          _distanceTot +=i ;
+    List<double?> _distancevalue = await db.distancesDao.DataDistance(
+        DateUtils.dateOnly(showDate),
+        DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+    double _distanceTot = 0;
+    if (_distancevalue.isNotEmpty) {
+      for (var i in _distancevalue) {
+        if (i != null) {
+          _distanceTot += i;
         }
-          
       }
-
     }
-    
-  
     double value_miles = _distanceTot! / 160900;
     cfp = value_miles * 0.22143;
+    //return _distanceTot; SERVIREBBE forse
     return cfp;
   }
-  // double _calculateCFP(double value){
-  //   // for (var i in value){
-  //   //   _distanceTot += value[i];
-  //   // }
 
-  //   double value_miles = value / 160900;
-  //   cfp = value_miles * 0.22143;
-  //   return cfp;
-  // }
   // method to select only the data of the chosen day
   Future<void> getDataOfDay(DateTime showDate) async {
     var firstDay = await db.distancesDao.findFirstDayInDb();
     print('$firstDay');
     var lastDay = await db.distancesDao.findLastDayInDb();
     print('$lastDay');
-    //if (showDate.isAfter(lastDay!.dateTime) || showDate.isBefore(firstDay!.dateTime)) 
-     // return;
-        
-   this.showDate = showDate;
-  //  distance = await db.distancesDao.findDistancebyDate(
-  //      DateUtils.dateOnly(showDate),//permette di fare operazioni sui dati
-  //      DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
-  //  footstep = await db.footstepsDao.findStepbyDate(DateUtils.dateOnly(showDate),
-  //      DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+    //if (showDate.isAfter(lastDay!.dateTime) || showDate.isBefore(firstDay!.dateTime))
+    // return;
+
+    this.showDate = showDate;
+    //  distance = await db.distancesDao.findDistancebyDate(
+    //      DateUtils.dateOnly(showDate),//permette di fare operazioni sui dati
+    //      DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+    //  footstep = await db.footstepsDao.findStepbyDate(DateUtils.dateOnly(showDate),
+    //      DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
     //lista
     // after selecting all data we notify all consumers to rebuild
     notifyListeners(); //devo farlo se voglio che il mio stato cambi
   }
-
-  
 }
