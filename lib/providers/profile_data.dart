@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class UserData extends ChangeNotifier {
-  List<String> _userData = ['Mario','Rossi','50','mario.rossi@gmail.com','maRioroSsi'];
+  List<String> _userData = [
+    'Mario',
+    'Rossi',
+    '50',
+    'mario.rossi@gmail.com',
+    'maRioroSsi',
+    'Male'
+  ];
 
   String get name => _userData[0];
   String get surname => _userData[1];
@@ -10,14 +17,13 @@ class UserData extends ChangeNotifier {
   String get password => _userData[4];
   String get gender => _userData[5];
 
-  void addData(int n, String data){
+  void addData(int n, String data) {
     _userData.insert(n, data);
     notifyListeners();
   }
 
-  void addData_(String data){
+  void addData_(String data) {
     _userData.add(data);
     notifyListeners();
   }
-
 }

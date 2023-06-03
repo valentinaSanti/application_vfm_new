@@ -10,14 +10,38 @@ import 'package:application_vfm_new/utils/shared_preferences.dart';
 
 List<String> option = ['MALE', 'FEMALE', 'NON SPECIFICATO'];
 
-class Profile extends StatefulWidget {
-  Profile({Key? key}) : super(key: key);
+class Profile extends StatelessWidget {
+  const Profile({Key? key}) : super(key: key);
 
   @override
-  State<Profile> createState() => ProfileState();
+  Widget build(BuildContext context) {
+    //necessario a fornire due provider
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider<HomeProvider>(
+          create: (_) => HomeProvider(
+            Provider.of<ImpactService>(context, listen: false),
+            Provider.of<AppDatabase>(context, listen: false),
+          ),
+        ),
+        ChangeNotifierProvider<UserData>(
+          create: (_) => UserData(),
+        ),
+      ],
+      child:
+          ProfileScreen(), //profileScreen così ha l'accesso ai dati forniti dai due provider
+    );
+  }
 }
 
-class ProfileState extends State<Profile> {
+class ProfileScreen extends StatefulWidget {
+  ProfileScreen({Key? key}) : super(key: key);
+
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
   static const route = '/login/';
   static const routename = 'Login';
   String currentOption = option[1];
@@ -28,172 +52,166 @@ class ProfileState extends State<Profile> {
 
   @override
   Widget build(BuildContext context) {
-    return Provider<HomeProvider>(
-        create: (_) => HomeProvider(
-          Provider.of<ImpactService>(context, listen: false),
-          Provider.of<AppDatabase>(context, listen: false)),
-          lazy: false,
-        builder: (context, child) => Scaffold(
-            backgroundColor: Color.fromARGB(255, 197, 233, 152),
-            appBar: AppBar(
-              elevation: 0,
-              backgroundColor: Color.fromARGB(255, 197, 233, 152),
-              iconTheme:
-                  const IconThemeData(color: Color.fromARGB(255, 218, 162, 21)),
-              title: const Text(
-                'Profile',
-                style: TextStyle(
-                    fontSize: 20,
-                    fontStyle: FontStyle.normal,
-                    color: Color.fromARGB(255, 25, 25, 25)),
+    return Scaffold(
+        backgroundColor: Color.fromARGB(255, 197, 233, 152),
+        appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Color.fromARGB(255, 197, 233, 152),
+          iconTheme:
+              const IconThemeData(color: Color.fromARGB(255, 218, 162, 21)),
+          title: const Text(
+            'Profile',
+            style: TextStyle(
+                fontSize: 20,
+                fontStyle: FontStyle.normal,
+                color: Color.fromARGB(255, 25, 25, 25)),
+          ),
+        ),
+        body: SingleChildScrollView(
+            child: Column(
+          children: [
+            ListTile(
+              leading: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(60.0)),
+                child: Image.asset('assets/profile.png'),
               ),
+              title: Text(
+                  '${context.watch<UserData>().name} ${context.watch<UserData>().surname}',
+                  style: TextStyle(
+                    color: Color.fromARGB(255, 218, 162, 21),
+                    fontSize: 17,
+                  )),
             ),
-            body: SingleChildScrollView(
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Form(
+                key: _formKey,
                 child: Column(
-              children: [
-                ListTile(
-                  leading: ClipRRect(
-                    borderRadius: const BorderRadius.all(Radius.circular(60.0)),
-                    child: Image.asset('assets/profile.png'),
-                  ),
-                  title: Text(
-                      '${context.watch<UserData>().name} ${context.watch<UserData>().surname}',
-                      style: TextStyle(
-                        color: Color.fromARGB(255, 218, 162, 21),
-                        fontSize: 17,
-                      )),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: [
-                        // INSERIRE BOX CON NOME COGNOME EMAIL CITTà.
-                        const SizedBox(height: 10),
-                        Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: <Widget>[
-                            const SizedBox(width: 10),
-                            const Text('Gender:',
-                                textAlign: TextAlign.left,
+                  children: [
+                    // INSERIRE BOX CON NOME COGNOME EMAIL CITTà.
+                    const SizedBox(height: 10),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: <Widget>[
+                        const SizedBox(width: 10),
+                        const Text('Gender:',
+                            textAlign: TextAlign.left,
+                            style: TextStyle(
+                                color: Color.fromARGB(255, 0, 0, 0),
+                                fontSize: 17)),
+                        //Radio(
+                        //  fillColor: MaterialStateColor.resolveWith(
+                        //  (states) => const Color(0xFF89453C)),
+                        //  value: 0,
+                        //  groupValue: 1,
+                        //  onChanged: (val) {},
+                        //),
+                        ListTile(
+                            title: const Text('Male',
                                 style: TextStyle(
                                     color: Color.fromARGB(255, 0, 0, 0),
-                                    fontSize: 17)),
-                            //Radio(
-                            //  fillColor: MaterialStateColor.resolveWith(
-                            //  (states) => const Color(0xFF89453C)),
-                            //  value: 0,
-                            //  groupValue: 1,
-                            //  onChanged: (val) {},
-                            //),
-                            ListTile(
-                                title: const Text('Male',
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 0, 0, 0),
-                                        fontSize: 15)),
-                                leading: Radio(
-                                  value: option[0],
-                                  groupValue: currentOption,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      currentOption = value.toString();
-                                      //context.read<UserData>().addData(currentOption);
-                                    });
-                                  },
-                                )),
-                            //const Text(
-                            //  'MALE',
-                            //  style: TextStyle(fontSize: 17.0),
-                            //),
-                            //Radio(
-                            //    fillColor: MaterialStateColor.resolveWith(
-                            //        (states) => const Color(0xFF89453C)),
-                            //    value: 2,
-                            //    groupValue: 1,
-                            //    onChanged: (val) {}
-                            //),
-                            ListTile(
-                                title: const Text('Female',
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 2, 1, 1),
-                                        fontSize: 15)),
-                                leading: Radio(
-                                  value: option[1],
-                                  groupValue: currentOption,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      currentOption = value.toString();
-                                    });
-                                  },
-                                )),
-                            ListTile(
-                                title: const Text('Prefer not to say',
-                                    style: TextStyle(
-                                        color: Color.fromARGB(255, 14, 11, 4),
-                                        fontSize: 15)),
-                                leading: Radio(
-                                  value: option[2],
-                                  groupValue: currentOption,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      currentOption = value.toString();
-                                    });
-                                  },
-                                )),
-                            //const Text(
-                            //  'FEMALE',
-                            //  style: TextStyle(
-                            //    fontSize: 17.0,
-                            //  ),
-                            //),
-                          ],
-                        ),
-                        const SizedBox(height: 20),
-                        SizedBox(
-                          width: 400,
-                          child: TextFormField(
-                              validator: (value) {
-                                if (value == null || value.isEmpty) {
-                                  return 'Please enter your age';
-                                } else if (int.tryParse(value) == null) {
-                                  return 'Please enter an integer valid number';
-                                }
-                                return null;
+                                    fontSize: 15)),
+                            leading: Radio(
+                              value: option[0],
+                              groupValue: currentOption,
+                              onChanged: (value) {
+                                setState(() {
+                                  currentOption = value.toString();
+                                  //context.read<UserData>().addData(currentOption);
+                                });
                               },
-                              controller: ageController,
-                              enabled: true,
-                              decoration: const InputDecoration(
-                                  border: OutlineInputBorder(),
-                                  focusedBorder: OutlineInputBorder(
-                                      borderSide: BorderSide(
-                                          width: 1, color: Color(0xFF89453C))),
-                                  labelText: 'Age',
-                                  labelStyle:
-                                      TextStyle(color: Color(0xFF89453C)))),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children: [
-                            ElevatedButton(
-                                onPressed: () async {
-                                  if (_formKey.currentState!.validate()) {
-                                    //prefs.age = ageController.text;
-                                    
-                                    //da sistemare age nelle preferences
-                                  }
-                                },
-                                style: ElevatedButton.styleFrom(
-                                    backgroundColor: const Color(0xFF83AA99),
-                                    shape: const CircleBorder()),
-                                child: const Icon(Icons.check)),
-                          ],
-                        ),
+                            )),
+                        //const Text(
+                        //  'MALE',
+                        //  style: TextStyle(fontSize: 17.0),
+                        //),
+                        //Radio(
+                        //    fillColor: MaterialStateColor.resolveWith(
+                        //        (states) => const Color(0xFF89453C)),
+                        //    value: 2,
+                        //    groupValue: 1,
+                        //    onChanged: (val) {}
+                        //),
+                        ListTile(
+                            title: const Text('Female',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 2, 1, 1),
+                                    fontSize: 15)),
+                            leading: Radio(
+                              value: option[1],
+                              groupValue: currentOption,
+                              onChanged: (value) {
+                                setState(() {
+                                  currentOption = value.toString();
+                                });
+                              },
+                            )),
+                        ListTile(
+                            title: const Text('Prefer not to say',
+                                style: TextStyle(
+                                    color: Color.fromARGB(255, 14, 11, 4),
+                                    fontSize: 15)),
+                            leading: Radio(
+                              value: option[2],
+                              groupValue: currentOption,
+                              onChanged: (value) {
+                                setState(() {
+                                  currentOption = value.toString();
+                                });
+                              },
+                            )),
+                        //const Text(
+                        //  'FEMALE',
+                        //  style: TextStyle(
+                        //    fontSize: 17.0,
+                        //  ),
+                        //),
                       ],
                     ),
-                  ),
+                    const SizedBox(height: 20),
+                    SizedBox(
+                      width: 400,
+                      child: TextFormField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return 'Please enter your age';
+                            } else if (int.tryParse(value) == null) {
+                              return 'Please enter an integer valid number';
+                            }
+                            return null;
+                          },
+                          controller: ageController,
+                          enabled: true,
+                          decoration: const InputDecoration(
+                              border: OutlineInputBorder(),
+                              focusedBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                      width: 1, color: Color(0xFF89453C))),
+                              labelText: 'Age',
+                              labelStyle: TextStyle(color: Color(0xFF89453C)))),
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        ElevatedButton(
+                            onPressed: () async {
+                              if (_formKey.currentState!.validate()) {
+                                //prefs.age = ageController.text;
+
+                                //da sistemare age nelle preferences
+                              }
+                            },
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: const Color(0xFF83AA99),
+                                shape: const CircleBorder()),
+                            child: const Icon(Icons.check)),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
-            ))));
+              ),
+            ),
+          ],
+        )));
   }
 }

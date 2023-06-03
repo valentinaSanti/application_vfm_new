@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:application_vfm_new/models/entities/distance.dart';
 import 'package:application_vfm_new/models/entities/footstep.dart';
 import 'package:application_vfm_new/models/db.dart';
+import 'package:application_vfm_new/utils/shared_preferences.dart';
 
 // this is the change notifier. it will manage all the logic of the home page: fetching the correct data from the database
 // and on startup fetching the data from the online services
@@ -32,8 +33,8 @@ class HomeProvider extends ChangeNotifier {
   }
 
   Future<void> _init() async {
-    await getDataOfDay(showDate);
     await _fetchAndCalculate();
+    await getDataOfDay(showDate);
     doneInit = true;
     notifyListeners();
   }
@@ -63,14 +64,36 @@ class HomeProvider extends ChangeNotifier {
     for (var element in _footstep) {
       db.footstepsDao.insertFootStep(element);
     } // db add to the table
-    //cfp = await _sommaCFP(showDate);
+
+    cfp = await sommaCFP(showDate);
     print('Hai evitato un impronta di carbonio di: $cfp [kgCO2e]');
   }
 
   Future<void> refresh() async {
     await _fetchAndCalculate();
     await getDataOfDay(showDate);
-    //await _sommaCFP(showDate);
+  }
+
+  // method to select only the data of the chosen day
+  Future<void> getDataOfDay(DateTime showDate) async {
+    var firstDay = await db.distancesDao.findFirstDayInDb();
+    print('$firstDay');
+    var lastDay = await db.distancesDao.findLastDayInDb();
+    print('$lastDay');
+    if (showDate.isAfter(lastDay!.dateTime) ||
+        showDate.isBefore(firstDay!.dateTime)) return;
+
+    this.showDate = showDate;
+    distance = await db.distancesDao.findDistancebyDate(
+        DateUtils.dateOnly(showDate), //permette di fare operazioni sui dati
+        DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+    footstep = await db.footstepsDao.findStepbyDate(
+        DateUtils.dateOnly(showDate),
+        DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+    //lista
+    // after selecting all data we notify all consumers to rebuild
+    cfp = await sommaCFP(showDate);
+    notifyListeners(); //devo farlo se voglio che il mio stato cambi
   }
 
   Future<double> sommaCFP(DateTime showDate) async {
@@ -86,29 +109,9 @@ class HomeProvider extends ChangeNotifier {
         }
       }
     }
-    double value_miles = _distanceTot! / 160900;
+    double value_miles = _distanceTot / 160900;
     cfp = value_miles * 0.22143;
     //return _distanceTot; SERVIREBBE forse
     return cfp;
-  }
-
-  // method to select only the data of the chosen day
-  Future<void> getDataOfDay(DateTime showDate) async {
-    var firstDay = await db.distancesDao.findFirstDayInDb();
-    print('$firstDay');
-    var lastDay = await db.distancesDao.findLastDayInDb();
-    print('$lastDay');
-    //if (showDate.isAfter(lastDay!.dateTime) || showDate.isBefore(firstDay!.dateTime))
-    // return;
-
-    this.showDate = showDate;
-    //  distance = await db.distancesDao.findDistancebyDate(
-    //      DateUtils.dateOnly(showDate),//permette di fare operazioni sui dati
-    //      DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
-    //  footstep = await db.footstepsDao.findStepbyDate(DateUtils.dateOnly(showDate),
-    //      DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
-    //lista
-    // after selecting all data we notify all consumers to rebuild
-    notifyListeners(); //devo farlo se voglio che il mio stato cambi
   }
 }
