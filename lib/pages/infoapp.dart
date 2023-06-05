@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:application_vfm_new/app_general_theme.dart';
+
+import 'package:flutter/material.dart';
 
 class InfoApp extends StatelessWidget {
   const InfoApp({Key? key}) : super(key: key);
@@ -9,29 +12,47 @@ class InfoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromARGB(34, 45, 32, 23),
-        appBar: AppBar(
-            title: const Text(
-          'Discover your Carbon Footprint',
+      appBar: AppBar(
+        title: const Text(
+          'Discover how many kg of carbon you save',
           style: TextStyle(
-              fontSize: 20,
-              fontStyle: FontStyle.normal,
-              color: Color.fromARGB(255, 25, 25, 25)),
-        )),
-        body: SafeArea(
-            //il widget viene ritagliato per adattarsi all'area dello schermo disponibile
-            child: SingleChildScrollView(
-                //il widget viene posizionato all'interno di una area scorrevole
-                child: Padding(
-          padding: const EdgeInsets.all(
-              8.0), //aggiunge uno spazio di 8 pixel su tutti i lati
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: Colors.orange,
+            fontFamily: 'San Francisco',
+          ),
+        ),
+        iconTheme: const IconThemeData(color: Colors.orange),
+        elevation: 0,
+        backgroundColor: Colors.transparent,
+      ),
+      body: Container(
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.white, Colors.grey[200]!],
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+          ),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
           child: Column(
-              crossAxisAlignment:
-                  CrossAxisAlignment.start, //allinea lungo l'asse
-              children: const [
-                Text(
-                    'La applicazione calcola il quantitativo di CO2 che siamo riusciti a risparmiare dalla distanza che abbiamo percorso')
-              ]),
-        ))));
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(height: 16),
+              Text(
+                'The application allows you to calculate the amount of CO2 you have saved by choosing to walk instead of using a car.',
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.black,
+                  fontFamily: 'San Francisco',
+                ),
+              ),
+              SizedBox(height: 16),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 }

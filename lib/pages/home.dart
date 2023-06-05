@@ -48,7 +48,6 @@ class _HomeState extends State<Home> {
           Provider.of<AppDatabase>(context, listen: false)),
       lazy: false,
       builder: (context, child) => Scaffold(
-        //backgroundColor: Color.fromARGB(255, 197, 233, 152),
         backgroundColor: AppTheme.backhome,
         drawer: Drawer(
           child: ListView(
@@ -172,7 +171,7 @@ class _HomeState extends State<Home> {
         ),
         body: Consumer<HomeProvider>(builder: (context, provider, child) {
           provider.sommaCFP(DateTime.now().subtract(Duration(days: 1)));
-          final scoreValue = provider.cfp;
+          final scoreValue = provider.cfp; //._distanceTot mi da errore
           return Center(
               child: SizedBox(
             width: 150,

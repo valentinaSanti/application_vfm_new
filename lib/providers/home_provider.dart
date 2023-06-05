@@ -14,6 +14,7 @@ class HomeProvider extends ChangeNotifier {
   late List<FootStep> footstep;
   late List<Distance> distance;
   late double cfp;
+  late double _distanceTot;
   final AppDatabase db;
   // data to be used by the UI
 
@@ -67,6 +68,7 @@ class HomeProvider extends ChangeNotifier {
 
     cfp = await sommaCFP(showDate);
     print('Hai evitato un impronta di carbonio di: $cfp [kgCO2e]');
+    _distanceTot = await distanceTOT(showDate);
   }
 
   Future<void> refresh() async {
@@ -92,8 +94,25 @@ class HomeProvider extends ChangeNotifier {
         DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
     //lista
     // after selecting all data we notify all consumers to rebuild
-    cfp = await sommaCFP(showDate);
+    //cfp = await sommaCFP(showDate);
+    //_distanceTot = await distanceTOT(showDate);
     notifyListeners(); //devo farlo se voglio che il mio stato cambi
+  }
+
+  Future<double> distanceTOT(DateTime showDate) async {
+    List<Distance> _distancetmp = await db.distancesDao.findAllDistances();
+    List<double?> _distancevalue = await db.distancesDao.DataDistance(
+        DateUtils.dateOnly(showDate),
+        DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+    double _distanceTot = 0;
+    if (_distancevalue.isNotEmpty) {
+      for (var i in _distancevalue) {
+        if (i != null) {
+          _distanceTot += i;
+        }
+      }
+    }
+    return _distanceTot;
   }
 
   Future<double> sommaCFP(DateTime showDate) async {
