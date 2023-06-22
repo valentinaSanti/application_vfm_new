@@ -13,7 +13,7 @@ import 'package:application_vfm_new/utils/shared_preferences.dart';
 class HomeProvider extends ChangeNotifier {
   late List<FootStep> footstep;
   late List<Distance> distance;
-  late var cfp;
+  late double cfp;
   late double _distanceTot;
   final AppDatabase db;
   // data to be used by the UI

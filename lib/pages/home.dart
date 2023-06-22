@@ -1,7 +1,8 @@
 import 'package:application_vfm_new/models/db.dart';
 import 'package:application_vfm_new/pages/create_profile.dart';
+import 'package:application_vfm_new/pages/graficibase.dart';
 import 'package:application_vfm_new/services/impact.dart';
-import 'package:application_vfm_new/widget/score_circular.dart';
+//import 'package:application_vfm_new/widget/score_circular.dart';
 import 'package:flutter/material.dart';
 //import 'package:graphic/graphic.dart' hide view;
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
@@ -29,17 +30,38 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<BottomNavigationBarItem> navBarItems = [
-    const BottomNavigationBarItem(icon: Icon(MdiIcons.imageFilterDrama)),
-  ];
+  
   int _selectedIndex = 0;
+  List<BottomNavigationBarItem> navBarItems = [
+    const BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+              label: 'Home Page',
+    ),
+    const BottomNavigationBarItem(
+      icon: Icon(Icons.forest_outlined),
+              label: 'Footprint',
+    ),
+  ];
+  
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
-
+  Widget _selectPage({
+    required int index,
+  }) {
+    switch (index) {
+      case 0:
+        return GraficiApp();
+      case 1:
+        return info_dati_usati();
+      default:
+        return GraficiApp();
+    }
+  }
+  @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<HomeProvider>(
       create: (context) => HomeProvider(
@@ -72,21 +94,7 @@ class _HomeState extends State<Home> {
                           builder: (context) => InfoApp(),
                         ))
                       }),
-              ListTile(
-                  leading: const Icon(
-                    MdiIcons.bookHeart,
-                    size: 30,
-                    color: Color.fromARGB(255, 215, 137, 27),
-                  ),
-                  title: const Text('Information about using data',
-                      style: TextStyle(
-                        fontSize: 20,
-                      )),
-                  onTap: () => {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => info_dati_usati(),
-                        ))
-                      }),
+              
               ListTile(
                   leading: const Icon(
                     MdiIcons.plusLockOpen,
@@ -168,57 +176,10 @@ class _HomeState extends State<Home> {
                     ))),
           ],
         ),
-        body: Consumer<HomeProvider>(builder: (context, provider, child) {
-          provider.sommaCFP(DateTime.now().subtract(Duration(days: 1)));
-          final scoreValue = provider.cfp; //._distanceTot mi da errore
-          return Center(
-              child: SizedBox(
-            width: 150,
-            height: 150,
-            child: CustomPaint(
-              painter: ScoreCircularProgress(
-                backColor: Color.fromARGB(255, 190, 235, 170),
-                frontColor: Color.fromARGB(255, 186, 110, 4),
-                strokeWidth: 20,
-                value: scoreValue / 100,
-              ),
-              child: Align(
-                  alignment: Alignment.center,
-                  child: Center(
-                      child: Padding(
-                    padding: const EdgeInsets.only(top: 40.0),
-                    child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            '${scoreValue}',
-                            style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                fontSize: 15,
-                                color: Color(0xFF89453C)),
-                          ),
-                          const Text(
-                            ' Not good',
-                            style: TextStyle(fontSize: 16),
-                          )
-                        ]),
-                  ))),
-            ),
-          ));
-        }),
-        /* _selectPage(index: _selIdx) */
+        body:_selectPage(index: _selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: AppTheme.backhome,
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: 'Home Page',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.supervisor_account),
-              label: 'Account',
-            ),
-          ],
+          items: navBarItems,
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.amber[800],
           onTap: _onItemTapped,
