@@ -13,7 +13,7 @@ import 'package:application_vfm_new/utils/shared_preferences.dart';
 class HomeProvider extends ChangeNotifier {
   late List<FootStep> footstep;
   late List<Distance> distance;
-  late double cfp;
+  late var cfp;
   late double _distanceTot;
   final AppDatabase db;
   // data to be used by the UI
@@ -129,7 +129,9 @@ class HomeProvider extends ChangeNotifier {
       }
     }
     double value_miles = _distanceTot / 160900;
-    cfp = value_miles * 0.22143;
+
+    cfp=0;
+    cfp = (value_miles * 0.22143) ;
     //return _distanceTot; SERVIREBBE forse
     return cfp;
   }
