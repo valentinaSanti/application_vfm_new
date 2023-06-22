@@ -3,7 +3,7 @@ import 'package:application_vfm_new/pages/create_profile.dart';
 import 'package:application_vfm_new/services/impact.dart';
 import 'package:application_vfm_new/widget/score_circular.dart';
 import 'package:flutter/material.dart';
-import 'package:graphic/graphic.dart';
+//import 'package:graphic/graphic.dart' hide view;
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'package:application_vfm_new/pages/infoapp.dart';
@@ -15,7 +15,6 @@ import 'package:application_vfm_new/app_general_theme.dart';
 import 'package:application_vfm_new/providers/home_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:application_vfm_new/providers/home_provider.dart';
 
 import 'package:http/http.dart' as http;
 
