@@ -14,7 +14,7 @@ class GraficiApp extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Discover how many kg of carbon you save',
+          'Today Distance',
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,

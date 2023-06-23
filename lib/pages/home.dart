@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import 'package:application_vfm_new/pages/infoapp.dart';
-import 'package:application_vfm_new/pages/info_dati_usati.dart';
+import 'package:application_vfm_new/pages/footprint.dart';
 import 'package:application_vfm_new/pages/profile.dart';
 import 'package:application_vfm_new/pages/login.dart';
 import 'package:application_vfm_new/app_general_theme.dart';
@@ -30,25 +30,24 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  
   int _selectedIndex = 0;
   List<BottomNavigationBarItem> navBarItems = [
     const BottomNavigationBarItem(
       icon: Icon(Icons.home),
-              label: 'Home Page',
+      label: 'Home Page',
     ),
     const BottomNavigationBarItem(
       icon: Icon(Icons.forest_outlined),
-              label: 'Footprint',
+      label: 'Footprint',
     ),
   ];
-  
 
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
+
   Widget _selectPage({
     required int index,
   }) {
@@ -56,11 +55,12 @@ class _HomeState extends State<Home> {
       case 0:
         return GraficiApp();
       case 1:
-        return info_dati_usati();
+        return footprint();
       default:
         return GraficiApp();
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<HomeProvider>(
@@ -94,7 +94,6 @@ class _HomeState extends State<Home> {
                           builder: (context) => InfoApp(),
                         ))
                       }),
-              
               ListTile(
                   leading: const Icon(
                     MdiIcons.plusLockOpen,
@@ -128,7 +127,7 @@ class _HomeState extends State<Home> {
         ),
         appBar: AppBar(
           title: Text(
-            'Application V.F.M.',
+            'Footprint Tracker',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -176,7 +175,7 @@ class _HomeState extends State<Home> {
                     ))),
           ],
         ),
-        body:_selectPage(index: _selectedIndex),
+        body: _selectPage(index: _selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: AppTheme.backhome,
           items: navBarItems,
