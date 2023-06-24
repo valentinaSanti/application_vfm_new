@@ -14,7 +14,8 @@ class HomeProvider extends ChangeNotifier {
   late List<FootStep> footstep;
   late List<Distance> distance;
   late double cfp;
-  late double _distanceTot;
+  late double distanceTot;
+  late  double footstepTot;
   final AppDatabase db;
   // data to be used by the UI
 
@@ -68,7 +69,7 @@ class HomeProvider extends ChangeNotifier {
 
     cfp = await sommaCFP(showDate);
     print('Hai evitato un impronta di carbonio di: $cfp [kgCO2e]');
-    _distanceTot = await distanceTOT(showDate);
+    distanceTot = await distanceTOT(showDate);
   }
 
   Future<void> refresh() async {
@@ -104,15 +105,15 @@ class HomeProvider extends ChangeNotifier {
     List<double?> _distancevalue = await db.distancesDao.DataDistance(
         DateUtils.dateOnly(showDate),
         DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
-    double _distanceTot = 0;
+    double distanceTot = 0;
     if (_distancevalue.isNotEmpty) {
       for (var i in _distancevalue) {
         if (i != null) {
-          _distanceTot += i;
+          distanceTot += i;
         }
       }
     }
-    return _distanceTot;
+    return distanceTot;
   }
 
   Future<double> sommaCFP(DateTime showDate) async {
@@ -135,4 +136,22 @@ class HomeProvider extends ChangeNotifier {
     //return _distanceTot; SERVIREBBE forse
     return cfp;
   }
+
+  //***da decommentare una volta sistemata query Datafootstep***
+  // Future<double> sommafootstep(DateTime showDate) async {
+  //   List<FootStep> _footsteptmp = await db.footstepsDao.findAllStep();
+  //   List<double?> _footstepvalue = await db.footstepsDao.Datafootstep(
+  //       DateUtils.dateOnly(showDate),
+  //       DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+  //   double footstepTot = 0;
+  //   if (_footstepvalue.isNotEmpty) {
+  //     for (var i in _footstepvalue) {
+  //       if (i != null) {
+  //         footstepTot += i;
+  //       }
+  //     }
+  //   }
+    
+  //   return footstepTot;
+  // }
 }
