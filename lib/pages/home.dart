@@ -48,14 +48,17 @@ class _HomeState extends State<Home> {
     });
   }
 
-  Widget _selectPage({
-    required int index,
-  }) {
+  Widget _selectPage({required int index, required HomeProvider homeProvider}) {
     switch (index) {
       case 0:
         return GraficiApp();
       case 1:
-        return footprint();
+        if (homeProvider.doneInit) {
+          return footprint();
+        } else {
+          Future.delayed(const Duration(seconds: 1), () => footprint());
+          return Center(child: CircularProgressIndicator());
+        }
       default:
         return GraficiApp();
     }
@@ -175,7 +178,7 @@ class _HomeState extends State<Home> {
                     ))),
           ],
         ),
-        body: _selectPage(index: _selectedIndex),
+        body: _selectPage(index: _selectedIndex, homeProvider),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: AppTheme.backhome,
           items: navBarItems,
