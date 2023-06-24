@@ -43,7 +43,7 @@ class GraficiApp extends StatelessWidget {
               backColor: Colors.grey,
               frontColor: Colors.green,
               strokeWidth: 20,
-              value: scoreValue / 200000,
+              value: scoreValue / 20000,
       ),),),); })
     );
   }

@@ -175,7 +175,11 @@ class _HomeState extends State<Home> {
                     ))),
           ],
         ),
-        body: _selectPage(index: _selectedIndex),
+        body: Provider.of<HomeProvider>(context).doneInit
+        ? _selectPage(index: _selectedIndex)
+        : const Center(
+                  child: CircularProgressIndicator(),
+                ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: AppTheme.backhome,
           items: navBarItems,

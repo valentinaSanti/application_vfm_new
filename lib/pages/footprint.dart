@@ -29,7 +29,8 @@ class footprint extends StatelessWidget {
         elevation: 0,
         backgroundColor: Colors.transparent,
       ),
-      body: Consumer<HomeProvider>(builder: (context, provider, child) {
+      body: 
+      Consumer<HomeProvider>(builder: (context, provider, child) {
         provider.sommaCFP(DateTime.now().subtract(Duration(days: 1)));
         final scoreValue = provider.cfp; //._distanceTot mi da errore
         return Center(

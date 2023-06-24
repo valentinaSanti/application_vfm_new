@@ -37,6 +37,8 @@ class HomeProvider extends ChangeNotifier {
   Future<void> _init() async {
     await _fetchAndCalculate();
     await getDataOfDay(showDate);
+    await sommaCFP(showDate);
+    await distanceTOT(showDate);
     doneInit = true;
     notifyListeners();
   }
@@ -67,9 +69,9 @@ class HomeProvider extends ChangeNotifier {
       db.footstepsDao.insertFootStep(element);
     } // db add to the table
 
-    cfp = await sommaCFP(showDate);
+    cfp = await sommaCFP(lastFetch);
     print('Hai evitato un impronta di carbonio di: $cfp [kgCO2e]');
-    distanceTot = await distanceTOT(showDate);
+    distanceTot = await distanceTOT(lastFetch);
   }
 
   Future<void> refresh() async {
