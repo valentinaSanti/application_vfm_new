@@ -25,10 +25,10 @@ abstract class FootStepsDao {
   @Query('SELECT * FROM FootStep ORDER BY dateTime DESC LIMIT 1')
   Future<FootStep?> findLastDayInDb();
 
-//****** da implementaere
-//     //calcoliamo la somma dei passi del giorno selezionato 
-// @Query('SELECT value FROM  FootStep WHERE dateTime between :startTime and :endTime ORDER BY dateTime ASC')
-// Future<List<double?>> Datafootstep(DateTime startTime, DateTime endTime);
+  //****** da implementaere
+  //calcoliamo la somma dei passi del giorno selezionato 
+  @Query('SELECT value FROM  FootStep WHERE dateTime between :startTime and :endTime ORDER BY dateTime ASC')
+  Future<List<double?>> dataFootStep(DateTime startTime, DateTime endTime);
 
   //Query #2: INSERT -> this allows to add a distance in the table
   @insert

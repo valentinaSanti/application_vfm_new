@@ -35,40 +35,46 @@ class GraficiApp extends StatelessWidget {
                   fontFamily: 'San Francisco',
                 ),
               ),
-              Align(alignment: Alignment.center,
-                child: SizedBox(
-                  width: 150,
-                  height: 150,
-                  child: CustomPaint(
-                    painter: ScoreLinearProgress(
-                      backColor: Color.fromARGB(255, 147, 146, 146).withOpacity(0.4),
-                      frontColor: Color.fromARGB(255, 54, 192, 89),
-                      strokeWidth: 20,
-                      value: provider.distanceTot/ 100,
-                    ),
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      child: Center(
-                        child: Padding(
-                          padding: const EdgeInsets.only(top:40.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.start,
-                              children: [
-                                Text(
-                                  '${provider.distanceTot}',
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20,
-                                      color: Color(0)),
-                                ),
-                          ]),
-                          ),
-                      ),
-                    ),
+              Padding(
+                padding: const EdgeInsets.only(top: 40),
+                child: Container(
+                  height: 10,
+                  width: 350,
+                  decoration: BoxDecoration(
+                    color:const Color.fromARGB(255, 215, 137, 27).withOpacity(0.4),
+                    borderRadius: const BorderRadius.all(
+                      Radius.circular(4.0)),
                   ),
-                ),   
+                  child: Row(
+                    children: <Widget>[
+                      Container(
+                        width: ( provider.footstepTot / 100 ),
+                        height: 10,
+                        decoration: const BoxDecoration(
+                          color: Color.fromARGB(255, 215, 137, 27),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(4.0)),
+                        ),
+                      )
+                    ],
+                  ),
+                ),
               ),
-              const Text(
+              Padding(
+                padding: const EdgeInsets.only(top: 20.0),
+                child: Text(
+                  '${provider.footstepTot}',
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                    color: Color.fromARGB(255, 215, 137, 27)),
+                ),
+              ),
+            //]
+            const Padding(
+              padding: EdgeInsets.only(top: 40.0),
+              child: Text(
                 'Today Step evolution',
                 style: TextStyle(
                   fontSize: 18,
@@ -77,6 +83,8 @@ class GraficiApp extends StatelessWidget {
                   fontFamily: 'San Francisco',
                 ),
               ),
+              
+            ),
             Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -107,11 +115,11 @@ class GraficiApp extends StatelessWidget {
               //inserire un grafico che fa l'evoluzione degli step come quello di cui abbiamo parlato
               //da implementare all'interno di  widget come nuova pagina e poi da inseririre qui
             ],
-          ),
-        ),
-      ),
+           ),
+         ),
+       ),
     );
-  }
+   }
   //inserire eventuale codice che mappa i valori in base alla data creando una  lista vedi tutorato riga 154
   // di pollutants.dart
 }

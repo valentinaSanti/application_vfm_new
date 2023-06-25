@@ -1,3 +1,4 @@
+import 'package:application_vfm_new/app_general_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:application_vfm_new/models/db.dart';
@@ -14,6 +15,7 @@ class footprint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppTheme.backhome,
       //backgroundColor: Color.fromARGB(34, 45, 32, 23),
       appBar: AppBar(
         title: const Text(
@@ -33,7 +35,7 @@ class footprint extends StatelessWidget {
       Consumer<HomeProvider>(builder: (context, provider, child) {
         provider.sommaCFP(DateTime.now().subtract(Duration(days: 1)));
         final scoreValue = provider.cfp; 
-        final scoreDistanceTot=provider.distanceTot;//._distanceTot mi da errore
+//        final scoreDistanceTot=provider.distanceTot;//._distanceTot mi da errore
         return Center(
             child: SizedBox(
           width: 150,
@@ -61,8 +63,8 @@ class footprint extends StatelessWidget {
                               color: Color(0xFF89453C)),
                         ),
                         const Text(
-                          ' You did a good job, walking these kilometres prevented your use of transport from having this carbon footprint. You helped the planet',
-                          style: TextStyle(fontSize: 16),
+                          ' You did a good job, walking these kilometres prevented your use of transport',// from having this carbon footprint. You helped the planet',
+                          style: TextStyle(fontSize: 6),
                         )
                         //scrivere la distanza totale percorsa ottenuta dall'analisi 
                         

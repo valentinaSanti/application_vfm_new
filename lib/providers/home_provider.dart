@@ -39,6 +39,7 @@ class HomeProvider extends ChangeNotifier {
     await getDataOfDay(showDate);
     await sommaCFP(showDate);
     await distanceTOT(showDate);
+    await sommafootstep(showDate);
     doneInit = true;
     notifyListeners();
   }
@@ -69,9 +70,11 @@ class HomeProvider extends ChangeNotifier {
       db.footstepsDao.insertFootStep(element);
     } // db add to the table
 
-    cfp = await sommaCFP(lastFetch);
+    cfp = await sommaCFP(showDate);
+    distanceTot = await distanceTOT(showDate);
+    footstepTot = await sommafootstep(showDate);
     print('Hai evitato un impronta di carbonio di: $cfp [kgCO2e]');
-    distanceTot = await distanceTOT(lastFetch);
+  //  distanceTot = await distanceTOT(lastFetch);
   }
 
   Future<void> refresh() async {
@@ -97,8 +100,9 @@ class HomeProvider extends ChangeNotifier {
         DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
     //lista
     // after selecting all data we notify all consumers to rebuild
-    //cfp = await sommaCFP(showDate);
-    //_distanceTot = await distanceTOT(showDate);
+    cfp = await sommaCFP(showDate);
+    distanceTot = await distanceTOT(showDate);
+    footstepTot = await sommafootstep(showDate);
     notifyListeners(); //devo farlo se voglio che il mio stato cambi
   }
 
@@ -133,27 +137,26 @@ class HomeProvider extends ChangeNotifier {
     }
     double value_miles = _distanceTot / 160900;
 
-    cfp=0;
     cfp = (value_miles * 0.22143) ;
     //return _distanceTot; SERVIREBBE forse
     return cfp;
   }
 
   //***da decommentare una volta sistemata query Datafootstep***
-  // Future<double> sommafootstep(DateTime showDate) async {
-  //   List<FootStep> _footsteptmp = await db.footstepsDao.findAllStep();
-  //   List<double?> _footstepvalue = await db.footstepsDao.Datafootstep(
-  //       DateUtils.dateOnly(showDate),
-  //       DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
-  //   double footstepTot = 0;
-  //   if (_footstepvalue.isNotEmpty) {
-  //     for (var i in _footstepvalue) {
-  //       if (i != null) {
-  //         footstepTot += i;
-  //       }
-  //     }
-  //   }
+  Future<double> sommafootstep(DateTime showDate) async {
+    List<FootStep> _footsteptmp = await db.footstepsDao.findAllStep();
+    List<double?> _footstepvalue = await db.footstepsDao.dataFootStep(
+        DateUtils.dateOnly(showDate),
+        DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+    double footstepTot = 0;
+    if (_footstepvalue.isNotEmpty) {
+      for (var i in _footstepvalue) {
+        if (i != null) {
+          footstepTot += i;
+        }
+      }
+    }
     
-  //   return footstepTot;
-  // }
+    return footstepTot;
+  }
 }

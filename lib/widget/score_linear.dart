@@ -13,7 +13,8 @@ class ScoreLinearProgress extends CustomPainter {
 
   @override
   void paint(Canvas canvas, Size size) {
-    final w = size.width, h = size.height;
+    final w = 190;
+    final h = 100;
     final paint1 = Paint()
       ..strokeWidth = strokeWidth
       ..color = backColor
@@ -25,10 +26,10 @@ class ScoreLinearProgress extends CustomPainter {
       //..style = PaintingStyle.fill//rettangolo pieno
       ..strokeCap = StrokeCap.round;
     Offset startPoint = Offset(0, h / 2);
-    Offset endPoint = Offset(w * value, h / 2);
+    Offset endPoint = Offset(w as double , h / 2);
     canvas.drawLine(startPoint,endPoint, paint1);
     Offset startPoint2 = Offset(0, h / 2);
-    Offset endPoint2 = Offset(w , h / 2);
+    Offset endPoint2 = Offset(w * value / 100, h / 2);
     canvas.drawLine(startPoint2,endPoint2, paint2);
     final r =Rect.fromPoints(startPoint,endPoint);
     canvas.drawRect(r, paint2);
