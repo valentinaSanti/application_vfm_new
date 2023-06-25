@@ -1,3 +1,5 @@
+import 'package:application_vfm_new/models/entities/distance.dart';
+import 'package:application_vfm_new/widget/custom_plot.dart';
 import 'package:flutter/material.dart';
 import 'package:application_vfm_new/app_general_theme.dart';
 
@@ -175,6 +177,13 @@ class GraficiApp extends StatelessWidget {
                 ),
               ),
             //]
+            // const Padding(
+            //     padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+            //     child: Consumer<HomeProvider>(
+            //       builder:(context,value,child) =>
+            //       CustomPlot(data: _parseData(value.distance))
+            //       ,)
+              // ),
               //inserire un grafico che fa l'evoluzione degli step come quello di cui abbiamo parlato
               //da implementare all'interno di  widget come nuova pagina e poi da inseririre qui
             ],
@@ -183,11 +192,22 @@ class GraficiApp extends StatelessWidget {
        ]),
     )
   )
-      )
+      ),
+      
+      
+
     );
   }
-  //inserire eventuale codice che mappa i valori in base alla data creando una  lista vedi tutorato riga 154
-  // di pollutants.dart
+  List<Map<String, dynamic>> _parseData(List<Distance> data) {
+    return data
+        .map(
+          (e) => {
+            'date': DateFormat('HH:mm').format(e.dateTime),
+            'points': e.value
+          },
+        )
+        .toList();
+  }
 }
     // return Scaffold(
     //   appBar: AppBar(
