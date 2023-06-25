@@ -32,7 +32,8 @@ class footprint extends StatelessWidget {
       body: 
       Consumer<HomeProvider>(builder: (context, provider, child) {
         provider.sommaCFP(DateTime.now().subtract(Duration(days: 1)));
-        final scoreValue = provider.cfp; //._distanceTot mi da errore
+        final scoreValue = provider.cfp; 
+        final scoreDistanceTot=provider.distanceTot;//._distanceTot mi da errore
         return Center(
             child: SizedBox(
           width: 150,
@@ -60,13 +61,18 @@ class footprint extends StatelessWidget {
                               color: Color(0xFF89453C)),
                         ),
                         const Text(
-                          ' Not good',
+                          ' You did a good job, walking these kilometres prevented your use of transport from having this carbon footprint. You helped the planet',
                           style: TextStyle(fontSize: 16),
                         )
+                        //scrivere la distanza totale percorsa ottenuta dall'analisi 
+                        
                       ]),
                 ))),
           ),
-        ));
+          
+        )
+        
+        );
       }),
     );
   }
