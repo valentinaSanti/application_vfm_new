@@ -22,6 +22,7 @@ class BodyMeasurementView extends StatelessWidget {
               padding: const EdgeInsets.only(
                   left: 24, right: 24, top: 16, bottom: 18),
               child: Container(
+                
                 decoration: BoxDecoration(
                   color: Color(0xFF253840),
                   borderRadius: BorderRadius.only(
@@ -36,6 +37,7 @@ class BodyMeasurementView extends StatelessWidget {
                         blurRadius: 10.0),
                   ],
                 ),
+                
                 child: Column(
                   children: <Widget>[
                     Padding(
@@ -49,14 +51,15 @@ class BodyMeasurementView extends StatelessWidget {
                             padding: EdgeInsets.only(
                                 left: 4, bottom: 8, top: 16),
                             child: Text(
-                              'Weight',
+                              'Today Distance',
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                   //fontFamily: fontName,
-                                  fontWeight: FontWeight.w500,
-                                  fontSize: 16,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
                                   letterSpacing: -0.1,
-                                  color: Color(0xFF253840)
+                                  color: Colors.orange,
+                                  fontFamily: 'San Francisco'
                                 ),
                             ),
                           ),
@@ -72,13 +75,13 @@ class BodyMeasurementView extends StatelessWidget {
                                     padding: EdgeInsets.only(
                                         left: 4, bottom: 3),
                                     child: Text(
-                                      '206.8',
+                                      '${provider.footstepTot}',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         //fontFamily: FitnessAppTheme.fontName,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 32,
-                                        color: Color(0xFF2633C5)
+                                        color: Colors.orange
                                       ),
                                     ),
                                   ),
@@ -86,14 +89,14 @@ class BodyMeasurementView extends StatelessWidget {
                                     padding: EdgeInsets.only(
                                         left: 8, bottom: 8),
                                     child: Text(
-                                      'Ibs',
+                                      'Steps',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         //fontFamily: FitnessAppTheme.fontName,
                                         fontWeight: FontWeight.w500,
                                         fontSize: 18,
                                         letterSpacing: -0.2,
-                                        color: Color(0xFF2633C5)
+                                        color: Colors.orange
                                       ),
                                     ),
                                   ),
@@ -134,7 +137,7 @@ class BodyMeasurementView extends StatelessWidget {
                                     padding: EdgeInsets.only(
                                         top: 4, bottom: 14),
                                     child: Text(
-                                      'InBody SmartScale',
+                                      'campo vuot',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
                                         //fontFamily: FitnessAppTheme.fontName,
