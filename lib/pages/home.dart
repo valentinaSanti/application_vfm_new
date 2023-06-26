@@ -132,13 +132,6 @@ class _HomeState extends State<Home> {
               fontSize: 20,
               fontWeight: FontWeight.bold,
               color: Color.fromARGB(255, 215, 137, 27),
-              // foreground: Paint()
-              //   ..shader = LinearGradient(
-              //     colors: [Colors.orange.shade300, Colors.orange.shade700],
-              //     begin: Alignment.topLeft,
-              //     end: Alignment.bottomRight,
-              //   ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0,
-              //       70.0)), // Aggiunge il gradiente come sfondo del testo del titolo
             ),
           ),
           centerTitle: true,
@@ -177,10 +170,10 @@ class _HomeState extends State<Home> {
           ],
         ),
         body: Provider.of<HomeProvider>(context).doneInit
-        ? _selectPage(index: _selectedIndex)
-        : const Center(
-                  child: CircularProgressIndicator(),
-                ),
+            ? _selectPage(index: _selectedIndex)
+            : const Center(
+                child: CircularProgressIndicator(),
+              ),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: AppTheme.backhome,
           items: navBarItems,

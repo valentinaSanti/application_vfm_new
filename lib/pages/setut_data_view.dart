@@ -5,7 +5,8 @@ class BodyMeasurementView extends StatelessWidget {
   final AnimationController? animationController;
   final Animation<double>? animation;
 
-  const BodyMeasurementView({Key? key, this.animationController, this.animation})
+  const BodyMeasurementView(
+      {Key? key, this.animationController, this.animation})
       : super(key: key);
 
   @override
@@ -22,7 +23,6 @@ class BodyMeasurementView extends StatelessWidget {
               padding: const EdgeInsets.only(
                   left: 24, right: 24, top: 16, bottom: 18),
               child: Container(
-                
                 decoration: BoxDecoration(
                   color: Color(0xFF253840),
                   borderRadius: BorderRadius.only(
@@ -37,7 +37,6 @@ class BodyMeasurementView extends StatelessWidget {
                         blurRadius: 10.0),
                   ],
                 ),
-                
                 child: Column(
                   children: <Widget>[
                     Padding(
@@ -48,8 +47,8 @@ class BodyMeasurementView extends StatelessWidget {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           const Padding(
-                            padding: EdgeInsets.only(
-                                left: 4, bottom: 8, top: 16),
+                            padding:
+                                EdgeInsets.only(left: 4, bottom: 8, top: 16),
                             child: Text(
                               'Today Distance',
                               textAlign: TextAlign.center,
@@ -59,8 +58,7 @@ class BodyMeasurementView extends StatelessWidget {
                                   fontSize: 18,
                                   letterSpacing: -0.1,
                                   color: Colors.orange,
-                                  fontFamily: 'San Francisco'
-                                ),
+                                  fontFamily: 'San Francisco'),
                             ),
                           ),
                           Row(
@@ -72,32 +70,31 @@ class BodyMeasurementView extends StatelessWidget {
                                 crossAxisAlignment: CrossAxisAlignment.end,
                                 children: const <Widget>[
                                   Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 4, bottom: 3),
-                                    child: Text(
-                                      '${provider.footstepTot}',
-                                      textAlign: TextAlign.center,
-                                      style: TextStyle(
-                                        //fontFamily: FitnessAppTheme.fontName,
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 32,
-                                        color: Colors.orange
-                                      ),
-                                    ),
+                                    padding:
+                                        EdgeInsets.only(left: 4, bottom: 3),
+                                    // child: Text(
+                                    //   '${provider.footstepTot}',
+                                    //   textAlign: TextAlign.center,
+                                    //   style: TextStyle(
+                                    //     //fontFamily: FitnessAppTheme.fontName,
+                                    //     fontWeight: FontWeight.w600,
+                                    //     fontSize: 32,
+                                    //     color: Colors.orange
+                                    //   ),
+                                    // )
                                   ),
                                   Padding(
-                                    padding: EdgeInsets.only(
-                                        left: 8, bottom: 8),
+                                    padding:
+                                        EdgeInsets.only(left: 8, bottom: 8),
                                     child: Text(
                                       'Steps',
                                       textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        //fontFamily: FitnessAppTheme.fontName,
-                                        fontWeight: FontWeight.w500,
-                                        fontSize: 18,
-                                        letterSpacing: -0.2,
-                                        color: Colors.orange
-                                      ),
+                                          //fontFamily: FitnessAppTheme.fontName,
+                                          fontWeight: FontWeight.w500,
+                                          fontSize: 18,
+                                          letterSpacing: -0.2,
+                                          color: Colors.orange),
                                     ),
                                   ),
                                 ],
@@ -111,8 +108,8 @@ class BodyMeasurementView extends StatelessWidget {
                                     children: <Widget>[
                                       Icon(
                                         Icons.access_time,
-                                        color: Color(0xFF3A5160)
-                                            .withOpacity(0.5),
+                                        color:
+                                            Color(0xFF3A5160).withOpacity(0.5),
                                         size: 16,
                                       ),
                                       Padding(
@@ -134,8 +131,8 @@ class BodyMeasurementView extends StatelessWidget {
                                     ],
                                   ),
                                   const Padding(
-                                    padding: EdgeInsets.only(
-                                        top: 4, bottom: 14),
+                                    padding:
+                                        EdgeInsets.only(top: 4, bottom: 14),
                                     child: Text(
                                       'campo vuot',
                                       textAlign: TextAlign.center,
@@ -196,8 +193,7 @@ class BodyMeasurementView extends StatelessWidget {
                                       //fontFamily: FitnessAppTheme.fontName,
                                       fontWeight: FontWeight.w600,
                                       fontSize: 12,
-                                      color:
-                                          Color(0xFF3A5160).withOpacity(0.5),
+                                      color: Color(0xFF3A5160).withOpacity(0.5),
                                     ),
                                   ),
                                 ),
