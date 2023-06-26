@@ -18,21 +18,27 @@ class CustomPlot extends StatelessWidget {
         data: data,
         variables: {
           'time': Variable(
-            accessor: (Map map) => map['time'] as String,
+            accessor: (Map map) => map['date'] as String,
             scale: OrdinalScale(tickCount: 5),
           ),
           'points': Variable(
             accessor: (Map map) => map['points'] as num,
           ),
         },
-        elements: <GeomElement<Shape>>[
-          LineElement(
+        elements: [ IntervalElement(
             position: Varset('time') * Varset('points'),
-            shape: ShapeAttr(value: BasicLineShape(smooth: true)),
             size: SizeAttr(value: 2),
-            color: ColorAttr(value: const Color(0xFF83AA99)),
-          )
-        ],
+            color: ColorAttr (value: const Color(0xFF83AA99)),
+
+        )],
+        // <GeomElement<Shape>>[
+        //   LineElement(
+        //     position: Varset('time') * Varset('points'),
+        //     shape: ShapeAttr(value: BasicLineShape(smooth: true)),
+        //     size: SizeAttr(value: 2),
+        //     color: ColorAttr(value: const Color(0xFF83AA99)),
+        //   )
+        // ],
         axes: [
           Defaults.horizontalAxis,
           Defaults.verticalAxis,
