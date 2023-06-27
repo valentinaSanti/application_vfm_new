@@ -294,6 +294,20 @@ class _$FootStepsDao extends FootStepsDao {
   }
 
   @override
+  Future<List<double?>> dataFootStep(
+    DateTime startTime,
+    DateTime endTime,
+  ) async {
+    return _queryAdapter.queryList(
+        'SELECT value FROM  FootStep WHERE dateTime between ?1 and ?2 ORDER BY dateTime ASC',
+        mapper: (Map<String, Object?> row) => row.values.first as double,
+        arguments: [
+          _dateTimeConverter.encode(startTime),
+          _dateTimeConverter.encode(endTime)
+        ]);
+  }
+
+  @override
   Future<void> insertFootStep(FootStep footStep) async {
     await _footStepInsertionAdapter.insert(footStep, OnConflictStrategy.abort);
   }

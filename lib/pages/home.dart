@@ -129,18 +129,12 @@ class _HomeState extends State<Home> {
           ),
         ),
         appBar: AppBar(
-          title: Text(
+          title: const Text(
             'Footprint Tracker',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              foreground: Paint()
-                ..shader = LinearGradient(
-                  colors: [Colors.orange.shade300, Colors.orange.shade700],
-                  begin: Alignment.topLeft,
-                  end: Alignment.bottomRight,
-                ).createShader(Rect.fromLTWH(0.0, 0.0, 200.0,
-                    70.0)), // Aggiunge il gradiente come sfondo del testo del titolo
+              color: Color.fromARGB(255, 215, 137, 27),
             ),
           ),
           centerTitle: true,
@@ -178,7 +172,7 @@ class _HomeState extends State<Home> {
                     ))),
           ],
         ),
-        body: _selectPage(index: _selectedIndex, homeProvider),
+        body: _selectPage(index: _selectedIndex),
         bottomNavigationBar: BottomNavigationBar(
           backgroundColor: AppTheme.backhome,
           items: navBarItems,

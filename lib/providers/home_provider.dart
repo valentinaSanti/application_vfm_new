@@ -14,7 +14,8 @@ class HomeProvider extends ChangeNotifier {
   late List<FootStep> footstep;
   late List<Distance> distance;
   late double cfp;
-  late double _distanceTot;
+  late double distanceTot;
+  late  double footstepTot;
   final AppDatabase db;
   // data to be used by the UI
 
@@ -36,6 +37,9 @@ class HomeProvider extends ChangeNotifier {
   Future<void> _init() async {
     await _fetchAndCalculate();
     await getDataOfDay(showDate);
+    await sommaCFP(showDate);
+    await distanceTOT(showDate);
+    await sommafootstep(showDate);
     doneInit = true;
     notifyListeners();
   }
@@ -67,8 +71,10 @@ class HomeProvider extends ChangeNotifier {
     } // db add to the table
 
     cfp = await sommaCFP(showDate);
+    distanceTot = await distanceTOT(showDate);
+    footstepTot = await sommafootstep(showDate);
     print('Hai evitato un impronta di carbonio di: $cfp [kgCO2e]');
-    _distanceTot = await distanceTOT(showDate);
+  //  distanceTot = await distanceTOT(lastFetch);
   }
 
   Future<void> refresh() async {
@@ -94,8 +100,9 @@ class HomeProvider extends ChangeNotifier {
         DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
     //lista
     // after selecting all data we notify all consumers to rebuild
-    //cfp = await sommaCFP(showDate);
-    //_distanceTot = await distanceTOT(showDate);
+    cfp = await sommaCFP(showDate);
+    distanceTot = await distanceTOT(showDate);
+    footstepTot = await sommafootstep(showDate);
     notifyListeners(); //devo farlo se voglio che il mio stato cambi
   }
 
@@ -104,15 +111,15 @@ class HomeProvider extends ChangeNotifier {
     List<double?> _distancevalue = await db.distancesDao.DataDistance(
         DateUtils.dateOnly(showDate),
         DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
-    double _distanceTot = 0;
+    double distanceTot = 0;
     if (_distancevalue.isNotEmpty) {
       for (var i in _distancevalue) {
         if (i != null) {
-          _distanceTot += i;
+          distanceTot += i;
         }
       }
     }
-    return _distanceTot;
+    return distanceTot;
   }
 
   Future<double> sommaCFP(DateTime showDate) async {
@@ -130,9 +137,26 @@ class HomeProvider extends ChangeNotifier {
     }
     double value_miles = _distanceTot / 160900;
 
-    cfp=0;
     cfp = (value_miles * 0.22143) ;
     //return _distanceTot; SERVIREBBE forse
     return cfp;
+  }
+
+  //***da decommentare una volta sistemata query Datafootstep***
+  Future<double> sommafootstep(DateTime showDate) async {
+    List<FootStep> _footsteptmp = await db.footstepsDao.findAllStep();
+    List<double?> _footstepvalue = await db.footstepsDao.dataFootStep(
+        DateUtils.dateOnly(showDate),
+        DateTime(showDate.year, showDate.month, showDate.day, 23, 59));
+    double footstepTot = 0;
+    if (_footstepvalue.isNotEmpty) {
+      for (var i in _footstepvalue) {
+        if (i != null) {
+          footstepTot += i;
+        }
+      }
+    }
+    
+    return footstepTot;
   }
 }
