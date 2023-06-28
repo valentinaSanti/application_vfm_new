@@ -53,34 +53,44 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromARGB(255, 197, 233, 152),
+      appBar: AppBar(
+        elevation: 0,
         backgroundColor: Color.fromARGB(255, 197, 233, 152),
-        appBar: AppBar(
-          elevation: 0,
-          backgroundColor: Color.fromARGB(255, 197, 233, 152),
-          iconTheme:
-              const IconThemeData(color: Color.fromARGB(255, 218, 162, 21)),
-          title: const Text(
-            'Profile',
-            style: TextStyle(
-                fontSize: 20,
-                fontStyle: FontStyle.normal,
-                color: Color.fromARGB(255, 25, 25, 25)),
-          ),
+        iconTheme:
+            const IconThemeData(color: Color.fromARGB(255, 218, 162, 21)),
+        title: const Text(
+          'Profile',
+          style: TextStyle(
+              fontSize: 20,
+              fontStyle: FontStyle.normal,
+              color: Color.fromARGB(255, 25, 25, 25)),
         ),
-        body: SingleChildScrollView(
-            child: Column(
+      ),
+      body: SingleChildScrollView(
+        child: Column(
           children: [
-            ListTile(
-              leading: ClipRRect(
-                borderRadius: const BorderRadius.all(Radius.circular(60.0)),
-                child: Image.asset('assets/profile.png'),
+            Padding(padding: EdgeInsets.only(top: 0.1)),
+            Align(
+              alignment: Alignment.center,
+              child: Transform.scale(
+                scale: 0.5,
+                child: ClipRRect(
+                  borderRadius: const BorderRadius.all(Radius.circular(60.0)),
+                  child: Image.asset('assets/profile.png'),
+                ),
               ),
-              title: Text(
-                  '${context.watch<UserData>().name} ${context.watch<UserData>().surname}',
-                  style: TextStyle(
-                    color: Color.fromARGB(255, 218, 162, 21),
-                    fontSize: 17,
-                  )),
+            ),
+            SizedBox(height: 0.1),
+            Text(
+              '${context.watch<UserData>().name} ${context.watch<UserData>().surname}',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+                color: Color.fromARGB(255, 72, 42, 3),
+                fontFamily: 'San Francisco',
+              ),
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),
@@ -93,12 +103,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     Column(
                       mainAxisAlignment: MainAxisAlignment.start,
                       children: <Widget>[
-                        const SizedBox(width: 10),
-                        const Text('Gender:',
-                            textAlign: TextAlign.left,
-                            style: TextStyle(
-                                color: Color.fromARGB(255, 0, 0, 0),
-                                fontSize: 17)),
+                        SizedBox(width: 5),
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text('Gender:',
+                              textAlign: TextAlign.left,
+                              style: TextStyle(
+                                  color: Color.fromARGB(255, 0, 0, 0),
+                                  fontSize: 17)),
+                        ),
                         //Radio(
                         //  fillColor: MaterialStateColor.resolveWith(
                         //  (states) => const Color(0xFF89453C)),
@@ -212,6 +225,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
           ],
-        )));
+        ),
+      ),
+    );
   }
 }
