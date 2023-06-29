@@ -27,7 +27,7 @@ class ScoreCircularProgress extends CustomPainter {
     final r =
         Rect.fromCenter(center: Offset(w / 2, h / 2), width: w, height: h);
     canvas.drawArc(r, radians(180), radians(180), false, paint1);
-    canvas.drawArc(r, radians(180), radians(180 * value), false, paint2);
+    canvas.drawArc(r, radians(180), radians(180 / value), false, paint2); //capire se conviene lasciare / o tornare * come implementato precedentemente
   }
 
   @override
