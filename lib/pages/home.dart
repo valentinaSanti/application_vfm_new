@@ -146,7 +146,7 @@ class _HomeState extends State<Home> {
             IconButton(
                 padding: const EdgeInsets.only(left: 8.0, top: 8, bottom: 8),
                 onPressed: () async {
-                  Provider.of<HomeProvider>(context, listen: false);
+                  Provider.of<HomeProvider>(context, listen: false).refresh();
                 },
                 icon: const Icon(
                   MdiIcons.download,

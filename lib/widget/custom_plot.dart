@@ -11,8 +11,8 @@ class CustomPlot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 260, //da sistemare in base alle dimensioni dell'altro grafico
-      height: 150, //vedi dimensioni resto della pagina
+      width: 350, //da sistemare in base alle dimensioni dell'altro grafico
+      height: 300, //vedi dimensioni resto della pagina
       child: Chart(
         rebuild: true,
         data: data,
@@ -21,14 +21,14 @@ class CustomPlot extends StatelessWidget {
             accessor: (Map map) => map['date'] as String,
             scale: OrdinalScale(tickCount: 5),
           ),
-          'points': Variable(
+          'distance': Variable(
             accessor: (Map map) => map['points'] as num,
           ),
         },
         elements: [ IntervalElement(
-            position: Varset('time') * Varset('points'),
+            position: Varset('time') * Varset('distance'),
             size: SizeAttr(value: 2),
-            color: ColorAttr (value: const Color(0xFF83AA99)),
+            color: ColorAttr (value: Color.fromARGB(255, 75, 184, 137)),
 
         )],
         // <GeomElement<Shape>>[

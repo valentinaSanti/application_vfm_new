@@ -209,11 +209,12 @@ class GraficiApp extends StatelessWidget {
   }
 
   List<Map<String, dynamic>> _parseData(List<Distance> data) {
+    int divisore=100000;
     return data
         .map(
           (e) => {
             'date': DateFormat('HH:mm').format(e.dateTime),
-            'points': e.value
+            'points': e.value! /divisore,
           },
         )
         .toList();
