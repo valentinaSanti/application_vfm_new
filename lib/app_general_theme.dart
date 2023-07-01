@@ -21,6 +21,10 @@ class AppTheme {
   static const String fontName = 'WorkSans';
   static const Color iconcolor=Color.fromARGB(255, 2, 102, 252);
   static const Color backhome=Color.fromARGB(255, 171, 235, 167);
+  static const  Color graficvalue=Color.fromARGB(255, 215, 137, 27);
+  static const  Color writegeneral=Colors.orange;
+  static const Color widgetcolor=Color.fromRGBO(233, 233, 233, 0.6);
+  static const Color widgetbasecolor=Color(0xFF253840);
 
 
   static const TextTheme textTheme = TextTheme(

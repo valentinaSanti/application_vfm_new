@@ -20,7 +20,7 @@ class footprint extends StatelessWidget {
       padding: const EdgeInsets.all(8.0),
       child: Container(
         decoration: const BoxDecoration(
-          color: Color(0xFF253840),
+          color: AppTheme.widgetbasecolor,
           borderRadius: BorderRadius.only(
               topLeft: Radius.circular(8.0),
               bottomLeft: Radius.circular(8.0),
@@ -28,7 +28,7 @@ class footprint extends StatelessWidget {
               topRight: Radius.circular(68.0)),
           boxShadow: <BoxShadow>[
             BoxShadow(
-                color: Color.fromRGBO(233, 233, 233, 0.6),
+                color: AppTheme.widgetcolor,
                 offset: Offset(1.1, 1.1),
                 blurRadius: 10.0),
           ],
@@ -44,7 +44,7 @@ class footprint extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.orange,
+                        color: AppTheme.graficvalue,
                         fontFamily: 'San Francisco',
                       ))),
               Row(
@@ -64,7 +64,7 @@ class footprint extends StatelessWidget {
                               //fontFamily: FitnessAppTheme.fontName,
                               fontWeight: FontWeight.bold,
                               fontSize: 32,
-                              color: Colors.orange),
+                              color: AppTheme.graficvalue),
                         ),
                       ),
                       const Padding(
@@ -77,7 +77,7 @@ class footprint extends StatelessWidget {
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
                               letterSpacing: -0.2,
-                              color: Colors.orange),
+                              color: AppTheme.graficvalue),
                         ),
                       ),
                     ],
@@ -92,10 +92,12 @@ class footprint extends StatelessWidget {
                     height: 200,
                     child: CustomPaint(
                       painter: ScoreCircularProgress(
-                        backColor: Color.fromARGB(255, 190, 235, 170),
-                        frontColor: Color.fromARGB(255, 186, 110, 4),
+                        backColor: AppTheme.graficvalue.withOpacity(0.4),
+                        frontColor: AppTheme.graficvalue,
                         strokeWidth: 20,
-                        value: provider.cfp,
+                        value: provider.cfp/10, //considerato il valore su 10 in modo tale da vedere
+                        //una variazione altrimenti se si considerasse su 100 non si vedono modifiche significative
+                        //considerando il basso valore del footprint
                       ),
                     )),
               ),
@@ -108,7 +110,8 @@ class footprint extends StatelessWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
-                      color: Color.fromARGB(255, 215, 137, 27)),
+                      color: AppTheme.graficvalue
+                      ),
                 ),
               ),
               //]

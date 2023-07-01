@@ -25,7 +25,7 @@ class GraficiApp extends StatelessWidget {
           padding: const EdgeInsets.all(8.0),
           child: Container(
               decoration: const BoxDecoration(
-                color: Color(0xFF253840),
+                color: AppTheme.widgetbasecolor,//Color(0xFF253840)
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(8.0),
                     bottomLeft: Radius.circular(8.0),
@@ -33,7 +33,7 @@ class GraficiApp extends StatelessWidget {
                     topRight: Radius.circular(68.0)),
                 boxShadow: <BoxShadow>[
                   BoxShadow(
-                      color: Color.fromRGBO(233, 233, 233, 0.6),
+                      color: AppTheme.widgetcolor,
                       offset: Offset(1.1, 1.1),
                       blurRadius: 10.0),
                 ],
@@ -61,7 +61,7 @@ class GraficiApp extends StatelessWidget {
                                         IconButton(
                                             icon: const Icon(
                                                 Icons.navigate_before),
-                                            color: Colors.orange,
+                                            color: AppTheme.writegeneral,
                                             onPressed: () {
                                               DateTime day =
                                                   Provider.of<HomeProvider>(
@@ -81,14 +81,14 @@ class GraficiApp extends StatelessWidget {
                                                   style: const TextStyle(
                                                     fontSize: 16,
                                                     fontWeight: FontWeight.bold,
-                                                    color: Colors.orange,
+                                                    color: AppTheme.writegeneral,
                                                     fontFamily: 'San Francisco',
                                                   ),
                                                 )),
                                         IconButton(
                                             icon:
                                                 const Icon(Icons.navigate_next),
-                                            color: Colors.orange,
+                                            color: AppTheme.writegeneral,
                                             onPressed: () {
                                               DateTime day =
                                                   Provider.of<HomeProvider>(
@@ -109,7 +109,7 @@ class GraficiApp extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
-                                      color: Colors.orange,
+                                      color: AppTheme.writegeneral,
                                       fontFamily: 'San Francisco',
                                     ))),
                             Row(
@@ -130,7 +130,7 @@ class GraficiApp extends StatelessWidget {
                                             //fontFamily: FitnessAppTheme.fontName,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 32,
-                                            color: Colors.orange),
+                                            color: AppTheme.writegeneral),
                                       ),
                                     ),
                                     const Padding(
@@ -144,7 +144,7 @@ class GraficiApp extends StatelessWidget {
                                             fontWeight: FontWeight.w500,
                                             fontSize: 18,
                                             letterSpacing: -0.2,
-                                            color: Colors.orange),
+                                            color: AppTheme.writegeneral),
                                       ),
                                     ),
                                   ],
@@ -158,7 +158,7 @@ class GraficiApp extends StatelessWidget {
                                 height: 10,
                                 width: 350,
                                 decoration: BoxDecoration(
-                                  color: const Color.fromARGB(255, 215, 137, 27)
+                                  color: AppTheme.graficvalue
                                       .withOpacity(0.4),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(4.0)),
@@ -170,7 +170,7 @@ class GraficiApp extends StatelessWidget {
                                       height: 10,
                                       decoration: const BoxDecoration(
                                         color:
-                                            Color.fromARGB(255, 215, 137, 27),
+                                            AppTheme.graficvalue,
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(4.0)),
                                       ),
@@ -187,7 +187,7 @@ class GraficiApp extends StatelessWidget {
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold,
                                     fontSize: 18,
-                                    color: Color.fromARGB(255, 215, 137, 27)),
+                                    color: AppTheme.graficvalue),
                               ),
                             ),
 
