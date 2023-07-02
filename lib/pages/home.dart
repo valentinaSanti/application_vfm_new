@@ -130,7 +130,7 @@ class _HomeState extends State<Home> {
         ),
         appBar: AppBar(
           title: const Text(
-            'Footprint Tracker',
+            'EcoDriveMeter', //CarbonTrack, GreenDrive, EcoFoot,EcoMotion,GreenRoute,EcoDrive
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
@@ -164,12 +164,11 @@ class _HomeState extends State<Home> {
                               builder: (context) => Profile()));
                     },
                     icon: ClipRRect(
-                      borderRadius:
-                          const BorderRadius.all(Radius.circular(40.0)),
-                      child: Image.asset('assets/profile.png'),
-                      //iconSize: 40,
-                      //color: Color.fromARGB(255, 235, 147, 24),
-                    ))),
+                        borderRadius:
+                            const BorderRadius.all(Radius.circular(40.0)),
+                        child: Icon(MdiIcons
+                            .accountCircle) //Image.asset('assets/profile.png'),
+                        ))),
           ],
         ),
         body: _selectPage(index: _selectedIndex),
