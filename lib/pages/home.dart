@@ -80,14 +80,14 @@ class _HomeState extends State<Home> {
                   leading: const Icon(
                     MdiIcons.bookInformationVariant,
                     size: 30,
-                    color: Color.fromARGB(255, 215, 137, 27),
+                    color: AppTheme.icone,
                   ),
                   title: const Text(
                     'Discover',
                     style: TextStyle(
                         fontSize: 20,
                         fontStyle: FontStyle.normal,
-                        color: Color.fromARGB(255, 25, 25, 25)),
+                        color: AppTheme.darkText),
                   ),
                   onTap: () => {
                         Navigator.of(context).push(MaterialPageRoute(
@@ -98,7 +98,7 @@ class _HomeState extends State<Home> {
                   leading: const Icon(
                     MdiIcons.plusLockOpen,
                     size: 30,
-                    color: Color.fromARGB(255, 215, 137, 27),
+                    color: AppTheme.icone,
                   ),
                   title: const Text('Are you new here?',
                       style: TextStyle(
@@ -111,10 +111,8 @@ class _HomeState extends State<Home> {
                       }),
               const Padding(padding: EdgeInsets.all(250.0)),
               ListTile(
-                  leading: const Icon(
-                    MdiIcons.logout,
-                    size: 35,
-                  ),
+                  leading: const Icon(MdiIcons.logout,
+                      size: 35, color: AppTheme.icone),
                   title: const Text(
                     'Logout',
                     style: TextStyle(fontSize: 25),
@@ -135,10 +133,9 @@ class _HomeState extends State<Home> {
             ),
           ),
           centerTitle: true,
-          iconTheme:
-              const IconThemeData(color: Color.fromARGB(255, 218, 162, 21)),
+          iconTheme: const IconThemeData(color: AppTheme.icone),
           elevation: 0,
-          backgroundColor: Color.fromARGB(255, 199, 237, 163),
+          backgroundColor: AppTheme.backhome,
           actions: [
             IconButton(
                 padding: const EdgeInsets.only(left: 8.0, top: 8, bottom: 8),
@@ -148,7 +145,7 @@ class _HomeState extends State<Home> {
                 icon: const Icon(
                   MdiIcons.download,
                   size: 30,
-                  color: Color.fromARGB(255, 218, 148, 18),
+                  color: AppTheme.icone,
                 )),
             Padding(
                 padding: const EdgeInsets.all(8.0),

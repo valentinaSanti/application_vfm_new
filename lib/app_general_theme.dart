@@ -27,6 +27,7 @@ class AppTheme {
   static const Color widgetcolor = Color.fromRGBO(233, 233, 233, 0.6);
   static const Color widgetbasecolor = Color(0xFF253840);
   static const Color icone = Color.fromARGB(255, 19, 106, 1);
+
   static const TextTheme textTheme = TextTheme(
     headline4: display1,
     headline5: headline,

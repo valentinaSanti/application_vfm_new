@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:application_vfm_new/providers/profile_data.dart';
 import 'package:intl/date_time_patterns.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:provider/provider.dart';
 import 'package:application_vfm_new/utils/shared_preferences.dart';
 
@@ -62,7 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           'Profile',
           style: TextStyle(
               fontSize: 20,
-              fontStyle: FontStyle.normal,
+              fontWeight: FontWeight.bold,
               color: AppTheme.titles),
         ),
       ),
@@ -92,6 +93,20 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             SizedBox(height: 40),
             Align(
+                alignment: Alignment.centerLeft,
+                child: Row(children: [
+                  Text('   '),
+                  Icon(MdiIcons.mapMarker, size: 30, color: AppTheme.icone),
+                  Text('  Padova',
+                      style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.normal,
+                        color: AppTheme.darkText,
+                        fontFamily: 'San Francisco',
+                      ))
+                ])),
+            SizedBox(height: 10),
+            Align(
               alignment: Alignment.centerLeft,
               child: Text(
                 '   Email: ${context.watch<UserData>().email}',
@@ -104,14 +119,11 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
             ),
-            //Padding(
-            //padding: const EdgeInsets.all(8.0),
-            //child:
+            SizedBox(height: 10),
             Form(
               key: _formKey,
               child: Column(
                 children: [
-                  const SizedBox(height: 10),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
