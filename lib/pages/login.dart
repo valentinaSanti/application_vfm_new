@@ -33,7 +33,7 @@ class _LoginPageState extends State<LoginPage> {
   } //_checkLogin
 
   Future<String> _loginUser(LoginData data) async {
-    if (data.name == 'bug@expert.com' && data.password == '5TrNgP5Wd') {
+    if (data.name == 'email@gmail.com' && data.password == 'password') {
       final sp = await SharedPreferences.getInstance();
       sp.setString('username', data.name);
 
@@ -57,7 +57,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-      //logo: AssetImage('assets/images/ecorp-lightblue.png'), riga di codice per il logo
+      //logo: Image.asset('assets/noun-footprint-3918515.png'),
       title: 'EcoDriveMeter',
       theme: LoginTheme(
           primaryColor: Color.fromARGB(255, 199, 237, 163),
@@ -66,7 +66,6 @@ class _LoginPageState extends State<LoginPage> {
             fontWeight: FontWeight.w800,
             color: Colors.black,
           )),
-
       onLogin: _loginUser,
       onSignup: _signUpUser,
       onRecoverPassword: _recoverPassword,

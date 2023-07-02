@@ -131,7 +131,7 @@ class _HomeState extends State<Home> {
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,
-              color: Color.fromARGB(255, 215, 137, 27),
+              color: AppTheme.titles,
             ),
           ),
           centerTitle: true,

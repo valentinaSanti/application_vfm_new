@@ -41,6 +41,7 @@ class footprint extends StatelessWidget {
               const Padding(
                   padding: EdgeInsets.only(left: 140, bottom: 8, top: 16),
                   child: Text('Carbon footprint',
+                      textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -95,7 +96,8 @@ class footprint extends StatelessWidget {
                         backColor: AppTheme.graficvalue.withOpacity(0.4),
                         frontColor: AppTheme.graficvalue,
                         strokeWidth: 20,
-                        value: provider.cfp/10, //considerato il valore su 10 in modo tale da vedere
+                        value: provider.cfp /
+                            10, //considerato il valore su 10 in modo tale da vedere
                         //una variazione altrimenti se si considerasse su 100 non si vedono modifiche significative
                         //considerando il basso valore del footprint
                       ),
@@ -110,8 +112,7 @@ class footprint extends StatelessWidget {
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18,
-                      color: AppTheme.graficvalue
-                      ),
+                      color: AppTheme.graficvalue),
                 ),
               ),
               //]

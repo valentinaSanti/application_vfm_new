@@ -1,8 +1,9 @@
+import 'package:application_vfm_new/app_general_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:application_vfm_new/pages/home.dart';
 import 'package:application_vfm_new/pages/login.dart';
 import 'package:application_vfm_new/pages/onboarding/impact_ob.dart';
-import 'package:application_vfm_new/services/impact.dart'; //rimettere poi quello giusto
+import 'package:application_vfm_new/services/impact.dart';
 import 'package:application_vfm_new/utils/shared_preferences.dart';
 import 'package:provider/provider.dart';
 
@@ -67,16 +68,16 @@ class Splash extends StatelessWidget {
     Future.delayed(const Duration(seconds: 1), () => _checkAuth(context));
     return Material(
       child: Container(
-        color: const Color(0xFF83AA99),
+        color: AppTheme.backhome,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: const <Widget>[
             Text(
-              'Applicatio VFM',
+              'EcoDriveMeter',
               style: TextStyle(
-                  color: Color(0xFFE4DFD4),
+                  color: AppTheme.graficvalue,
                   fontSize: 40,
-                  fontWeight: FontWeight.bold),
+                  fontWeight: FontWeight.w800),
             ),
             Center(
               child: CircularProgressIndicator(
