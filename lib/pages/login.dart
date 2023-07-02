@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return FlutterLogin(
       //logo: AssetImage('assets/images/ecorp-lightblue.png'), riga di codice per il logo
-      title: 'Application VFM',
+      title: 'EcoDriveMeter',
       theme: LoginTheme(
           primaryColor: Color.fromARGB(255, 199, 237, 163),
           accentColor: Color.fromARGB(255, 120, 158, 85),
@@ -75,10 +75,10 @@ class _LoginPageState extends State<LoginPage> {
       },
     );
   } // build
-  void _toHomePage(BuildContext context){
+
+  void _toHomePage(BuildContext context) {
     //Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => Home()));
-    Navigator.of(context).pushReplacement(MaterialPageRoute(
-                            builder: (context) => ImpactOnboarding()));
-  }//_toHomePage
-  
-  } // LoginScreen
+    Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => ImpactOnboarding()));
+  } //_toHomePage
+} // LoginScreen
