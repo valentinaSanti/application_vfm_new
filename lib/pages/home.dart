@@ -19,6 +19,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:http/http.dart' as http;
 
+import '../widget/digitAllarm.dart';
+
 class Home extends StatefulWidget {
   static const route = '/home/';
   static const routeDisplayName = 'HomePage';
@@ -110,16 +112,17 @@ class _HomeState extends State<Home> {
                         ))
                       }),
               const Padding(padding: EdgeInsets.all(250.0)),
-              ListTile(
-                  leading: const Icon(MdiIcons.logout,
-                      size: 35, color: AppTheme.icone),
-                  title: const Text(
-                    'Logout',
-                    style: TextStyle(fontSize: 25),
-                  ),
-                  onTap: () => {
-                        _toLoginPage(context),
-                      }),
+              const DialogLog(),
+              // ListTile(
+              //     leading: const Icon(MdiIcons.logout,
+              //         size: 35, color: AppTheme.icone),
+              //     title: const Text(
+              //       'Logout',
+              //       style: TextStyle(fontSize: 25),
+              //     ),
+              //     onTap: () => {
+              //           _toLoginPage(context),
+              //         }),
             ],
           ),
         ),
