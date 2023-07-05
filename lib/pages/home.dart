@@ -1,5 +1,4 @@
 import 'package:application_vfm_new/models/db.dart';
-import 'package:application_vfm_new/pages/create_profile.dart';
 import 'package:application_vfm_new/pages/graficibase.dart';
 import 'package:application_vfm_new/services/impact.dart';
 //import 'package:application_vfm_new/widget/score_circular.dart';
@@ -96,21 +95,7 @@ class _HomeState extends State<Home> {
                           builder: (context) => InfoApp(),
                         ))
                       }),
-              ListTile(
-                  leading: const Icon(
-                    MdiIcons.plusLockOpen,
-                    size: 30,
-                    color: AppTheme.icone,
-                  ),
-                  title: const Text('Are you new here?',
-                      style: TextStyle(
-                        fontSize: 20,
-                      )),
-                  onTap: () => {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => create_profile(),
-                        ))
-                      }),
+              
               const Padding(padding: EdgeInsets.all(250.0)),
               const DialogLog(),
               // ListTile(
