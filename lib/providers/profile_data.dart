@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 
 class UserData extends ChangeNotifier {
   List<String> _userData = [
-    'Mario',
+    'Cristina',
     'Rossi',
     '50',
-    'mario.rossi@gmail.com',
+    'cristina.rossi@gmail.com',
+    //Padova
     'maRioroSsi',
     'Male'
   ];

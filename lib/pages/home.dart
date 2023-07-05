@@ -147,7 +147,7 @@ class _HomeState extends State<Home> {
                 },
                 icon: const Icon(
                   MdiIcons.download,
-                  size: 30,
+                  size: 25,
                   color: AppTheme.icone,
                 )),
             Padding(
@@ -164,7 +164,7 @@ class _HomeState extends State<Home> {
                         borderRadius:
                             const BorderRadius.all(Radius.circular(40.0)),
                         child: Icon(MdiIcons
-                            .accountCircle) //Image.asset('assets/profile.png'),
+                            .accountCircle,size: 25,) //Image.asset('assets/profile.png'),
                         ))),
           ],
         ),

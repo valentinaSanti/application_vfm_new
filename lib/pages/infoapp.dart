@@ -14,22 +14,22 @@ class InfoApp extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          'Discover how many kg of carbon you save',
+          'Discover our app',
           style: TextStyle(
-            fontSize: 18,
+            fontSize: 25,
             fontWeight: FontWeight.bold,
-            color: Colors.orange,
+            color: AppTheme.titles,
             fontFamily: 'San Francisco',
           ),
         ),
-        iconTheme: const IconThemeData(color: Colors.orange),
-        elevation: 0,
-        backgroundColor: Colors.transparent,
+        iconTheme: const IconThemeData(color: AppTheme.icone),
+        
+        backgroundColor: AppTheme.backcolor
       ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.white, Colors.grey[200]!],
+            colors: [AppTheme.backcolor, AppTheme.iconcolor],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -43,13 +43,19 @@ class InfoApp extends StatelessWidget {
               Text(
                 'The application allows you to calculate the amount of CO2 you have saved by choosing to walk instead of using a car.',
                 style: TextStyle(
-                  fontSize: 16,
-                  color: Colors.black,
+                  fontSize: 20,
+                  color: AppTheme.darkText,
                   fontFamily: 'San Francisco',
                 ),
               ),
               SizedBox(height: 16),
+              Align(
+                alignment: Alignment.center,
+                child:Image.asset('assets/icons8-carbon-64.png',width: 100,height: 100,),
+              )
+              
             ],
+            
           ),
         ),
       ),

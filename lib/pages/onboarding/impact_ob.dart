@@ -37,14 +37,14 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backcolor,
+      backgroundColor:AppTheme.backcolor,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Form(
           key: _formKey,
           child: Column(
             children: <Widget>[
-              // Image.asset('assets/impact_logo.png'),
+              Image.asset('assets/impact_logo.png'),
               const Text('Please authorize to use our app',
                   style: TextStyle(
                     fontSize: 16,
@@ -67,7 +67,7 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                   return null;
                 },
                 controller: userController,
-                cursorColor: const Color(0xFF83AA99),
+                cursorColor: AppTheme.darkText,
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
@@ -103,7 +103,7 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                   return null;
                 },
                 controller: passwordController,
-                cursorColor: const Color(0xFF83AA99),
+                cursorColor: AppTheme.darkText,
                 obscureText: !_passwordVisible,
                 decoration: InputDecoration(
                   focusedBorder: OutlineInputBorder(

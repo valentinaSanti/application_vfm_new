@@ -194,7 +194,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                   const SizedBox(height: 20),
                   SizedBox(
-                    width: 400,
+                    width: 350,
                     child: TextFormField(
                         validator: (value) {
                           if (value == null || value.isEmpty) {

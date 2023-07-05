@@ -16,10 +16,10 @@ class AppTheme {
   static const Color deactivatedText = Color(0xFF767676);
   static const Color dismissibleBackground = Color(0xFF364A54);
   static const Color chipBackground = Color(0xFFEEF1F3);
-  static const Color backcolor = Color.fromARGB(245, 197, 236, 250);
+  static const Color backcolor = Color.fromARGB(255, 199, 237, 163);//Color.fromARGB(245, 197, 236, 250); impact
   static const Color spacer = Colors.transparent;
   static const String fontName = 'WorkSans';
-  static const Color iconcolor = Color.fromARGB(255, 13, 39, 238); //impact
+  static const Color iconcolor = Color.fromARGB(255, 120, 158, 85);//Color.fromARGB(255, 13, 39, 238); //impact
   static const Color backhome = Color.fromARGB(255, 171, 235, 167);
   static const Color graficvalue = Color.fromARGB(255, 215, 137, 27);
   static const Color writegeneral = Colors.orange;
@@ -27,6 +27,7 @@ class AppTheme {
   static const Color widgetcolor = Color.fromRGBO(233, 233, 233, 0.6);
   static const Color widgetbasecolor = Color(0xFF253840);
   static const Color icone = Color.fromARGB(255, 19, 106, 1);
+  
 
   static const TextTheme textTheme = TextTheme(
     headline4: display1,
