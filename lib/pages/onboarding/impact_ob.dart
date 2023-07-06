@@ -72,14 +72,14 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: const BorderSide(
-                      color: AppTheme.iconcolor,
+                      color: AppTheme.icone,
                     ),
                   ),
                   border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10.0))),
                   prefixIcon: const Icon(
                     Icons.person,
-                    color: AppTheme.iconcolor,
+                    color: AppTheme.icone,
                   ),
                   hintText: 'Username',
                   hintStyle: AppTheme.impacthidentext,
@@ -109,14 +109,14 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                   focusedBorder: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(10.0),
                     borderSide: const BorderSide(
-                      color: AppTheme.iconcolor,
+                      color: AppTheme.icone,
                     ),
                   ),
                   border: const OutlineInputBorder(
                       borderRadius: BorderRadius.all(Radius.circular(10.0))),
                   prefixIcon: const Icon(
                     Icons.lock,
-                    color: AppTheme.iconcolor,
+                    color: AppTheme.icone,
                   ),
                   suffixIcon: IconButton(
                     icon: Icon(
@@ -177,8 +177,8 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                                 horizontal: 80, vertical: 12)),
                         foregroundColor:
                             MaterialStateProperty.all<Color>(Colors.white),
-                        backgroundColor: MaterialStateProperty.all<Color>(
-                            AppTheme.iconcolor)),
+                        backgroundColor:
+                            MaterialStateProperty.all<Color>(AppTheme.icone)),
                     child: const Text('Authorize'),
                   ),
                 ),

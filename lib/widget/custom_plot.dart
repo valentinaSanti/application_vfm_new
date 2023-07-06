@@ -1,3 +1,4 @@
+import 'package:application_vfm_new/app_general_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:graphic/graphic.dart';
 
@@ -25,12 +26,13 @@ class CustomPlot extends StatelessWidget {
             accessor: (Map map) => map['points'] as num,
           ),
         },
-        elements: [ IntervalElement(
+        elements: [
+          IntervalElement(
             position: Varset('time') * Varset('distance'),
             size: SizeAttr(value: 2),
-            color: ColorAttr (value: Color.fromARGB(255, 75, 184, 137)),
-
-        )],
+            color: ColorAttr(value: AppTheme.writegeneral),
+          )
+        ],
         // <GeomElement<Shape>>[
         //   LineElement(
         //     position: Varset('time') * Varset('points'),

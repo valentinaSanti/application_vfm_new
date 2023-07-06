@@ -109,8 +109,8 @@ class GraficiApp extends StatelessWidget {
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
-                                      color: AppTheme.writegeneral,
-                                      fontFamily: 'San Francisco',
+                                      color: AppTheme.nearlyWhite,
+                                      //fontFamily: 'San Francisco',
                                     ))),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -124,10 +124,9 @@ class GraficiApp extends StatelessWidget {
                                       padding:
                                           EdgeInsets.only(left: 4, bottom: 3),
                                       child: Text(
-                                        '${provider.footstepTot}', // implementiamo questo grafico per la distanza totale e usiamo un istogramma per i passi
+                                        '${provider.footstepTot}',
                                         textAlign: TextAlign.center,
                                         style: const TextStyle(
-                                            //fontFamily: FitnessAppTheme.fontName,
                                             fontWeight: FontWeight.w600,
                                             fontSize: 32,
                                             color: AppTheme.writegeneral),
@@ -140,10 +139,8 @@ class GraficiApp extends StatelessWidget {
                                         'Steps',
                                         textAlign: TextAlign.center,
                                         style: TextStyle(
-                                            //fontFamily: FitnessAppTheme.fontName,
-                                            fontWeight: FontWeight.w500,
+                                            fontWeight: FontWeight.w600,
                                             fontSize: 18,
-                                            letterSpacing: -0.2,
                                             color: AppTheme.writegeneral),
                                       ),
                                     ),
@@ -183,12 +180,17 @@ class GraficiApp extends StatelessWidget {
                                 'Goal: 34000 steps',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 18,
-                                    color: AppTheme.graficvalue),
+                                    fontSize: 18, color: AppTheme.graficvalue),
                               ),
                             ),
-
+                            Text(
+                              'Distance chart',
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 18,
+                                  color: AppTheme.nearlyWhite),
+                            ),
                             //const Padding(
                             //padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                             Consumer<HomeProvider>(
