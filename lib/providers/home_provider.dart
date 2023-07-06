@@ -50,7 +50,6 @@ class HomeProvider extends ChangeNotifier {
       return null;
     }
     return data.last.dateTime;
-    //guarda se ho già caricato
   }
 
   Future<void> _fetchAndCalculate() async {
