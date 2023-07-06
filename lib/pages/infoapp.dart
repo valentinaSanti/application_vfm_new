@@ -13,19 +13,17 @@ class InfoApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(
-          'Discover our app',
-          style: TextStyle(
-            fontSize: 25,
-            fontWeight: FontWeight.bold,
-            color: AppTheme.titles,
-            fontFamily: 'San Francisco',
+          title: const Text(
+            'Discover our app',
+            style: TextStyle(
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+              color: AppTheme.titles,
+              fontFamily: 'San Francisco',
+            ),
           ),
-        ),
-        iconTheme: const IconThemeData(color: AppTheme.icone),
-        
-        backgroundColor: AppTheme.backcolor
-      ),
+          iconTheme: const IconThemeData(color: AppTheme.icone),
+          backgroundColor: AppTheme.backcolor),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -41,7 +39,7 @@ class InfoApp extends StatelessWidget {
             children: [
               SizedBox(height: 16),
               Text(
-                'The application allows you to calculate the amount of CO2 you have saved by choosing to walk instead of using a car.',
+                'EcoDriveMeter allows you to visualise the amount of carbon dioxide that has not been emitted as a result of choosing to move in a sustainable manner. From the data collected on the distance travelled on foot, the amount of carbon dioxide saved can be identified using the following calculation:',
                 style: TextStyle(
                   fontSize: 20,
                   color: AppTheme.darkText,
@@ -49,13 +47,24 @@ class InfoApp extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 16),
+              Text(
+                'Carbon_Footprint = miles_coveres * 0.22143',
+                style: TextStyle(
+                  fontSize: 20,
+                  color: AppTheme.darkText,
+                  fontFamily: 'San Francisco',
+                ),
+              ),
+              SizedBox(height: 30),
               Align(
                 alignment: Alignment.center,
-                child:Image.asset('assets/icons8-carbon-64.png',width: 100,height: 100,),
+                child: Image.asset(
+                  'assets/icons8-carbon-64.png',
+                  width: 100,
+                  height: 100,
+                ),
               )
-              
             ],
-            
           ),
         ),
       ),

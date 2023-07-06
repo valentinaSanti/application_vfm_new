@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:application_vfm_new/pages/home.dart';
 import 'package:application_vfm_new/utils/shared_preferences.dart';
 import 'package:provider/provider.dart';
-import 'package:application_vfm_new/services/impact.dart'; //poi da modificare
+import 'package:application_vfm_new/services/impact.dart';
 import 'package:application_vfm_new/app_general_theme.dart';
 
 class ImpactOnboarding extends StatefulWidget {
@@ -30,21 +30,21 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
   Future<bool> _loginImpact(
       String name, String password, BuildContext context) async {
     ImpactService service = Provider.of<ImpactService>(context, listen: false);
-    bool logged = await service.getTokens(name, password); //da modificare
+    bool logged = await service.getTokens(name, password);
     return logged;
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:AppTheme.backcolor,
+      backgroundColor: AppTheme.backcolor,
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Form(
           key: _formKey,
           child: Column(
             children: <Widget>[
-              Image.asset('assets/impact_logo.png'),
+              //Image.asset('assets/impact_logo.png'),
               const Text('Please authorize to use our app',
                   style: TextStyle(
                     fontSize: 16,
@@ -190,4 +190,3 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
     );
   }
 }
-//servono per fare chiamate

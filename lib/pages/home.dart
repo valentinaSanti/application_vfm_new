@@ -70,7 +70,7 @@ class _HomeState extends State<Home> {
           Provider.of<AppDatabase>(context, listen: false)),
       lazy: false,
       builder: (context, child) => Scaffold(
-        backgroundColor: AppTheme.backhome,
+        backgroundColor: AppTheme.backcolor,
         drawer: Drawer(
           child: ListView(
             children: [
@@ -86,7 +86,7 @@ class _HomeState extends State<Home> {
                   title: const Text(
                     'Discover',
                     style: TextStyle(
-                        fontSize: 20,
+                        fontSize: 25,
                         fontStyle: FontStyle.normal,
                         color: AppTheme.darkText),
                   ),
@@ -95,19 +95,8 @@ class _HomeState extends State<Home> {
                           builder: (context) => InfoApp(),
                         ))
                       }),
-              
               const Padding(padding: EdgeInsets.all(250.0)),
               const DialogLog(),
-              // ListTile(
-              //     leading: const Icon(MdiIcons.logout,
-              //         size: 35, color: AppTheme.icone),
-              //     title: const Text(
-              //       'Logout',
-              //       style: TextStyle(fontSize: 25),
-              //     ),
-              //     onTap: () => {
-              //           _toLoginPage(context),
-              //         }),
             ],
           ),
         ),
@@ -123,7 +112,7 @@ class _HomeState extends State<Home> {
           centerTitle: true,
           iconTheme: const IconThemeData(color: AppTheme.icone),
           elevation: 0,
-          backgroundColor: AppTheme.backhome,
+          backgroundColor: AppTheme.backcolor,
           actions: [
             IconButton(
                 padding: const EdgeInsets.only(left: 8.0, top: 8, bottom: 8),
@@ -148,8 +137,10 @@ class _HomeState extends State<Home> {
                     icon: ClipRRect(
                         borderRadius:
                             const BorderRadius.all(Radius.circular(40.0)),
-                        child: Icon(MdiIcons
-                            .accountCircle,size: 25,) //Image.asset('assets/profile.png'),
+                        child: Icon(
+                          MdiIcons.accountCircle,
+                          size: 25,
+                        ) //Image.asset('assets/profile.png'),
                         ))),
           ],
         ),
@@ -159,7 +150,7 @@ class _HomeState extends State<Home> {
                 child: CircularProgressIndicator(),
               ),
         bottomNavigationBar: BottomNavigationBar(
-          backgroundColor: AppTheme.backhome,
+          backgroundColor: AppTheme.backcolor,
           items: navBarItems,
           currentIndex: _selectedIndex,
           selectedItemColor: Colors.amber[800],

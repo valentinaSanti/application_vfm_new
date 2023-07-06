@@ -68,14 +68,14 @@ class Splash extends StatelessWidget {
     Future.delayed(const Duration(seconds: 1), () => _checkAuth(context));
     return Material(
       child: Container(
-        color: AppTheme.backhome,
+        color: AppTheme.backcolor,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: const <Widget>[
             Text(
               'EcoDriveMeter',
               style: TextStyle(
-                  color: AppTheme.graficvalue,
+                  color: AppTheme.titles,
                   fontSize: 40,
                   fontWeight: FontWeight.w800),
             ),

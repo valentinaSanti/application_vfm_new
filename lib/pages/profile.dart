@@ -55,9 +55,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppTheme.backhome,
+      backgroundColor: AppTheme.backcolor,
       appBar: AppBar(
-        backgroundColor: AppTheme.backhome,
+        backgroundColor: AppTheme.backcolor,
         iconTheme: const IconThemeData(color: AppTheme.icone),
         title: const Text(
           'Profile',
@@ -96,7 +96,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 alignment: Alignment.centerLeft,
                 child: Row(children: [
                   Text('   '),
-                  Icon(MdiIcons.mapMarker, size: 30, color: AppTheme.icone),
+                  Icon(MdiIcons.mapMarker, size: 30, color: AppTheme.titles),
                   Text('  Padova',
                       style: TextStyle(
                         fontSize: 18,

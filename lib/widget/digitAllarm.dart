@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import '../app_general_theme.dart';
 import '../pages/login.dart';
+
 class DialogLog extends StatelessWidget {
   const DialogLog({super.key});
 
@@ -13,35 +14,36 @@ class DialogLog extends StatelessWidget {
       onPressed: () => showDialog<String>(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-          title: const Text('Logout?'),
+          title: const Text('Logout'),
           content: const Text('Are you sure you want to logout ?'),
           actions: <Widget>[
             TextButton(
               onPressed: () => Navigator.pop(context, 'Cancel'),
-              child: const Text('Cancel'),
+              child: const Text(
+                'Cancel',
+                style: TextStyle(color: AppTheme.icone),
+              ),
             ),
             TextButton(
               onPressed: () => _toLoginPage(context),
-              child: const Text('OK'),
-              
-              
-              
+              child: const Text(
+                'Yes',
+                style: TextStyle(color: AppTheme.icone),
+              ),
             ),
           ],
         ),
       ),
       child: ListTile(
-                  leading: const Icon(MdiIcons.logout,
-                      size: 35, color: AppTheme.icone),
-                  title: const Text(
-                    'Logout',
-                    style: TextStyle(fontSize: 25),
-                  ),
-                  
-                  
-    ),
-  );
+        leading: const Icon(MdiIcons.logout, size: 30, color: AppTheme.icone),
+        title: const Text(
+          'Logout',
+          style: TextStyle(fontSize: 25),
+        ),
+      ),
+    );
   }
+
   void _toLoginPage(BuildContext context) async {
     //Unset the 'username' filed in SharedPreference
     final sp = await SharedPreferences.getInstance();
@@ -53,5 +55,4 @@ class DialogLog extends StatelessWidget {
     Navigator.of(context)
         .pushReplacement(MaterialPageRoute(builder: (context) => LoginPage()));
   }
-
 }

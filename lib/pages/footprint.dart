@@ -15,7 +15,6 @@ class footprint extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-        //A box in which a single widget can be scrolled
         child: Padding(
       padding: const EdgeInsets.all(8.0),
       child: Container(
@@ -62,7 +61,6 @@ class footprint extends StatelessWidget {
                           '${provider.cfp.toStringAsFixed(3)}',
                           textAlign: TextAlign.center,
                           style: const TextStyle(
-                              //fontFamily: FitnessAppTheme.fontName,
                               fontWeight: FontWeight.bold,
                               fontSize: 32,
                               color: AppTheme.graficvalue),
@@ -71,10 +69,9 @@ class footprint extends StatelessWidget {
                       const Padding(
                         padding: EdgeInsets.only(left: 8, bottom: 8),
                         child: Text(
-                          '[kgCO2e]',
+                          '[kgCO2]',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              //fontFamily: FitnessAppTheme.fontName,
                               fontWeight: FontWeight.bold,
                               fontSize: 16,
                               letterSpacing: -0.2,
@@ -85,7 +82,6 @@ class footprint extends StatelessWidget {
                   )
                 ],
               ),
-
               Padding(
                 padding: const EdgeInsets.only(top: 40, left: 100.0),
                 child: SizedBox(
@@ -115,9 +111,6 @@ class footprint extends StatelessWidget {
                       color: AppTheme.graficvalue),
                 ),
               ),
-              //]
-              //inserire un grafico che fa l'evoluzione degli step come quello di cui abbiamo parlato
-              //da implementare all'interno di  widget come nuova pagina e poi da inseririre qui
             ],
           ),
         ),
