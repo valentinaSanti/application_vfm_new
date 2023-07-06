@@ -15,7 +15,7 @@ class HomeProvider extends ChangeNotifier {
   late List<Distance> distance;
   late double cfp;
   late double distanceTot;
-  late  double footstepTot;
+  late double footstepTot;
   final AppDatabase db;
   // data to be used by the UI
 
@@ -74,7 +74,7 @@ class HomeProvider extends ChangeNotifier {
     distanceTot = await distanceTOT(showDate);
     footstepTot = await sommafootstep(showDate);
     print('Hai evitato un impronta di carbonio di: $cfp [kgCO2e]');
-  //  distanceTot = await distanceTOT(lastFetch);
+    //  distanceTot = await distanceTOT(lastFetch);
   }
 
   Future<void> refresh() async {
@@ -137,12 +137,11 @@ class HomeProvider extends ChangeNotifier {
     }
     double value_miles = _distanceTot / 160900;
 
-    cfp = (value_miles * 0.22143) ;
-    //return _distanceTot; SERVIREBBE forse
+    cfp = (value_miles * 0.22143);
+
     return cfp;
   }
 
-  //***da decommentare una volta sistemata query Datafootstep***
   Future<double> sommafootstep(DateTime showDate) async {
     List<FootStep> _footsteptmp = await db.footstepsDao.findAllStep();
     List<double?> _footstepvalue = await db.footstepsDao.dataFootStep(
@@ -156,7 +155,7 @@ class HomeProvider extends ChangeNotifier {
         }
       }
     }
-    
+
     return footstepTot;
   }
 }

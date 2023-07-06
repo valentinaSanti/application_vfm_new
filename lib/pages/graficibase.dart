@@ -20,12 +20,11 @@ class GraficiApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SingleChildScrollView(
-      //A box in which a single widget can be scrolled
       child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Container(
               decoration: const BoxDecoration(
-                color: AppTheme.widgetbasecolor,//Color(0xFF253840)
+                color: AppTheme.widgetbasecolor,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(8.0),
                     bottomLeft: Radius.circular(8.0),
@@ -81,7 +80,8 @@ class GraficiApp extends StatelessWidget {
                                                   style: const TextStyle(
                                                     fontSize: 16,
                                                     fontWeight: FontWeight.bold,
-                                                    color: AppTheme.writegeneral,
+                                                    color:
+                                                        AppTheme.writegeneral,
                                                     fontFamily: 'San Francisco',
                                                   ),
                                                 )),
@@ -158,8 +158,7 @@ class GraficiApp extends StatelessWidget {
                                 height: 10,
                                 width: 350,
                                 decoration: BoxDecoration(
-                                  color: AppTheme.graficvalue
-                                      .withOpacity(0.4),
+                                  color: AppTheme.graficvalue.withOpacity(0.4),
                                   borderRadius: const BorderRadius.all(
                                       Radius.circular(4.0)),
                                 ),
@@ -169,8 +168,7 @@ class GraficiApp extends StatelessWidget {
                                       width: (provider.footstepTot / 100),
                                       height: 10,
                                       decoration: const BoxDecoration(
-                                        color:
-                                            AppTheme.graficvalue,
+                                        color: AppTheme.graficvalue,
                                         borderRadius: BorderRadius.all(
                                             Radius.circular(4.0)),
                                       ),
@@ -196,10 +194,6 @@ class GraficiApp extends StatelessWidget {
                             Consumer<HomeProvider>(
                                 builder: (context, value, child) => CustomPlot(
                                     data: _parseData(value.distance)))
-
-                            //inserire un grafico che fa l'evoluzione degli step come quello di cui abbiamo parlato
-                            //da implementare all'interno di  widget come nuova pagina e poi da inseririre qui
-                            //dentro data venivano passati dati relativi ad orari quindi ho cambiato con time le variabili, secondo me per ora non viene visualizzato perche va in conflitto con la box scura, si nota che cambiando le dimensioni del grafico cambiano le dimensioni della box
                           ],
                         ),
                       ),
@@ -209,12 +203,12 @@ class GraficiApp extends StatelessWidget {
   }
 
   List<Map<String, dynamic>> _parseData(List<Distance> data) {
-    int divisore=100000;
+    int divisore = 100000;
     return data
         .map(
           (e) => {
             'date': DateFormat('HH:mm').format(e.dateTime),
-            'points': e.value! /divisore,
+            'points': e.value! / divisore,
           },
         )
         .toList();
