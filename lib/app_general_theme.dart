@@ -29,6 +29,17 @@ class AppTheme {
     height: 0.9,
     color: darkText,
   );
+  static const TextStyle titolofoot=TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                        color: graficvalue,
+                        fontFamily: 'San Francisco',
+                      );
+  static const TextStyle unitmeasure=TextStyle(
+                              fontWeight: FontWeight.bold,
+                              fontSize: 16,
+                              letterSpacing: -0.2,
+                              color: graficvalue);
 
   static const TextStyle impacttext =
       TextStyle(fontSize: 18, fontWeight: FontWeight.bold);

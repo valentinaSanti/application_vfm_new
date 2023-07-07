@@ -38,15 +38,10 @@ class footprint extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               const Padding(
-                  padding: EdgeInsets.only(left: 140, bottom: 8, top: 16),
+                  padding: EdgeInsets.only(left: 5, bottom: 8, top: 16),
                   child: Text('Carbon footprint',
                       textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: AppTheme.graficvalue,
-                        fontFamily: 'San Francisco',
-                      ))),
+                      style: AppTheme.titolofoot)),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -71,11 +66,7 @@ class footprint extends StatelessWidget {
                         child: Text(
                           '[kgCO2]',
                           textAlign: TextAlign.center,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 16,
-                              letterSpacing: -0.2,
-                              color: AppTheme.graficvalue),
+                          style: AppTheme.unitmeasure,
                         ),
                       ),
                     ],
@@ -92,23 +83,17 @@ class footprint extends StatelessWidget {
                         backColor: AppTheme.graficvalue.withOpacity(0.4),
                         frontColor: AppTheme.graficvalue,
                         strokeWidth: 20,
-                        value: provider.cfp /
-                            10, //considerato il valore su 10 in modo tale da vedere
-                        //una variazione altrimenti se si considerasse su 100 non si vedono modifiche significative
-                        //considerando il basso valore del footprint
+                        value: provider.cfp /10, 
                       ),
                     )),
               ),
               const Padding(
                 padding: EdgeInsets.only(
-                    top: 20.0, bottom: 20.0, left: 20, right: 20),
+                    bottom: 20.0, left: 20, right: 20),
                 child: Text(
                   'You did a good job, walking these kilometres prevented your use of transport from having this carbon footprint. You helped the planet',
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18,
-                      color: AppTheme.graficvalue),
+                  style: AppTheme.titolofoot,
                 ),
               ),
             ],

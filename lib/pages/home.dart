@@ -95,7 +95,7 @@ class _HomeState extends State<Home> {
                           builder: (context) => InfoApp(),
                         ))
                       }),
-              const Padding(padding: EdgeInsets.all(250.0)),
+              const Padding(padding: EdgeInsets.all(300.0)),
               const DialogLog(),
             ],
           ),

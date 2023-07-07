@@ -177,7 +177,7 @@ class GraficiApp extends StatelessWidget {
                             const Padding(
                               padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
                               child: Text(
-                                'Goal: 34000 steps',
+                                'Goal: 37000 steps',
                                 textAlign: TextAlign.center,
                                 style: TextStyle(
                                     fontSize: 18, color: AppTheme.graficvalue),
@@ -216,68 +216,3 @@ class GraficiApp extends StatelessWidget {
         .toList();
   }
 }
-// return Scaffold(
-//   appBar: AppBar(
-//     title: const Text(
-//       'Today Distance',
-//       style: TextStyle(
-//         fontSize: 18,
-//         fontWeight: FontWeight.bold,
-//         color: Colors.orange,
-//         fontFamily: 'San Francisco',
-//       ),
-//     ),
-//     iconTheme: const IconThemeData(color: Colors.orange),
-//     elevation: 0,
-//     backgroundColor: Colors.transparent,
-//   ),
-//   //da sostituire una volta implementata query DitanceTot con sommafootstep
-//   body: Consumer<HomeProvider>(builder: (context, provider, child) {
-//     provider.distanceTOT(DateTime.now().subtract(Duration(days: 1)));
-//     final scoreValue = provider.distanceTot; //._distanceTot mi da errore
-//     Align(
-//     alignment: Alignment.center,
-//             child: SizedBox(
-//               width: 150,
-//               height: 150,
-//               child: CustomPaint(
-//                 painter: ScoreLinearProgress(
-//                   backColor: Color.fromARGB(255, 147, 146, 146).withOpacity(0.4),
-//                   frontColor: Color.fromARGB(255, 54, 192, 89),
-//                   strokeWidth: 20,
-//                   value: scoreValue/ 100,
-//                 ),
-//                 child: Align(
-//                   alignment: Alignment.center,
-//                     child: Center(
-//                         child: Padding(
-//                       padding: const EdgeInsets.only(top: 40.0),
-//                       child: Column(
-//                           mainAxisAlignment: MainAxisAlignment.start,
-//                           children: [
-//                             Text(
-//                               '${provider.distanceTOT}',
-//                               style: const TextStyle(
-//                                   fontWeight: FontWeight.bold,
-//                                   fontSize: 20,
-//                                   color: Color.fromARGB(255, 9, 9, 9)),
-//                             ),])
-//                 ))),
-
-//   ),),);
-//   })
-//   // Consumer<HomeProvider>(builder: (context, provider, child) {
-//   //   provider.distanceTOT(DateTime.now().subtract(Duration(days: 1)));
-//   //   final scoreValue = provider.distanceTot; //._distanceTot mi da errore
-//   //   return Center(
-//   //       child: SizedBox(
-//   //     width: 150,
-//   //     height: 150,
-//   //     child: CustomPaint(
-//   //       painter: ScoreLinearProgress(
-//   //         backColor: Colors.grey,
-//   //         frontColor: Colors.green,
-//   //         strokeWidth: 20,
-//   //         value: scoreValue / 20000,
-//   // ),),),); })
-// );

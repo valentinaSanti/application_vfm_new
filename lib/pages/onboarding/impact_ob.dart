@@ -44,7 +44,7 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
           key: _formKey,
           child: Column(
             children: <Widget>[
-              //Image.asset('assets/impact_logo.png'),
+              Image.asset('assets/impact_logo.png'),
               const Text('Please authorize to use our app',
                   style: TextStyle(
                     fontSize: 16,
@@ -143,8 +143,6 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                     onPressed: () async {
                       bool? validation = await _loginImpact(userController.text,
                           passwordController.text, context);
-                      //prende servizio e fa getToken da truefalse se c'è stato login
-                      //se non valido mi dice che è sbagliato qualcosa altrimenti mi dice che le credenziali siano giuste
                       if (!validation) {
                         // if not correct show message
                         ScaffoldMessenger.of(context)
@@ -163,12 +161,9 @@ class _ImpactOnboardingState extends State<ImpactOnboarding> {
                             () => Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
                                     builder: (context) => const Home())));
-                        //await Provider.of<ImpactService>(context, listen: false)
-                        // .getDistanceOfDay(DateTime.now());
                       }
                     },
                     style: ButtonStyle(
-                        //maximumSize: const MaterialStatePropertyAll(Size(50, 20)),
                         shape: MaterialStateProperty.all(RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10))),
                         elevation: MaterialStateProperty.all(0),

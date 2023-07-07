@@ -1,3 +1,4 @@
+import 'package:application_vfm_new/app_general_theme.dart';
 import 'package:application_vfm_new/pages/home.dart';
 import 'package:application_vfm_new/pages/onboarding/impact_ob.dart';
 import 'package:flutter/material.dart';
@@ -60,8 +61,8 @@ class _LoginPageState extends State<LoginPage> {
       //logo: Image.asset('assets/noun-footprint-3918515.png'),
       title: 'EcoDriveMeter',
       theme: LoginTheme(
-          primaryColor: Color.fromARGB(255, 199, 237, 163),
-          accentColor: Color.fromARGB(255, 120, 158, 85),
+          primaryColor: AppTheme.backcolor,
+          accentColor: AppTheme.iconcolor,
           buttonStyle: TextStyle(
             fontWeight: FontWeight.w800,
             color: Colors.black,
