@@ -34,7 +34,7 @@ class _LoginPageState extends State<LoginPage> {
   } //_checkLogin
 
   Future<String> _loginUser(LoginData data) async {
-    if (data.name == 'email@gmail.com' && data.password == 'password') {
+    if (data.name == 'bug@expert.com' && data.password == 'password34') {
       final sp = await SharedPreferences.getInstance();
       sp.setString('username', data.name);
 
@@ -58,7 +58,7 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return FlutterLogin(
-      //logo: Image.asset('assets/noun-footprint-3918515.png'),
+      
       title: 'EcoDriveMeter',
       theme: LoginTheme(
           primaryColor: AppTheme.backcolor,

@@ -12,8 +12,8 @@ class CustomPlot extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: 350, //da sistemare in base alle dimensioni dell'altro grafico
-      height: 300, //vedi dimensioni resto della pagina
+      width: 350, 
+      height: 300,
       child: Chart(
         rebuild: true,
         data: data,
@@ -33,14 +33,7 @@ class CustomPlot extends StatelessWidget {
             color: ColorAttr(value: AppTheme.writegeneral),
           )
         ],
-        // <GeomElement<Shape>>[
-        //   LineElement(
-        //     position: Varset('time') * Varset('points'),
-        //     shape: ShapeAttr(value: BasicLineShape(smooth: true)),
-        //     size: SizeAttr(value: 2),
-        //     color: ColorAttr(value: const Color(0xFF83AA99)),
-        //   )
-        // ],
+       
         axes: [
           Defaults.horizontalAxis,
           Defaults.verticalAxis,

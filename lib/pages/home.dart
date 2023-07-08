@@ -102,7 +102,7 @@ class _HomeState extends State<Home> {
         ),
         appBar: AppBar(
           title: const Text(
-            'EcoDriveMeter', //CarbonTrack, GreenDrive, EcoFoot,EcoMotion,GreenRoute,EcoDrive
+            'EcoDriveMeter', 
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.bold,

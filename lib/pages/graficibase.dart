@@ -162,7 +162,7 @@ class GraficiApp extends StatelessWidget {
                                 child: Row(
                                   children: <Widget>[
                                     Container(
-                                      width: (provider.footstepTot / 100),
+                                      width: (provider.footstepTot / 120),
                                       height: 10,
                                       decoration: const BoxDecoration(
                                         color: AppTheme.graficvalue,
@@ -191,8 +191,7 @@ class GraficiApp extends StatelessWidget {
                                   fontSize: 18,
                                   color: AppTheme.nearlyWhite),
                             ),
-                            //const Padding(
-                            //padding: EdgeInsets.only(top: 20.0, bottom: 20.0),
+                            
                             Consumer<HomeProvider>(
                                 builder: (context, value, child) => CustomPlot(
                                     data: _parseData(value.distance)))
